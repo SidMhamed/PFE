@@ -1,13 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <main id="page">
-    <div class="col-md-12">
-        <div class="form-group container">
-            <a href="{{route('Groupes.form')}}" class="btn btn-primary">
-                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-            </a>
-        </div>
-    </div>
     <div>
         <table class="tab_cadre_pager">
             <tbody>
@@ -29,6 +22,11 @@
                         </td>
                         <td class="left" width="100%">
                            <a class="vsubmit" onclick="" title="Actions" href="">Actions</a>
+                        </td>
+                        <td class="left" width="100%">
+                            <a href="{{route('Groupes.form')}}" class="btn btn-success px-2 py-0">
+                              <i class="fa fa-plus-circle" title="Ajouter"></i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>

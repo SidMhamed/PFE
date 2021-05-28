@@ -24,7 +24,7 @@
             {{-- <div class="container"> --}}
             <div id="c_logo">
                     <a href="{{ route('home') }}" accesskey="1" title="Accueil">
-                        <span class="sr-only"></span>
+                        <img src="/images/1585060262_ISCAE.jpg" class="py-0" withd="100%" height="100%">
                     </a>
                 </div>
                 <!-- Right Side Of Navbar -->

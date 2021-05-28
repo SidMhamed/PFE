@@ -14,32 +14,6 @@
         </table>
     </div>
     <form action="#" method="post" name="massformComputer" id="massformComputer">
-            <script type="text/javascript">
-                    var massiveaction_windowe59f855a9415b6a820471339573d9573;$(function() {massiveaction_windowe59f855a9415b6a820471339573d9573=$('#massiveactioncontente59f855a9415b6a820471339573d9573').dialog({
-
-                    width:800,
-
-                    autoOpen: false,
-
-                    height:400,
-
-                    modal: true,
-
-                    title: "Actions",
-
-                    open: function (){
-                    var fields = {"container":"massformComputer"};
-                    var items = $('[id=massformComputer] [data-glpicore-ma-tags~=common]').each(function( index ) {
-                        fields[$(this).attr('name')] = $(this).attr('value');
-                        if (($(this).attr('type') == 'checkbox') && (!$(this).is(':checked'))) {
-                            fields[$(this).attr('name')] = 0;
-                        }
-                    });
-                    $(this).load('/glpi/ajax/massiveaction.php', fields);
-                    }
-                    });
-                    });
-            </script>
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
@@ -48,6 +22,11 @@
                         </td>
                         <td class="left" width="100%">
                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
+                        </td>
+                        <td class="left" width="100%">
+                            <a href="#" class="btn btn-success px-2 py-0">
+                              <i class="fa fa-plus-circle" title="Ajouter"></i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
