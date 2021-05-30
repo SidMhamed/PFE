@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\glpi_groups;
+use App\Models\glpi_fabricant;
+use App\Models\ModelPeripherique;
+use App\Models\TypesPeripherique;
+use App\Models\glpi_Peripherique;
 class PeripheriqueController extends Controller
 {
     /**
@@ -26,7 +31,22 @@ class PeripheriqueController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'GLPI-Péripheriques --1';
+        $header = 'Péripherique';
+        $User = User::all();
+        $Fabricants = glpi_fabricant::all();
+        $groups = glpi_groups::all();
+        $Models = ModelPeripherique::all();
+        $Types = TypesPeripherique::all();
+        return view('front.PeripheriqueForm')->with([
+        'title' => $title,
+        'header' => $header,
+        'Users' => $User,
+        'Fabricants' => $Fabricants,
+        'groups' => $groups,
+        'Models' => $Models,
+        'Types' => $Types
+        ]);
     }
 
     /**
@@ -37,7 +57,26 @@ class PeripheriqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        glpi_Peripherique::create([
+        'name' => $request -> name,
+        'statut_id' => $request -> statut_id,
+        'locations_id' => $request -> locations_id,
+        'Peripheriquetypes_id' => $request -> Peripheriquetypes_id,
+        'users_id_tech' => $request -> users_id_tech,
+        'fabricant_id' => $request -> fabricant_id,
+        'groups_tech' => $request -> groups_tech,
+        'Peripheriquemodels_id' => $request -> Peripheriquemodels_id,
+        'groups_id' => $request -> groups_id,
+        'UsagerNumero' => $request -> UsagerNumero,
+        'Usager' => $request -> Usager,
+        'NumeroDeSerie' => $request -> NumeroDeSerie,
+        'Utilisateur' => $request -> Utilisateur,
+        'users_id' => $request -> users_id,
+        'TypeDeGestion' => $request -> TypeDeGestion,
+        'Marque' => $request -> Marque,
+        'comment' => $request -> comment,
+        ]);
+        return redirect()->route('FormAjouterPeripherique')->with(['success' => 'Élément ajouté']);
     }
 
     /**

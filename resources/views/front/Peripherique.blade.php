@@ -24,7 +24,7 @@
                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
                         </td>
                         <td class="left" width="100%">
-                            <a href="#" class="btn btn-success px-2 py-0">
+                            <a href="{{route('FormAjouterPeripherique')}}" class="btn btn-success px-2 py-0">
                               <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>

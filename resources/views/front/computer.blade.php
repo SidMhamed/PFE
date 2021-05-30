@@ -55,7 +55,6 @@
                      <th><a href="#">Système d'exploitation-Nom</a></th>
                      <th><a href="#">Lieu</a></th>
                      <th><a href="#">Dernière modification</a></th>
-                     <th><a href="#">Composants - Processeur</a></th>
                     </tr>
                  </thead>
                  <tbody>
@@ -73,15 +72,13 @@
                         </td>
                         <td  valign="top"><a id="a" href="#">{{ $computer->nom }}</a></td>
                         <td  valign="top"></td>
+                        <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($computer->fabricant_id)->Nom}}</td>
                         <td  valign="top"></td>
+                        <td  valign="top">{{App\Models\glpi_computertypes::findOrFail($computer->computertypes_id)->name}}</td>
+                        <td  valign="top">{{App\Models\glpi_computermodels::findOrFail($computer->computermodels_id)->Nom}}</td>
                         <td  valign="top"></td>
-                        <td  valign="top"></td>
-                        <td  valign="top"></td>
-                        <td  valign="top"></td>
-                        <td  valign="top"></td>
+                        <td  valign="top">{{App\Models\glpi_location::findOrFail($computer->locations_id)->Nom}}</td>
                         <td  valign="top">{{ $computer->updated_at }}</td>
-                        <td  valign="top"></td>
-
                      </tr>
                      @endforeach
                      <tr class="bg-white">
@@ -104,7 +101,6 @@
                         <th><a href="#">Système d'exploitation-Nom</a></th>
                         <th><a href="#">Lieu</a></th>
                         <th><a href="#">Dernière modification</a></th>
-                        <th><a href="#">Composants - Processeur</a></th>
                        </tr>
                  </tbody>
              </table>

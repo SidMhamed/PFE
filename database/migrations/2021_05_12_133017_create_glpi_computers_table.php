@@ -15,12 +15,12 @@ class CreateGlpiComputersTable extends Migration
     {
         Schema::create('glpi_computers', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->default('NULL');
+            $table->string('nom')->nullable();
             $table->unsignedBigInteger('locations_id')->default('0');
             $table->integer('users_id_tech')->default('0');
             $table->integer('UsagerNumero')->default('0');
             $table->string('Usager')->NULL();
-            $table->string('Utilisateur')->default('NULL');
+            $table->string('Utilisateur')->nullable();
             $table->unsignedBigInteger('groups_id')->default('0');
             $table->unsignedBigInteger('users_id')->default('0');
             $table->integer('autoupdatesystems_id')->default('0');
@@ -28,10 +28,10 @@ class CreateGlpiComputersTable extends Migration
             $table->unsignedBigInteger('computertypes_id')->default('0');
             $table->unsignedBigInteger('fabricant_id')->default('0');
             $table->unsignedBigInteger('computermodels_id')->default('0');
-            $table->string('numeroDeSerie')->default('NULL');
-            $table->string('NumeroDinventaire')->default('NUll');
+            $table->string('numeroDeSerie')->nullable();
+            $table->string('NumeroDinventaire')->nullable();
             $table->unsignedBigInteger('networks_id')->default('0');
-            $table->text('comment')->Null();
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

@@ -12,10 +12,15 @@
     <!-- Fonts -->
    <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css.map') }}">
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/alerts.css')}}">
+
 </head>
 <body>
     <div id="app">
@@ -467,18 +472,14 @@
         </div> --}}
     </header>
         <main class="py-4">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    @include('includes.messages')
-                </div>
-            </div>
             @yield('content')
+            @include('includes.messages')
         </main>
     </div>
 </body>
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
-  <script src="js/common.min.js"></script>
+  <script src="{{asset('js/alerts.js')}}"></script>
   <script src="{{ asset('js/animation.min.js') }}"></script>
   <script src="{{ asset('js/app.js.map') }}"></script>
   <script src="{{ asset('/jquery-3.6.0.min.js') }}"></script>

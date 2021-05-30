@@ -15,8 +15,8 @@ class CreateGlpiComputertypesTable extends Migration
     {
         Schema::create('glpi_computertypes', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->default('NUL')->NULL();
-            $table->text('comment')->NULL();
+            $table->string('name');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

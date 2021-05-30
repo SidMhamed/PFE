@@ -39,7 +39,7 @@ class ComputerFabricantController extends Controller
             'Nom' => $request -> Nom,
             'commentaires' => $request ->commentaires
         ]);
-        return redirect()->route('Computer.form')->with(['success' => 'Élément ajouté']);
+        return redirect()->route('home')->with(['success' => 'Élément ajouté']);
     }
 
     /**

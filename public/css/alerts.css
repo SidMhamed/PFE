@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+/*
+body {
+    margin: 0;
+    font-family: 'Noto Sans SC', sans-serif;
+    background-image: url('https://uhdwallpapers.org/uploads/converted/18/06/14/landscape-from-dreamy-forest-3840x2160_69654-mm-90.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-color: #0002;
+    background-blend-mode: multiply;
+    padding: 25px;
+} */
+
+:root {
+    --default: #b9b69a;
+    --success: #51be56;
+    --warning: #ffc107;
+    --danger: #ff5722;
+    --info: #097fb6;
+}
+
+.alerts {
+    border: 1px outset var(--default);
+    border-left-width: 5px;
+    box-shadow: 0 4px 10px #0004, 0 2px 20px #0008;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    margin: 15px 0;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background-image: linear-gradient(45deg, #06960dc0, #08df0110);
+    transition-property: opacity, transform;
+    transition: 0.5s ease-in;
+}
+
+.alerts.close {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.alerts>.icon {
+    min-width: 40px;
+    min-height: 40px;
+    background-color: var(--default);
+    display: inline-block;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+}
+
+.alerts>.icon>* {
+    line-height: 40px;
+}
+
+.alerts>.texts {
+    width: 100%;
+    padding: 0 15px;
+    color: #fff;
+}
+
+.alerts>.texts p{
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.alerts>.close{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.alerts>.close:hover{
+    color: red;
+}
+
+
+/* success alert start */
+.alerts-success{
+    border-color: var(--success);
+}
+.alerts-success>.icon{
+    background-color: var(--success);
+}
+/* success alert end */
+
+
+/* warning alert start */
+.alerts-warning{
+    border-color: var(--warning);
+}
+.alerts-warning>.icon{
+    background-color: var(--warning);
+}
+/* warning alert end */
+
+
+/* danger alert start */
+.alerts-danger{
+    border-color: var(--danger);
+}
+.alerts-danger>.icon{
+    background-color: var(--danger);
+}
+/* danger alert end */
+
+
+/* info alert start */
+.alerts-info{
+    border-color: var(--info);
+}
+.alerts-info>.icon{
+    background-color: var(--info);
+}
+/* info alert end */

@@ -70,10 +70,10 @@
                         </td>
                         <td>{{ $Imprimante->name }}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{App\Models\glpi_fabricant::findOrFail($Imprimante->manufacturers_id)->Nom}}</td>
+                        <td>{{App\Models\glpi_location::findOrFail($Imprimante->locations_id)->Nom}}</td>
+                        <td>{{App\Models\Imprimantetypes::findOrFail($Imprimante->printertype_id)->name}}</td>
+                        <td>{{App\Models\ImprimanteModel::findOrFail($Imprimante->printermodels_id)->name}}</td>
                         <td>{{ $Imprimante->updated_at }}</td>
                      </tr>
                      @endforeach

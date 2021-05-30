@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGlpiPeripheriquesTable extends Migration
+class CreateMoniteurTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateGlpiPeripheriquesTable extends Migration
      */
     public function up()
     {
-        Schema::create('glpi__peripheriques', function (Blueprint $table) {
+        Schema::create('moniteur_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateGlpiPeripheriquesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('glpi__peripheriques');
+        Schema::dropIfExists('moniteur_types');
     }
 }

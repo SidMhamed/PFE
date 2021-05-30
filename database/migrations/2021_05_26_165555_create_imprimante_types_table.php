@@ -15,8 +15,8 @@ class CreateImprimanteTypesTable extends Migration
     {
         Schema::create('imprimante_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->NULL();
-            $table->string('Comment')->default('NULL');
+            $table->string('name')->nullable();
+            $table->string('Comment')->nullable();
             $table->timestamps();
         });
     }

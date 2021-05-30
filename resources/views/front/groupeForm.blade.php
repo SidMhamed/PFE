@@ -22,7 +22,9 @@
                     <div class="col-md-6">
                     </div>
                     <div class="col-md-12">
-                       <button type="submit" class="btn btn-success">Ajouter</button>
+                       <button type="submit" class="btn btn-success">
+                              <i class="fa fa-plus-circle" title="Ajouter"></i>
+                        Ajouter</button>
                     </div>
                  </div>
                 {!! Form::close() !!}

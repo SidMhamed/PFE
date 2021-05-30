@@ -114,7 +114,7 @@
                             </td>
                             <td>
                                     <label for="Type">Type</label>
-                                
+
                             </td>
                             <td>
                                    <select name="MaterielReseauTypes_id" id="Type" class="" required>
@@ -220,7 +220,9 @@
         </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -250,7 +252,8 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -323,7 +326,8 @@
     </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -354,7 +358,8 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
                     {!! Form::close() !!}
     </div>

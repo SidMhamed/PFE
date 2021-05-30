@@ -15,20 +15,20 @@ class CreateGlpiLocationsTable extends Migration
     {
         Schema::create('glpi_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('Nom')->NULL();
+            $table->string('Nom')->nullable();
             $table->integer('location_id')->default('0')->index();
-            $table->text('commentaires')->NULL();
+            $table->text('commentaires')->nullable();
             $table->integer('Etat')->default('0');
-            $table->text('address')->NULL();
-            $table->string('codeposte')->NULL();
-            $table->string('ville')->NULL();
-            $table->string('EmplacementsSurCarte')->NULL();
-            $table->string('pays')->NULL();
-            $table->string('NumeroDeBatiment')->NULL();
-            $table->string('NumeroDePiece')->NULL();
-            $table->string('latitude')->NULL();
-            $table->string('longitude')->NULL();
-            $table->string('altitude')->NULL();
+            $table->text('address')->nullable();
+            $table->string('codeposte')->nullable();
+            $table->string('ville')->nullable();
+            $table->string('EmplacementsSurCarte')->nullable();
+            $table->string('pays')->nullable();
+            $table->string('NumeroDeBatiment')->nullable();
+            $table->string('NumeroDePiece')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('altitude')->nullable();
             $table->timestamps();
         });
     }

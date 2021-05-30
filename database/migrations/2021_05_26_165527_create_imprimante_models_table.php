@@ -16,8 +16,8 @@ class CreateImprimanteModelsTable extends Migration
         Schema::create('imprimante_models', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('Comment')->default('NULL');
-            $table->string('product_Numbre')->default('NULL');
+            $table->string('Comment')->nullable();
+            $table->string('product_Numbre')->nullable();
             $table->timestamps();
         });
     }

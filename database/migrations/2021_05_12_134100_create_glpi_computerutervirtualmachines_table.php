@@ -15,9 +15,9 @@ class CreateGlpiComputerutervirtualmachinesTable extends Migration
     {
         Schema::create('glpi_computerutervirtualmachines', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->integer('entities_id')->default('0');
             $table->unsignedBigInteger('computers_id')->default('0');
-            $table->string('name');
             $table->integer('virtualmachinestates_id')->default('0');
             $table->integer('virtualmachinesystems_id')->default('0');
             $table->integer('virtualmachinetypes_id')->default('0');
@@ -26,7 +26,7 @@ class CreateGlpiComputerutervirtualmachinesTable extends Migration
             $table->string('ram');
             $table->tinyInteger('is_deleted')->default('0');
             $table->tinyInteger('is_dynamic')->default('0');
-            $table->Text('comment')->NULL();
+            $table->Text('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('computers_id')->references('id')->on('glpi_computers')->onUpdate('cascade')->onDelete('cascade');

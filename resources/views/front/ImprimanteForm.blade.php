@@ -284,12 +284,13 @@
         </div>
         <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
             {!! Form::label('Comment', 'Commentaires') !!}
-            {!! Form::text('Comment', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::textarea('Comment', null, ['class' => 'form-control', 'required' => 'required', 'rows' => '3', 'cols' => '3']) !!}
         </div>
         </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -319,7 +320,8 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -354,7 +356,8 @@
     </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -385,7 +388,8 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
                     {!! Form::close() !!}
     </div>

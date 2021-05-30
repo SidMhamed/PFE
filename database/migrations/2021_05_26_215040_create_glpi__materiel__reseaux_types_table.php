@@ -16,7 +16,7 @@ class CreateGlpiMaterielReseauxTypesTable extends Migration
         Schema::create('glpi__materiel__reseaux_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('Comment')->NUll();
+            $table->text('Comment')->nullable();
             $table->timestamps();
         });
     }

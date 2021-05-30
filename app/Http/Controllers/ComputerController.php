@@ -27,9 +27,15 @@ class ComputerController extends Controller
             'computers' => $computers
         ]);
     }
-    public function form()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         $title = 'GLPI-Ordinateurs --1';
+        $header = 'Ordinateur';
         $types = glpi_computertypes::all();
         $Fabricants = glpi_fabricant::all();
         $Models = glpi_computermodels::all();
@@ -39,6 +45,7 @@ class ComputerController extends Controller
         $groups =glpi_groups::all();
         return view('front.ComputerForm')->with([
             'title' => $title,
+            'header' => $header,
             'Types' => $types,
             'Fabricants' => $Fabricants,
             'Models' => $Models,
@@ -47,15 +54,6 @@ class ComputerController extends Controller
             'Users' => $user,
             'groups' => $groups
         ]);
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
     }
 
     /**

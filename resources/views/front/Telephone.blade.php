@@ -24,7 +24,7 @@
                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
                         </td>
                          <td class="left" width="100%">
-                            <a href="#" class="btn btn-success px-2 py-0">
+                            <a href="{{route('FormTelephone')}}" class="btn btn-success px-2 py-0">
                               <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>
@@ -57,15 +57,28 @@
                     </tr>
                  </thead>
                  <tbody>
-                     {{-- @foreach ($computers as $computer)
+                     @foreach ($Telephones as $Telephone)
                      <tr>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
+                        <td width="10px" valign="top">
+                            <span class="form-group-checkbox">
+                                <input id="check_1515325751"  value="1" type="checkbox" class="new_checkbox" data-glpicore-ma-tags="common" name="checkbox" onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
+                                {return true;}" title="Tout cocher Comme">
+                                <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
+                                   <span class="check"></span>
+                                   <span class="box"></span>
+                                </label>
+                            </span>
+                        </td>
+                        <td><a href="#">{{ $Telephone->name}}</a></td>
+                        <td></td>
+                        <td>{{App\Models\glpi_fabricant::findOrFail($Telephone->fabricant_id)->Nom}}</td>
+                        <td>{{App\Models\glpi_location::findOrFail($Telephone->locations_id)->Nom}}</td>
+                        <td>{{App\Models\TelephoneTypes::findOrFail($Telephone->telephonetypes_id)->name}}</td>
+                        <td>{{App\Models\TelephoneModeles::findOrFail($Telephone->telephonemodels_id)->name}}</td>
+                        <td>{{ $Telephone->updated_at  }}</td>
+                        <td>{{$Telephone->Usager}}</td>
                      </tr>
-                     @endforeach --}}
+                     @endforeach
                      <tr class="bg-white">
                         <th class="">
                             <div class="form-group-checkbox">

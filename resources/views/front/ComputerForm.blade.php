@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
         <div class="container align-content-center border">
-              <h4 class="alert-heading alert">Ordinateur</h4>
+              <h4 class="alert-heading alert">{{$header}}</h4>
             <div class="card border-0">
                     <div class="card-header alert-heading border text-black">
                             Nouvel élément - Ordinateur
@@ -234,7 +234,9 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
                     {!! Form::close() !!}
     </div>
@@ -263,7 +265,9 @@
         </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -293,7 +297,9 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -366,7 +372,9 @@
     </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -397,7 +405,9 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        Ajouter</button>
       </div>
                     {!! Form::close() !!}
     </div>

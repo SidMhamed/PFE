@@ -16,7 +16,7 @@ class CreateGlpiSourceMiseAjoursTable extends Migration
         Schema::create('glpi__source_mise_ajours', function (Blueprint $table) {
             $table->id();
             $table->string('Nom');
-            $table->text('commentaires')->NULL();
+            $table->text('commentaires')->nullable();
             $table->timestamps();
         });
     }

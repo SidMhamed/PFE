@@ -16,7 +16,7 @@ class CreateGlpiReseauxesTable extends Migration
         Schema::create('glpi_reseauxes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('comment')->NULL();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

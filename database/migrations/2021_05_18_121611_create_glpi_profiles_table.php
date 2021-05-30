@@ -15,19 +15,19 @@ class CreateGlpiProfilesTable extends Migration
     {
         Schema::create('glpi_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->NULL();
-            $table->string('interface')->NULL();
+            $table->string('name')->nullable();
+            $table->string('interface')->nullable();
             $table->tinyInteger('is_default')->default('0');
             $table->integer('helpdesk_hardware')->default('0');
-            $table->text('helpdesk_item_type')->NULL();
-            $table->text('ticket_status')->NULL();
-            $table->text('comment')->NULL();
-            $table->text('problem_status')->NULL();
+            $table->text('helpdesk_item_type')->nullable();
+            $table->text('ticket_status')->nullable();
+            $table->text('comment')->nullable();
+            $table->text('problem_status')->nullable();
             $table->tinyInteger('create_ticket_on_login')->default('0');
             $table->integer('tickettemplates_id')->default('0');
             $table->integer('changetemplates_id')->default('0');
             $table->integer('problemtemplates_id')->default('0');
-            $table->text('change_status')->NULL();
+            $table->text('change_status')->nullable();
             $table->timestamps();
         });
     }

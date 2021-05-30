@@ -15,8 +15,8 @@ class CreateGlpiFabricantsTable extends Migration
     {
         Schema::create('glpi_fabricants', function (Blueprint $table) {
             $table->id();
-            $table->string('Nom')->default('NULL');
-            $table->text('commentaires')->NULL();
+            $table->string('Nom')->nullable();
+            $table->text('commentaires')->nullable();
             $table->timestamps();
         });
     }

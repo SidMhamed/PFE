@@ -16,16 +16,16 @@ class CreateGlpiMaterielReseauxModelesTable extends Migration
         Schema::create('glpi__materiel__reseaux_modeles', function (Blueprint $table) {
             $table->id();
             $table->string('Nom');
-            $table->string('Numero_du_produit')->default('NULL')->NULL();
+            $table->string('Numero_du_produit')->nullable();
             $table->integer('Poids')->default('0');
             $table->integer('Unites_requises')->default('1');
             $table->float('Profondeur')->default('1');
             $table->integer('ConnexionDalimentation')->default('0');
             $table->integer('Puissance_consommee')->default('0');
             $table->tinyInteger('DemieLargeur')->default('0');
-            $table->text('photoface')->NULL();
-            $table->text('PhotoArriere')->NULL();
-            $table->text('comment')->NULL();
+            $table->text('photoface')->nullable();
+            $table->text('PhotoArriere')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

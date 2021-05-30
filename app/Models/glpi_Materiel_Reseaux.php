@@ -4,15 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\glpi_groups;
-use App\Models\glpi_Materiel_ReseauxModele;
-use App\Models\glpi_Materiel_ReseauxTypes;
-use App\Models\User;
-use App\Models\glpi_location;
-use App\Models\glpi_fabricant;
-use App\Models\glpi_reseaux;
 
-class glpi_Materiel_Reseaux extends Model
+class glpi_Materiel_reseaux extends Model
 {
     use HasFactory;
     protected $fillable = [

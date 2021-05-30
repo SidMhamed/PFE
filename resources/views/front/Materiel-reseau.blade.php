@@ -71,10 +71,10 @@
                         </td>
                         <td>{{ $Materiel_Reseau->nom }}</td>
                         <td>{{ $Materiel_Reseau->states_id }}</td>
-                        <td>{{ $Materiel_Reseau->fabricant_id }}</td>
-                        <td>{{ $Materiel_Reseau->locations_id }}</td>
-                        <td>{{ $Materiel_Reseau->MaterielReseauTypes_id }}</td>
-                        <td>{{ $Materiel_Reseau->MaterielReseauTypes_id }}</td>
+                        <td>{{ App\Models\glpi_fabricant::findOrFail($Materiel_Reseau->fabricant_id)->Nom }}</td>
+                        <td>{{ App\Models\glpi_location::findOrFail($Materiel_Reseau->locations_id)->Nom }}</td>
+                        <td>{{ App\Models\glpi_Materiel_ReseauxTypes::findOrFail($Materiel_Reseau->MaterielReseauTypes_id)->name }}</td>
+                        <td>{{ App\Models\glpi_Materiel_ReseauxModele::findOrFail($Materiel_Reseau->MaterielReseauModels_id)->Nom }}</td>
                         <td></td>
                         <td>{{ $Materiel_Reseau->updated_at }}</td>
                      </tr>
