@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-        <div class="container align-content-center border">
-              <h4 class="alert-heading alert">{{$header}}</h4>
-            <div class="card border-0">
+        <div class="container align-content-center border-0">
+              <h4 class="alert-heading alert text-white">{{$header}}</h4>
+            <div id="card" class="card border-0">
                     <div class="card-header alert-heading border text-black">
                             Nouvel élément - Ordinateur
                     </div>
@@ -197,7 +197,7 @@
                                     <label for="comment">Comment</label>
                             </td>
                             <td>
-                                    <textarea name="comment" id="comment" cols="30" rows="8" class="" required></textarea>
+                                    <textarea name="comment" id="comment" cols="40" rows="3" class="" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -212,7 +212,7 @@
         </div>
 <div>
 {{--  Source de mise à jour --}}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade my-5 py-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -243,7 +243,7 @@
   </div>
 </div>
  {{-- model pour le types des Ordinateurs--}}
-    <div class="modal fade" id="TypeOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade my-5 py-5" id="TypeOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -275,7 +275,7 @@
 </div>
 
        {{-- model pour le Fabricant des Ordinateurs--}}
-   <div class="modal fade" id="Fabricants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade my-5 py-5" id="Fabricants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -308,7 +308,7 @@
 </div>
 
 {{-- Modal pour ajouter un Modele --}}
-<div class="modal fade" id="ModaleOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade my-5 py-5" id="ModaleOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -383,7 +383,7 @@
 
 
    {{--  Modal pour ajouter un reseau --}}
-<div class="modal fade" id="ModalReseaux" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade my-5 py-5" id="ModalReseaux" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

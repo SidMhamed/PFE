@@ -3,19 +3,18 @@
 * {
     box-sizing: border-box;
 }
-/*
+
 body {
-    margin: 0;
     font-family: 'Noto Sans SC', sans-serif;
-    background-image: url('https://uhdwallpapers.org/uploads/converted/18/06/14/landscape-from-dreamy-forest-3840x2160_69654-mm-90.jpg');
+    background-image: url('/images/body.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh;
+    min-height: 150vh;
     background-color: #0002;
     background-blend-mode: multiply;
-    padding: 25px;
-} */
+    font-size: 13px;
+}
 
 :root {
     --default: #b9b69a;
@@ -26,8 +25,8 @@ body {
 }
 
 .alerts {
-    border: 1px outset var(--default);
-    border-left-width: 5px;
+    border: 3px outset var(--default);
+    border-left-width: 10px;
     box-shadow: 0 4px 10px #0004, 0 2px 20px #0008;
     display: flex;
     align-items: center;
@@ -35,14 +34,14 @@ body {
     margin: 15px 0;
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    background-image: linear-gradient(45deg, #06960dc0, #08df0110);
+    background-color: #008080;
     transition-property: opacity, transform;
     transition: 0.5s ease-in;
 }
 
 .alerts.close {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translate3d(40px);
 }
 
 .alerts>.icon {

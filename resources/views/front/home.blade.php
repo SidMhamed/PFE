@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container my-3">
     <div class="row">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card border-0">
                 <div class="card-header">{{ __('Tableau de bord') }}</div>
                 <div class="card-body">
-                    @if (session('status'))
+                    {{-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif --}}
                     <div class="row">
                         <a href="{{ route('showComputer') }}" class="col-md-2 py-0  px-0 mx-1 text-decoration-none alert Ordina">
                                     <span class="text-left float-left" title="{{ $countComputer }}" style="font-size:2.2em;color:#8c2121">{{$countComputer}}</span>

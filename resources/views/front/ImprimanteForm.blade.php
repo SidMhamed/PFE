@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-        <div class="container align-content-center border">
-              <h4 class="alert-heading alert">{{$header}}</h4>
+        <div class="container align-content-center border-0">
+              <h4 class="alert-heading alert text-white">{{$header}}</h4>
             <div class="card">
                     <div class="card-header alert-heading">
                             Nouvel élément - Imprimante

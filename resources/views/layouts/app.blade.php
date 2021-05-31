@@ -23,13 +23,12 @@
 
 </head>
 <body>
-    <div id="app">
-        <div id="header">
+    <div id="header">
         <header id="header_top" class="navbar navbar-expand-md navbar-light shadow-sm">
             {{-- <div class="container"> --}}
             <div id="c_logo">
                     <a href="{{ route('home') }}" accesskey="1" title="Accueil">
-                        <img src="/images/1585060262_ISCAE.jpg" class="py-0" withd="100%" height="100%">
+                        <img src="/images/1585060262_ISCAE.jpg" class="">
                     </a>
                 </div>
                 <!-- Right Side Of Navbar -->
@@ -470,12 +469,11 @@
                 </li>
             </ul>
         </div> --}}
-    </header>
-        <main class="py-4">
+    </div>
+        <main class="py-5 my-5">
             @yield('content')
             @include('includes.messages')
         </main>
-    </div>
 </body>
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>

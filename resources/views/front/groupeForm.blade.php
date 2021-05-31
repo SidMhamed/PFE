@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-   <div class="container align-content-center alert alert-success" role="alert">
-              <h4 class="alert-heading alert alert-success">Groupes</h4>
+   <div class="container align-content-center alert border-0" role="alert">
+              <h4 class="alert-heading alert bg-white">Groupes</h4>
         <div class="card">
             <div class="card-header alert-heading text-center">
                     Nouvel élément - Groupes
