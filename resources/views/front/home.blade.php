@@ -43,10 +43,24 @@
                             <i class="fa-fw fab fa-usb float-right" title="Périphériques" style="font-size:2em;"></i><br><br>
                             <h6 class="text-left" title="Périphériques">Périphériques</h6>
                         </a>
+                         <a href="{{route('Logiciels')}}" class="col-md-2 py-0  px-0 mx-1 text-decoration-none alert alert-success">
+                            <span class="text-left float-left" title="" data-precision="0" style="font-size:2.2em;">
+                            {{-- {{$Logiciels}} --}}
+                            </span>
+                            <i class="fas fa-cube float-right" title="Logiciel" style="font-size:2em;"></i><br><br>
+                            <h6 class="text-left" title="Logiciel">Logiciel</h6>
+                        </a>
+                        <a href="{{route('CarteSIM')}}" class="col-md-2 py-0  px-0 mx-1 text-decoration-none alert alert-success">
+                            <span class="text-left float-left" title="" data-precision="0" style="font-size:2.2em;">
+                            {{-- {{$Logiciels}} --}}
+                            </span>
+                            <i class="fas fa-sim-card float-right" title="Cartes SIM" style="font-size:2em;"></i><br><br>
+                            <h6 class="text-left" title="Cartes SIM">Cartes SIM</h6>
+                        </a>
                         <a href="#" class="col-md-2 py-0  px-0 mx-1 text-decoration-none alert alert-success">
                             <span class="text-left float-left" title="{{$MaterielBureaux}}" data-precision="0" style="font-size:2.2em;">{{$MaterielBureaux}}</span>
-                            <i class="fas fa-cube float-right" title="Logiciel" style="font-size:2em;"></i><br><br>
-                            <h6 class="text-left" title="Logiciel">Matériel bureaux</h6>
+                            <i class="main-icon fas fa-th float-right" title="Matériel bureaux" style="font-size:2em;"></i><br><br>
+                            <h6 class="text-left" title="Matériel bureaux">Matériel bureaux</h6>
                         </a>
                     </div>
                 </div>

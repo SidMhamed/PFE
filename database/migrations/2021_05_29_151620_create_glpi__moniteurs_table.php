@@ -43,11 +43,11 @@ class CreateGlpiMoniteursTable extends Migration
             $table->timestamps();
 
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fabricant_id')->references('id')->on('glpi_fabricants')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('groups_id')->references('id')->on('glpi_groups')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('Moniteurmodels_id')->references('id')->on('moniteur_modeles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('Moniteurtypes_id')->references('id')->on('moniteur_types')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');
 
             Schema::disableForeignKeyConstraints();
         });

@@ -3,7 +3,7 @@
    <div class="container align-content-center alert border-0" role="alert">
               <h4 class="alert-heading alert bg-white">Groupes</h4>
         <div class="card">
-            <div class="card-header alert-heading text-center">
+            <div class="card-header alert-heading  border-success border-5">
                     Nouvel élément - Groupes
             </div>
             <div class="card-body">

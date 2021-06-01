@@ -24,7 +24,7 @@
                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
                         </td>
                         <td class="left" width="100%">
-                            <a href="{{route('FormAjouterLogiciels')}}" class="btn btn-success px-2 py-0">
+                            <a href="{{route('FormAjouterCarteSIM')}}" class="btn btn-success px-2 py-0">
                               <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>
@@ -35,27 +35,30 @@
         <div class="center">
              <table class="tab_cadrehov" border="0">
                  <thead>
-                    <tr class="">
-                        <th class="">
-                            <div class="form-group-checkbox">
-                                <input id="checkall_19067763" type="checkbox" class="new_checkbox" name="checkbox" onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
-                                {return true;}" title="Tout cocher Comme">
-                                <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
-                                <span class="check"></span>
-                                <span class="box"></span>
-                                </label>
-                            </div>
-                        </th>
-                        <th><a href="#">Nom</a></th>
-                        <th><a href="#">Éditeur</a></th>
-                        <th><a href="#">Versions - Nom</a></th>
-                        <th><a href="#">Versions - Système d'exploitation</a></th>
-                        <th><a href="#">Nombre d'installations </a></th>
-                        <th><a href="#">Licences - Nombre de licences</a></th>
+                   <tr class="">
+                     <th>
+                         <div class="form-group-checkbox">
+                            <input id="checkall_19067763" type="checkbox" class="new_checkbox" name="checkbox" onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
+                            {return true;}" title="Tout cocher Comme">
+                            <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
+                               <span class="check"></span>
+                               <span class="box"></span>
+                            </label>
+                         </div>
+                     </th>
+                     <th><a href="#">Nom</a></th>
+                     <th><a href="#">Statut</a></th>
+                     <th><a href="#">Fabricant</a></th>
+                     <th><a href="#">Numéro de série</a></th>
+                     <th><a href="#">Type </a></th>
+                     <th><a href="#">Modèle </a></th>
+                     <th><a href="#">Système d'exploitation-Nom</a></th>
+                     <th><a href="#">Lieu</a></th>
+                     <th><a href="#">Dernière modification</a></th>
                     </tr>
                  </thead>
                  <tbody>
-                     {{-- @foreach ($computers as $computer)
+                     {{-- @foreach ($cartes as $carte)
                      <tr>
                         <td width="10px" valign="top">
                             <span class="form-group-checkbox">
@@ -67,14 +70,14 @@
                                 </label>
                             </span>
                         </td>
-                        <td  valign="top"><a id="a" href="#">{{ $logiciel->nom }}</a></td>
+                        <td  valign="top"><a id="a" href="#">{{ $carte->nom }}</a></td>
                         <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($computer->fabricant_id)->Nom}}</td>
+                        <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($carte->fabricant_id)->Nom}}</td>
                         <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_computertypes::findOrFail($computer->computertypes_id)->name}}</td>
-                        <td  valign="top">{{App\Models\glpi_computermodels::findOrFail($computer->computermodels_id)->Nom}}</td>
+                        <td  valign="top">{{App\Models\glpi_computertypes::findOrFail($carte->computertypes_id)->name}}</td>
+                        <td  valign="top">{{App\Models\glpi_computermodels::findOrFail($carte->computermodels_id)->Nom}}</td>
                         <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_location::findOrFail($computer->locations_id)->Nom}}</td>
+                        <td  valign="top">{{App\Models\glpi_location::findOrFail($carte->locations_id)->Nom}}</td>
                         <td  valign="top">{{ $computer->updated_at }}</td>
                      </tr>
                      @endforeach --}}
@@ -90,11 +93,14 @@
                             </div>
                         </th>
                         <th><a href="#">Nom</a></th>
-                        <th><a href="#">Éditeur</a></th>
-                        <th><a href="#">Versions - Nom</a></th>
-                        <th><a href="#">Versions - Système d'exploitation</a></th>
-                        <th><a href="#">Nombre d'installations </a></th>
-                        <th><a href="#">Licences - Nombre de licences</a></th>
+                        <th><a href="#">Statut</a></th>
+                        <th><a href="#">Fabricant</a></th>
+                        <th><a href="#">Numéro de série</a></th>
+                        <th><a href="#">Type </a></th>
+                        <th><a href="#">Modèle </a></th>
+                        <th><a href="#">Système d'exploitation-Nom</a></th>
+                        <th><a href="#">Lieu</a></th>
+                        <th><a href="#">Dernière modification</a></th>
                        </tr>
                  </tbody>
              </table>

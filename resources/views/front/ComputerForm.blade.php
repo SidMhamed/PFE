@@ -3,7 +3,7 @@
         <div class="container align-content-center border-0">
               <h4 class="alert-heading alert text-white">{{$header}}</h4>
             <div id="card" class="card border-0">
-                    <div class="card-header alert-heading border text-black">
+                    <div class="card-header alert-heading  border-success border-5">
                             Nouvel élément - Ordinateur
                     </div>
                 <div class="card-body">
@@ -186,7 +186,7 @@
                             </td>
                             <td>
                                     <select name="networks_id" id="reseau" class="" required>
-                                            <option hidden value="" selected disabled>-----</option>
+                                            <option value="" selected disabled>-----</option>
                                         @foreach ($Reseaux as $Reseau)
                                             <option value="{{$Reseau->id}}">{{$Reseau->name}}</option>
                                         @endforeach

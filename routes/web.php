@@ -24,7 +24,9 @@ use App\Http\Controllers\ImprimanteTypesController;
 use App\Http\Controllers\ImprimanteModeleController;
 use App\Http\Controllers\TypesTelephoneController;
 use App\Http\Controllers\ModelesTelephoneController;
-
+use App\Http\Controllers\LogicielController;
+use App\Http\Controllers\CarteSIMController;
+use App\Http\Controllers\ComposantCarteSIMController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,3 +81,12 @@ Route::get('/FormAjouterPeripherique', [PeripheriqueController::class, 'create']
 Route::post('/AjouterPeripherique', [PeripheriqueController::class, 'store'])->name('AjouterPeripherique');
 Route::post('/AjouterTypePeripherique', [TypePeripheriqueController::class, 'store'])->name('AjouterTypePeripherique');
 Route::post('/AjouterModelsPeripherique', [ModelPeripheriqueController::class, 'store'])->name('AjouterModelsPeripherique');
+Route::get('/Logiciels', [LogicielController::class, 'index'])->name('Logiciels');
+Route::get('/FormAjouterLogiciels', [LogicielController::class, 'create'])->name('FormAjouterLogiciels');
+Route::post('/AjouterLogiciels', [LogicielController::class, 'store'])->name('AjouterLogiciels');
+
+Route::get('/CarteSIM', [CarteSIMController::class, 'index'])->name('CarteSIM');
+Route::get('/FormAjouterCarteSIM', [CarteSIMController::class, 'create'])->name('FormAjouterCarteSIM');
+Route::post('/AjouterComposantCarteSIM', [ComposantCarteSIMController::class, 'store'])->name('AjouterComposantCarteSIM');
+Route::post('/AjouterTypeCarteSIM', [TypeCarteSIMController::class, 'store'])->name('AjouterTypeCarteSIM');
+Route::post('/AjouterCarteSIM', [CarteSIMController::class, 'store'])->name('AjouterCarteSIM');

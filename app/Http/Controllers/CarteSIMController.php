@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Logiciel;
+use App\Models\ComposatsCarteSIM;
 use App\Models\User;
-use App\Models\glpi_fabricant;
 use App\Models\glpi_groups;
-class LogicielController extends Controller
+use App\Models\glpi_fabricant;
+use App\Models\ItemsCarteSIM;
+class CarteSIMController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -17,11 +17,9 @@ class LogicielController extends Controller
      */
     public function index()
     {
-        $title = 'GLPI-Logiciels';
-        $Logiciels = '';
-        return view('front.logiciels')->with([
+        $title = 'Carte SIM';
+        return view('front.CarteSIM')->with([
             'title' => $title,
-            'Logiciels' => $Logiciels
         ]);
     }
 
@@ -32,17 +30,19 @@ class LogicielController extends Controller
      */
     public function create()
     {
-        $title = 'GLPI-Logiciels --1';
-        $header = 'Logiciel';
-        $Users = User::all();
-        $Fabricants = glpi_fabricant::all();
+        $title = 'GLPI-Cartes SIM';
+        $header = 'Catre SIM';
+        $user = User::all();
         $groups =glpi_groups::all();
-        return view('front.logicielsForm')->with([
+        $Fabricants = glpi_fabricant::all();
+        $Composants = ComposatsCarteSIM::all();
+        return view('front.CarteSIMForm')->with([
             'title' => $title,
             'header' => $header,
-            'Users' => $Users,
-            'groups' => $groups,
+            'Users' => $user,
+            'Groups' => $groups,
             'Fabricants' => $Fabricants,
+            'Composants' => $Composants
         ]);
     }
 
@@ -54,26 +54,28 @@ class LogicielController extends Controller
      */
     public function store(Request $request)
     {
-        Logiciel::create([
-            'name' => $request -> name,
-            'comment' => $request -> comment,
-            'locations_id' => $request -> locations_id,
-            'users_id' => $request -> users_id,
-            'groups_id' => $request -> groups_id,
-            'users_id_tech' => $request -> users_id_tech,
-            'groups_id_tech' => $request -> groups_id_tech,
-            'is_update' => $request -> is_update,
-            'logiciels_id' => $request -> logiciels_id,
-            'fabricant_id' => $request -> fabricant_id,
-            'is_deleted' => $request -> is_deleted,
-            'is_template' => $request -> is_template,
-            'template_name' => $request -> template_name,
-            'ticket_tco' => $request -> ticket_tco,
-            'is_helpdesk_visible' => $request -> is_helpdesk_visible,
-            'LogicielCategories_id' => $request -> LogicielCategories_id,
-            'is_valid' => $request -> is_valid,
+        ItemsCarteSIM::create([
+            'items_id' => $request ->  items_id,
+            'itemstype' => $request ->  itemstype,
+            'devicesimcards_id' => $request ->  devicesimcards_id,
+            'is_deleted' => $request ->  is_deleted,
+            'is_dynamic' => $request ->  is_dynamic,
+            'entities_id' => $request ->  entities_id,
+            'is_recursive' => $request ->  is_recursive,
+            'serial' => $request ->  serial,
+            'otherserial' => $request ->  otherserial,
+            'states_id' => $request ->  states_id,
+            'locations_id' => $request ->  locations_id,
+            'lines_id' => $request ->  lines_id,
+            'users_id' => $request ->  users_id,
+            'groups_id' => $request ->  groups_id,
+            'pin' => $request ->  pin,
+            'pin2' => $request ->  pin2,
+            'puk' => $request ->  puk,
+            'puk2' => $request ->  puk2,
+            'msin' => $request ->  msin,
         ]);
-        return redirect()->route('FormAjouterLogiciels')->with(['success' => 'Élément ajouté']);
+        return redirect()->route('FormAjouterCarteSIM')->with(['success' => 'Élément ajouté']);
     }
 
     /**

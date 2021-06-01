@@ -46,7 +46,7 @@ class ImprimanteController extends Controller
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
-            'groups' => $Users,
+            'groups' => $groups,
             'Fabricants' => $Fabricants,
             'Reseaux' => $Reseaux,
             'Types' => $Types,

@@ -92,7 +92,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="#"  accesskey='s' class=" dropdown-item">
+                                            <a href="{{route('Logiciels')}}"  accesskey='s' class=" dropdown-item">
                                             <i class='fa-fw fas fa-cube'></i>
                                             Logiciel<u>s</u>
                                             </a>
@@ -169,7 +169,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="#" class="dropdown-item">
+                                        <a href="{{route('CarteSIM')}}" class="dropdown-item">
                                         <i class='fa-fw fas fa-sim-card'></i>
                                         Cartes SIM
                                         </a>
@@ -471,8 +471,8 @@
         </div> --}}
     </div>
         <main class="py-5 my-5">
-            @yield('content')
             @include('includes.messages')
+            @yield('content')
         </main>
 </body>
   <!-- Scripts -->

@@ -3,7 +3,7 @@
         <div class="container align-content-center border-0">
               <h4 class="alert-heading alert text-white">{{$header}}</h4>
             <div class="card">
-                    <div class="card-header alert-heading">
+                    <div class="card-header alert-heading border-success border-5">
                             Nouvel élément - Imprimante
                     </div>
                 <div class="card-body">

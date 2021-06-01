@@ -36,7 +36,7 @@
              <table class="tab_cadrehov" border="0">
                  <thead>
                    <tr class="">
-                     <th class="">
+                     <th>
                          <div class="form-group-checkbox">
                             <input id="checkall_19067763" type="checkbox" class="new_checkbox" name="checkbox" onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
                             {return true;}" title="Tout cocher Comme">
