@@ -47,11 +47,11 @@
                         <td>
                                     <select name="LogicielCategories_id" id="Type" class="" >
                                             <option value="" selected disabled>-----</option>
-                                        {{-- @foreach ($Types as $Type)
-                                            <option value="{{$Type->id}}">{{$Type->name}}</option>
-                                        @endforeach --}}
+                                        @foreach ($LogicielCategories as $LogicielCategorie)
+                                            <option value="{{$LogicielCategorie->id}}">{{$LogicielCategorie->name}}</option>
+                                        @endforeach
                                     </select>
-                                    <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#TypeTelephone"></i>
+                                    <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#CategorieLogiciel"></i>
                         </td>
                        </tr>
                        <tr>
@@ -103,7 +103,7 @@
                                     <select name="users_id" id="users_id" class="" required>
                                         <option value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
-                                            <option value="{{$User->name}}">{{$User->name}}</option>
+                                            <option value="{{$User->id}}">{{$User->name}}</option>
                                         @endforeach
                                     </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -149,8 +149,8 @@
             </div>
         </div>
     </div>
-    {{-- model pour le types des Telephone--}}
-    <div class="modal fade" id="TypeTelephone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- model pour le types des Logiciels--}}
+    <div class="modal fade" id="CategorieLogiciel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -159,7 +159,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-            {!! Form::open(['method' => 'POST','route' => 'AjouterTypePeripherique', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['method' => 'POST','route' => 'AjouterTypeLogiciels', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
         <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
             {!! Form::label('name', 'Nom') !!}

@@ -7,6 +7,7 @@ use App\Models\Logiciel;
 use App\Models\User;
 use App\Models\glpi_fabricant;
 use App\Models\glpi_groups;
+use App\Models\LogicielCategories;
 class LogicielController extends Controller
 {
 
@@ -18,10 +19,10 @@ class LogicielController extends Controller
     public function index()
     {
         $title = 'GLPI-Logiciels';
-        $Logiciels = '';
+        $logiciels = Logiciel::all();
         return view('front.logiciels')->with([
             'title' => $title,
-            'Logiciels' => $Logiciels
+            'logiciels' => $logiciels
         ]);
     }
 
@@ -37,12 +38,14 @@ class LogicielController extends Controller
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
         $groups =glpi_groups::all();
+        $LogicielCategories = LogicielCategories::all();
         return view('front.logicielsForm')->with([
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
             'groups' => $groups,
             'Fabricants' => $Fabricants,
+            'LogicielCategories' => $LogicielCategories
         ]);
     }
 
@@ -61,17 +64,17 @@ class LogicielController extends Controller
             'users_id' => $request -> users_id,
             'groups_id' => $request -> groups_id,
             'users_id_tech' => $request -> users_id_tech,
-            'groups_id_tech' => $request -> groups_id_tech,
-            'is_update' => $request -> is_update,
+            // 'groups_id_tech' => $request -> groups_id_tech,
+            // 'is_update' => $request -> is_update,
             'logiciels_id' => $request -> logiciels_id,
             'fabricant_id' => $request -> fabricant_id,
-            'is_deleted' => $request -> is_deleted,
-            'is_template' => $request -> is_template,
-            'template_name' => $request -> template_name,
+            // 'is_deleted' => $request -> is_deleted,
+            // 'is_template' => $request -> is_template,
+            // 'template_name' => $request -> template_name,
             'ticket_tco' => $request -> ticket_tco,
-            'is_helpdesk_visible' => $request -> is_helpdesk_visible,
+            // 'is_helpdesk_visible' => $request -> is_helpdesk_visible,
             'LogicielCategories_id' => $request -> LogicielCategories_id,
-            'is_valid' => $request -> is_valid,
+            // 'is_valid' => $request -> is_valid,
         ]);
         return redirect()->route('FormAjouterLogiciels')->with(['success' => 'Élément ajouté']);
     }

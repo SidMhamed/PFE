@@ -101,12 +101,33 @@ class ComputerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $title = 'GLPI-Ordinateurs';
+        $header = 'Ordinateur';
+        $types = glpi_computertypes::all();
+        $Fabricants = glpi_fabricant::all();
+        $Models = glpi_computermodels::all();
+        $Reseaux = glpi_reseaux::all();
+        $SourceMiseAjours = glpi_SourceMiseAjour::all();
+        $user = User::all();
+        $groups =glpi_groups::all();
+        $Computer = glpi_computers::find($id);
+        return view('front.edit.ComputerEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Types' => $types,
+            'Fabricants' => $Fabricants,
+            'Models' => $Models,
+            'Reseaux' => $Reseaux,
+            'SourceMiseAjours' => $SourceMiseAjours,
+            'Users' => $user,
+            'groups' => $groups,
+            'Computer' => $Computer
+        ]);
     }
 
     /**
@@ -118,7 +139,9 @@ class ComputerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Computer = glpi_computers::find($id);
+        $Computer->update($request->all());
+      return redirect()->route('front.computer')->with(['success' => 'Élément modifié']);
     }
 
     /**

@@ -18,10 +18,10 @@
                          <label for="Élément">Pas d'élément associé</label>
                         </td>
                         <td>
-                                    <label for="Composant">Composant</label>
+                                    <label for="devicesimcards_id">Composant</label>
                             </td>
                             <td>
-                                    <select name="Composant" id="Composant" class="">
+                                    <select name="devicesimcards_id" id="devicesimcards_id" class="">
                                         <option value="" selected disabled>-----</option>
                                         @foreach($Composants as $Composant)
                                         <option value="{{$Composant->id}}">{{$Composant->name}}</option>
@@ -49,7 +49,7 @@
                                 <label for="locations_id">Lieu</label>
                             </td>
                             <td>
-                                    <select name="locations_id" id="locations_id" class="" required>
+                                    <select name="locations_id" id="locations_id" class="">
                                         <option value="" selected disabled>-----</option>
                                         {{-- @foreach ($locations as $location)
                                             <option value="{{$location->id}}">{{$location->name}}</option>
@@ -111,10 +111,10 @@
                             </select>
                          </td>
                          <td>
-                                <label for="IDNumber">Mobile Subscriber Identification Number</label>
+                                <label for="msin">Mobile Subscriber Identification Number</label>
                             </td>
                          <td>
-                                <input type="text" name="IDNumber" id="IDNumber" class="" required>
+                                <input type="text" name="msin" id="msin" class="" required>
                                 <i class="fas fa-info pointer" title="Le MSIN est Constitué des 8 ou 10 derniers Chiffres de l'IMSI"></i>
                          </td>
                        </tr>

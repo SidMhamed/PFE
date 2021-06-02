@@ -46,7 +46,7 @@
                             </label>
                          </div>
                      </th>
-                     <th><a href="#">Nom</a></th>
+                     <th><a href="#">ID</a></th>
                      <th><a href="#">Statut</a></th>
                      <th><a href="#">Fabricant</a></th>
                      <th><a href="#">Numéro de série</a></th>

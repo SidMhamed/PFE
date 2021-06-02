@@ -55,7 +55,7 @@
                     </tr>
                  </thead>
                  <tbody>
-                     {{-- @foreach ($computers as $computer)
+                     @foreach ($logiciels as $logiciel)
                      <tr>
                         <td width="10px" valign="top">
                             <span class="form-group-checkbox">
@@ -67,17 +67,14 @@
                                 </label>
                             </span>
                         </td>
-                        <td  valign="top"><a id="a" href="#">{{ $logiciel->nom }}</a></td>
+                        <td  valign="top"><a id="a" href="#">{{ $logiciel->name }}</a></td>
+                        <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($logiciel->fabricant_id)->Nom}}</td>
                         <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($computer->fabricant_id)->Nom}}</td>
                         <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_computertypes::findOrFail($computer->computertypes_id)->name}}</td>
-                        <td  valign="top">{{App\Models\glpi_computermodels::findOrFail($computer->computermodels_id)->Nom}}</td>
                         <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_location::findOrFail($computer->locations_id)->Nom}}</td>
-                        <td  valign="top">{{ $computer->updated_at }}</td>
-                     </tr>
-                     @endforeach --}}
+                        <td  valign="top"></td>
+                        </tr>
+                     @endforeach
                      <tr class="bg-white">
                         <th class="">
                             <div class="form-group-checkbox">

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class LogicielCategories extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'comment',
+        'logicielsCategories_id',
+        'Completename',
+        'level',
+        'ancestorsk_cache',
+        'sons_cache',
+    ];
 }

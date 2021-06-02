@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MoniteurTypes;
-class TypeMoniteurController extends Controller
+use App\Models\LogicielCategories;
+class LogicielCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,11 +34,16 @@ class TypeMoniteurController extends Controller
      */
     public function store(Request $request)
     {
-        MoniteurTypes::create([
+        LogicielCategories::create([
             'name' => $request -> name,
-            'comment' => $request -> comment
+            'comment' => $request -> comment,
+            'logicielsCategories_id' => $request -> logicielsCategories_id,
+            'Completename' => $request -> Completename,
+            'level' => $request -> level,
+            'ancestorsk_cache' => $request -> ancestorsk_cache,
+            'sons_cache' => $request -> sons_cache,
         ]);
-        return redirect()->route('FormAjouterMoniteur')->with(['success' => 'Élément ajouté']);
+        return redirect()->route('FormAjouterLogiciels')->with(['success' => 'Élément ajouté']);
     }
 
     /**

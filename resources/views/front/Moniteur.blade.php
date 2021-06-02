@@ -69,7 +69,7 @@
                                 </label>
                             </span>
                         </td>
-                        <td>{{ $Moniteur->name }}</td>
+                        <td><a href="#">{{ $Moniteur->name }}</a></td>
                         <td>{{ $Moniteur->statut_id }}</td>
                         <td>{{ App\Models\glpi_fabricant::findOrFail($Moniteur->fabricant_id)->Nom }}</td>
                         <td>{{ App\Models\glpi_location::findOrFail($Moniteur->locations_id)->Nom }}</td>

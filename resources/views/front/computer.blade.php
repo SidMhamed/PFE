@@ -70,10 +70,10 @@
                                 </label>
                             </span>
                         </td>
-                        <td  valign="top"><a id="a" href="#">{{ $computer->nom }}</a></td>
+                        <td  valign="top"><a href="{{route('EditComputer',$computer->id)}}">{{ $computer->nom }}</a></td>
                         <td  valign="top"></td>
                         <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($computer->fabricant_id)->Nom}}</td>
-                        <td  valign="top"></td>
+                        <td  valign="top">{{$computer->numeroDeSerie}}</td>
                         <td  valign="top">{{App\Models\glpi_computertypes::findOrFail($computer->computertypes_id)->name}}</td>
                         <td  valign="top">{{App\Models\glpi_computermodels::findOrFail($computer->computermodels_id)->Nom}}</td>
                         <td  valign="top"></td>
