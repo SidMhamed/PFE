@@ -10,6 +10,7 @@ use App\Models\glpi_groups;
 use App\Models\ImprimanteTypes;
 use App\Models\ImprimanteModel;
 use App\Models\glpi_Imprimante;
+use App\Models\glpi_location;
 class ImprimanteController extends Controller
 {
     /**
@@ -116,7 +117,28 @@ class ImprimanteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Imprimantes - $id";
+        $header = 'Imprimante';
+        $Users = User::all();
+        $Fabricants = glpi_fabricant::all();
+        $Reseaux = glpi_reseaux::all();
+        $groups = glpi_groups::all();
+        $Locations = glpi_location::all();
+        $Types = ImprimanteTypes::all();
+        $Modeles = ImprimanteModel::all();
+        $Imprimante = glpi_Imprimante::find($id);
+        return view('front.edit.ImprimantEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Users' => $Users,
+            'groups' => $groups,
+            'Locations' => $Locations,
+            'Fabricants' => $Fabricants,
+            'Reseaux' => $Reseaux,
+            'Types' => $Types,
+            'Modeles' => $Modeles,
+            'Imprimante' => $Imprimante
+        ]);
     }
 
     /**
@@ -128,7 +150,9 @@ class ImprimanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Imprimante = glpi_Imprimante::find($id);
+        $Imprimante->update($request->all());
+        return redirect()->route('Imprimante.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -139,6 +163,7 @@ class ImprimanteController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $Computer =  glpi_Imprimante::where('id', $id)->delete();
+        return redirect()->route('Imprimante.index')->with(['success' => 'Élément Supprimer']);
+     }
 }

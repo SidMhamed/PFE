@@ -3,12 +3,13 @@
         <div class="container align-content-center border-0">
               <h4 class="alert-heading alert text-white">{{$header}}</h4>
             <div class="card">
-                    <div class="card-header alert-heading border-success border-5">
-                            Nouvel élément - Imprimante
+                    <div class="card-header alert-heading border-success border-5 text-center">
+                       <h3>  {{$Imprimante->name}}   </h3>
                     </div>
                 <div class="card-body">
-                    <form action="{{route('Imprimante.Ajouter')}}" method="POST">
-                    @csrf
+                    <form action="{{route('Imprimante.update',$Imprimante->id)}}" method="POST">
+                       {{ method_field('PUT') }}
+                       {{ csrf_field() }}
                         <table class="tab_cadre_fixe">
                         <tr>
                             <td>
@@ -16,15 +17,17 @@
 
                             </td>
                             <td>
-                                <input type="text" name="name" id="Nom" class="" required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="name" value="{{$Imprimante->name ?? ''}}" id="Nom" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                             <label for="Lieu">Lieu</label>
                             </td>
                             <td>
                             <select name="locations_id" id="Lieu" class="">
-                            <option hidden value="" selected disabled>-----</option>
-                            <option value="1">iscae</option>
+                            <option value="" selected disabled>-----</option>
+                                @foreach($Locations as $Location)
+                                    <option value="{{$Location->id}}">{{$Location->Nom}}</option>
+                                @endforeach
                             </select>
                             <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -57,13 +60,13 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                    <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="UsagerNumero" value="{{$Imprimante->UsagerNumero ?? ''}}" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                             <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                    <input type="text" name="Usager" id="Usager" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="Usager" value="{{$Imprimante->Usager ?? ''}}" id="Usager" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -97,13 +100,13 @@
                                      <label for="Mémoire">Mémoire (Mio)</label>
                             </td>
                             <td>
-                                     <input type="text" name="memory_size" class="" id="Mémoire">
+                                     <input type="text" name="memory_size" value="{{$Imprimante->memory_size ?? ''}}" class="" id="Mémoire">
                             </td>
                             <td>
                                          <label for="CompteurPageInitial">Compteur de page initial</label>
                             </td>
                             <td>
-                                    <input type="text" name="init_pages_couter" class="" id="Mémoire">
+                                    <input type="text" name="init_pages_couter" value="{{$Imprimante->init_pages_couter ?? ''}}" class="" id="Mémoire">
                             </td>
                         </tr>
                         <tr>
@@ -111,7 +114,7 @@
                                      <label for="CompteurPageActuel">Compteur de page actuel</label>
                             </td>
                             <td>
-                                    <input type="text" name="last_pages_counter" class="" id="Mémoire">
+                                    <input type="text" name="last_pages_counter" value="{{$Imprimante->last_pages_counter ?? ''}}" class="" id="Mémoire">
                             </td>
                             <td>
                                     <label for="Statut">Statut</label>
@@ -128,8 +131,8 @@
                                <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                    <select name="manufacturers_id" id="Fab" class="" required>
-                                        <option hidden value="" selected disabled>-----</option>
+                                    <select name="fabricant_id" id="Fab" class="" required>
+                                        <option value="" selected disabled>-----</option>
                                         @foreach ($Fabricants as $Fabricant)
                                             <option value="{{$Fabricant->id}}">{{$Fabricant->Nom}}</option>
                                         @endforeach
@@ -166,7 +169,7 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="serial" id="NumSerie" class="" required>
+                                <input type="text" name="serial" value="{{$Imprimante->serial ?? ''}}" id="NumSerie" class="" required>
                             </td>
                         </tr>
                         <tr>
@@ -174,7 +177,7 @@
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                              </td>
                              <td>
-                                <input type="text" name="otherserial" id="NumDinventaire" class="" required>
+                                <input type="text" name="otherserial" value="{{$Imprimante->otherserial ?? ''}}" id="NumDinventaire" class="" required>
                              </td>
                             <td>
                             <label for="reseau">Réseau</label>
@@ -201,8 +204,8 @@
                                            </td>
                                            <td>
                                             <select name="have_serial" id="Série" class="">
-                                                    <option value="0">Non</option>
-                                                    <option value="1">Oui</option>
+                                                    <option value="{{$Imprimante->have_serial ?? '1'}}">Non</option>
+                                                    <option value="{{$Imprimante->have_serial ?? '0'}}">Oui</option>
                                             </select>
                                            </td>
                                            <td>
@@ -252,16 +255,38 @@
                                     <label for="comment">Comment</label>
                             </td>
                             <td>
-                                    <textarea name="comment" id="comment" cols="30" rows="8" class=""></textarea>
+                                    <textarea name="comment" value="{{$Imprimante->comment ?? ''}}" id="comment" cols="45" rows="6" class=""></textarea>
                             </td>
+                        </tr>
+                      <tr class="alert alert-dark">
+                            <th colspan="2">
+                                  Créé le   {{$Imprimante->created_at}}
+                            </th>
+                            <th colspan="2">
+                                   Dernière mise à jour le   {{$Imprimante->updated_at}}
+                            </th>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                    <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>ajouter</button>
+                                    <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i> Sauvegarder</button>
                             </td>
                         </tr>
                      </table>
                     </form>
+                     <table class="tab_cadre_fixe">
+                       <tbody>
+                           <tr>
+                              <td>
+                                 <form method="POST" action="{{ route('Imprimante.destroy',$Imprimante->id) }}">
+                            <input name="_method" type="hidden" value="DELETE">
+                            @csrf
+                            <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')" class="btn btn-danger float-right" title="Supprimer">
+                            <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                            </form>
+                              </td>
+                           </tr>
+                       </tbody>
+                    </table>
                 </div>
             </div>
         </div>

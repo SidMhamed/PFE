@@ -244,6 +244,12 @@ input {
 .tab_cadre_fixehov td,
 .tab_cadrehov td {
     padding: 8px 5px;
+
+}
+
+.tab_cadrehov tr:hover{
+    background-color: #dedede;
+
 }
 .tab_cadre_fixe {
     margin: 0px auto 5px auto;
@@ -351,7 +357,33 @@ textarea, select, input:not(.submit):not([type=submit]):not([type=reset]):not([t
     background-color: #49d55f;
     border: 1px solid #01aa1d;
 }
-
+.Logiciel{
+    background-color: #b1f755;
+    color: #487a06;
+}
+.Logiciel:hover{
+    background-color: #6bb905;
+    border:1px solid #487a06;
+    font-style: italic;
+}
+.carte{
+    background-color: #43a8c7;
+    color: rgb(24, 85, 252);
+}
+.carte:hover{
+    background-color: #65978fcb;
+    border: 1px solid rgb(2, 148, 153);
+    font-style: italic;
+}
+.Materiel_B{
+    background-color: #4062b9;
+    color: rgb(184, 189, 186);
+}
+.Materiel_B:hover{
+    background-color: #406200;
+    border: 1px solid cadetblue;
+    font-style: italic;
+}
 .center {
     text-align: center;
 }

@@ -9,6 +9,7 @@ use App\Models\glpi_groups;
 use App\Models\glpi_fabricant;
 use App\Models\MoniteurTypes;
 use App\Models\MoniteurModeles;
+use App\Models\glpi_location;
 class MoniteurController extends Controller
 {
     /**
@@ -108,7 +109,26 @@ class MoniteurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Moniteurs --$id";
+        $header = 'Moniteur';
+        $Users = User::all();
+        $Fabricants = glpi_fabricant::all();
+        $groups = glpi_groups::all();
+        $Types = MoniteurTypes::all();
+        $Models = MoniteurModeles::all();
+        $Locations = glpi_location::all();
+        $Moniteurs = glpi_Moniteur::find($id);
+        return view('front.edit.MoniteurEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Users' => $Users,
+            'Fabricants' => $Fabricants,
+            'groups' => $groups,
+            'Types' => $Types,
+            'Models' => $Models,
+            'Locations' => $Locations,
+            'Moniteur' => $Moniteurs
+        ]);
     }
 
     /**
@@ -120,7 +140,9 @@ class MoniteurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Moniteur = glpi_Moniteur::find($id);
+        $Moniteur->update($request->all());
+        return redirect()->route('Moniteur.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -131,6 +153,8 @@ class MoniteurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Moniteur =  glpi_Moniteur::where('id', $id)->delete();
+        return redirect()->route('Moniteur.index')->with(['success' => 'Élément Supprimer']);
+
     }
 }

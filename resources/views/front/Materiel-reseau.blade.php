@@ -69,7 +69,7 @@
                                 </label>
                             </span>
                         </td>
-                        <td>{{ $Materiel_Reseau->nom }}</td>
+                        <td><a href="{{route('MaterielReseau.edit',$Materiel_Reseau->id)}}">{{ $Materiel_Reseau->nom }}</a></td>
                         <td>{{ $Materiel_Reseau->states_id }}</td>
                         <td>{{ App\Models\glpi_fabricant::findOrFail($Materiel_Reseau->fabricant_id)->Nom }}</td>
                         <td>{{ App\Models\glpi_location::findOrFail($Materiel_Reseau->locations_id)->Nom }}</td>

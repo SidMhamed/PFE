@@ -68,7 +68,7 @@
                                 </label>
                             </span>
                         </td>
-                        <td>{{ $Imprimante->name }}</td>
+                        <td><a href="{{route('Imprimante.edit',$Imprimante->id)}}">{{ $Imprimante->name }}</a></td>
                         <td></td>
                         <td>{{App\Models\glpi_fabricant::findOrFail($Imprimante->manufacturers_id)->Nom}}</td>
                         <td>{{App\Models\glpi_location::findOrFail($Imprimante->locations_id)->Nom}}</td>

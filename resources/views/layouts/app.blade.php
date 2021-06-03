@@ -85,7 +85,7 @@
                                         </a></li>
 
                                         <li>
-                                        <a href="{{ route('Moniteur') }}" class="dropdown-item">
+                                        <a href="{{ route('Moniteur.index') }}" class="dropdown-item">
                                         <i class='fa-fw fas fa-desktop'></i>
                                         Moniteurs
                                         </a>
@@ -106,13 +106,13 @@
                                         </li>
 
                                        <li>
-                                            <a href="{{ route('Peripherique') }}" class="dropdown-item">
+                                            <a href="{{ route('Peripherique.index') }}" class="dropdown-item">
                                             <i class='fa-fw fab fa-usb'></i>
                                             Périphériques
                                             </a>
                                        </li>
                                        <li>
-                                            <a href="{{ route('Imprimante') }}" class="dropdown-item">
+                                            <a href="{{ route('Imprimante.index') }}" class="dropdown-item">
                                             <i class='fa-fw fas fa-print'></i>
                                             Imprimantes
                                             </a>
@@ -134,7 +134,7 @@
                                 </ul>
                                 <ul class="list-unstyled col-md-6">
                                     <li>
-                                        <a href="{{ route('Telephone') }}" class="dropdown-item">
+                                        <a href="{{ route('Telephone.index') }}" class="dropdown-item">
                                         <i class='fa-fw fas fa-phone'></i>
                                         Téléphones
                                         </a>

@@ -9,6 +9,7 @@ use App\Models\glpi_fabricant;
 use App\Models\glpi_Telephone;
 use App\Models\TelephoneTypes;
 use App\Models\TelephoneModeles;
+use App\Models\glpi_location;
 class TeleController extends Controller
 {
 
@@ -60,28 +61,7 @@ class TeleController extends Controller
      */
     public function store(Request $request)
     {
-        glpi_Telephone::create([
-        'name'=>$request->name,
-        'statut_id'=>$request->statut_id,
-        'locations_id'=>$request->locations_id,
-        'telephonetypes_id'=>$request->telephonetypes_id,
-        'users_id_tech'=>$request->users_id_tech,
-        'fabricant_id'=>$request->fabricant_id,
-        'groups_tech'=>$request->groups_tech,
-        'telephonemodels_id'=>$request->telephonemodels_id,
-        'groups_id'=>$request->groups_id,
-        'UsagerNumero'=>$request->UsagerNumero,
-        'Usager'=>$request->Usager,
-        'NumeroDeSerie'=>$request->NumeroDeSerie,
-        'Utilisateur'=>$request->Utilisateur,
-        'users_id'=>$request->users_id,
-        'TypeDeGestion'=>$request->TypeDeGestion,
-        'Marque'=>$request->Marque,
-        'Alimantation_id'=>$request->Alimantation_id,
-        'Nombrelignes'=>$request->Nombrelignes,
-        'Casque'=>$request->Casque,
-        'Hautparleur'=>$request->Hautparleur,
-        ]);
+        glpi_Telephone::create($request->all());
         return redirect()->route('FormTelephone')->with(['success' => 'Élément ajouté']);
     }
 
@@ -104,7 +84,26 @@ class TeleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Téléphones - $id";
+        $header = 'Téléphone';
+        $Users = User::all();
+        $Fabricants = glpi_fabricant::all();
+        $groups = glpi_groups::all();
+        $Types =TelephoneTypes::all();
+        $Models = TelephoneModeles::all();
+        $Locations = glpi_location::all();
+        $Telephone = glpi_Telephone::find($id);
+        return view('front.edit.TelephoneEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Users' => $Users,
+            'Fabricants' => $Fabricants,
+            'groups' => $groups,
+            'Types' => $Types,
+            'Models' => $Models,
+            'Locations' => $Locations,
+            'Telephone' => $Telephone
+        ]);
     }
 
     /**
@@ -116,7 +115,9 @@ class TeleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Telephone = glpi_Telephone::find($id);
+        $Telephone->update($request->all());
+        return redirect()->route('Telephone.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -127,6 +128,7 @@ class TeleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Computer =  glpi_Telephone::where('id', $id)->delete();
+        return redirect()->route('Telephone.index')->with(['success' => 'Élément Supprimer']);
     }
 }

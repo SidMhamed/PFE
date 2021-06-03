@@ -7,6 +7,7 @@ use App\Models\glpi_fabricant;
 use App\Models\User;
 use App\Models\glpi_reseaux;
 use App\Models\glpi_groups;
+use App\Models\glpi_location;
 use App\Models\glpi_Materiel_ReseauxTypes;
 use App\Models\glpi_Materiel_ReseauxModele;
 use App\Models\glpi_Materiel_Reseaux;
@@ -63,25 +64,8 @@ class Materiel_ReseauController extends Controller
      */
     public function store(Request $request)
     {
-        glpi_Materiel_Reseaux::create([
-            'nom'=>$request->nom,
-            'locations_id' => $request->locations_id,
-            'users_id_tech' => $request->users_id_tech,
-            'UsagerNumero' => $request-> UsagerNumero,
-            'Usager' => $request-> Usager,
-            'Utilisateur' => $request-> Utilisateur,
-            'groups_id' => $request-> groups_id,
-            'users_id' => $request-> users_id,
-            'states_id' => $request-> states_id,
-            'MaterielReseauTypes_id' => $request-> MaterielReseauTypes_id,
-            'fabricant_id' => $request-> fabricant_id,
-            'MaterielReseauModels_id' => $request-> MaterielReseauModels_id,
-            'numeroDeSerie' => $request-> numeroDeSerie,
-            'NumeroDinventaire' => $request-> NumeroDinventaire,
-            'networks_id' => $request-> networks_id,
-            'comment' => $request-> comment,
-            ]);
-        return redirect()->route('FormMaterielReseau')->with(['success' => 'Élément ajouté']);
+        glpi_Materiel_Reseaux::create($request->all());
+        return redirect()->route('MaterielReseau.create')->with(['success' => 'Élément ajouté']);
     }
 
     /**
@@ -103,7 +87,28 @@ class Materiel_ReseauController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Matèriel-Reseaux - $id";
+        $header ='Matèriel-Reseaux';
+        $Fabricants = glpi_fabricant::all();
+        $Users = User::all();
+        $Reseaux = glpi_reseaux::all();
+        $groups = glpi_groups::all();
+        $Type = glpi_Materiel_ReseauxTypes::all();
+        $Model = glpi_Materiel_ReseauxModele::all();
+        $Locations = glpi_location::all();
+        $Materiel_Reseaux = glpi_Materiel_Reseaux::find($id);
+        return view('front.edit.MaterielReseauEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Fabricants' => $Fabricants,
+            'Users' => $Users,
+            'Reseaux'=> $Reseaux,
+            'groups' => $groups,
+            'Types' => $Type,
+            'Modeles' => $Model,
+            'Locations' => $Locations,
+            'MaterielReseau' => $Materiel_Reseaux
+        ]);
     }
 
     /**
@@ -115,7 +120,9 @@ class Materiel_ReseauController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Materiel_Reseaux = glpi_Materiel_Reseaux::find($id);
+        $Materiel_Reseaux->update($request->all());
+        return redirect()->route('MaterielReseau.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -126,6 +133,7 @@ class Materiel_ReseauController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Materiel_Reseaux =  glpi_Materiel_Reseaux::where('id', $id)->delete();
+        return redirect()->route('MaterielReseau.index')->with(['success' => 'Élément Supprimer']);
     }
 }

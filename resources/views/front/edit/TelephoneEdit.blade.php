@@ -3,19 +3,20 @@
 <div class="container align-content-center border-0" role="alert">
               <h4 class="alert-heading alert text-white">{{$header}}</h4>
         <div class="card border-0">
-            <div class="card-header alert-heading  border-success border-5">
-                   Nouvel élément - Téléphone
+            <div class="card-header alert-heading  border-success border-5 text-center">
+                  <h3>{{$Telephone->name}}</h3>
             </div>
             <div class="card-body">
-                 <form action="{{route('AjouterTelephone')}}" method="POST">
-                 @csrf
+                 <form action="{{route('Telephone.update',$Telephone->id)}}" method="POST">
+                 {{ method_field('PUT') }}
+                 {{ csrf_field() }}
                     <table class="tab_cadre_fixe">
                        <tr>
                         <td>
                             <label for="name">Nom</label>
                         </td>
                         <td>
-                        <input type="text" id="name" class="" name="name" required>
+                        <input type="text" id="name" class="" name="name" value="{{$Telephone->name ?? ''}}" required>
                         </td>
                         <td>
                                     <label for="Statut">Statut</label>
@@ -33,8 +34,10 @@
                         </td>
                         <td>
                             <select name="locations_id" id="Lieu" class="">
-                            <option hidden value="" selected disabled>-----</option>
-                            <option value="1">iscae</option>
+                            <option value="" selected disabled>-----</option>
+                                @foreach($Locations as $Location)
+                                    <option value="{{$Location->id}}">{{$Location->Nom}}</option>
+                                @endforeach
                             </select>
                             <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                         </td>
@@ -43,7 +46,7 @@
                         </td>
                         <td>
                                     <select name="telephonetypes_id" id="Type" class="" >
-                                            <option hidden value="" selected disabled>-----</option>
+                                        <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Types as $Type)
                                             <option value="{{$Type->id}}">{{$Type->name}}</option>
                                         @endforeach
@@ -105,13 +108,13 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                    <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="UsagerNumero" value="{{$Telephone->UsagerNumero ?? ''}}" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                         <td>
                                     <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                    <input type="text" name="numeroDeSerie" id="NumSerie" class="" required>
+                                    <input type="text" name="numeroDeSerie" value="{{$Telephone->numeroDeSerie ?? ''}}" id="NumSerie" class="" required>
                             </td>
                        </tr>
                         <tr>
@@ -119,13 +122,13 @@
                             <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                    <input type="text" name="Usager" id="Usager" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="Usager" value="{{$Telephone->Usager ?? ''}}" id="Usager" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                          <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="" required>
+                                <input type="text" name="NumeroDinventaire" value="{{$Telephone->NumeroDinventaire ?? ''}}" id="NumDinventaire" class="" required>
                             </td>
                        </tr>
                      <tr>
@@ -168,7 +171,7 @@
                                     <label for="comment">Comment</label>
                          </td>
                          <td  rowspan="5">
-                                    <textarea name="comment" id="comment" cols="30" rows="8" class="" required></textarea>
+                                    <textarea name="comment" value="{{$Telephone->comment ?? ''}}" id="comment" cols="30" rows="8" class="" required></textarea>
                          </td>
                      </tr>
                      <tr>
@@ -198,7 +201,7 @@
                         <label for="NombreLignes">Nombre de lignes</label>
                         </td>
                         <td>
-                        <input type="text" class="" name="Nombrelignes" id="NombreLignes">
+                        <input type="text" class="" name="NombreLignes" id="NombreLignes">
                         </td>
                      </tr>
                      <tr>
@@ -228,13 +231,35 @@
                             </table>
                         </td>
                      </tr>
+                    <tr class="alert alert-dark">
+                            <th colspan="2">
+                                  Créé le {{$Telephone->created_at}}
+                            </th>
+                            <th colspan="2">
+                                   Dernière mise à jour le {{$Telephone->updated_at}}
+                            </th>
+                    </tr>
                      <tr>
-                         <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>ajouter</button>
-                         </td>
+                          <td colspan="4" class="text-center">
+                                    <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i> Sauvegarder</button>
+                          </td>
                      </tr>
                     </table>
                 </form>
+                 <table class="tab_cadre_fixe">
+                       <tbody>
+                           <tr>
+                              <td>
+                                    <form method="POST" action="{{ route('Telephone.destroy',$Telephone->id) }}">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')" class="btn btn-danger float-right" title="Supprimer">
+                                  <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                                    </form>
+                              </td>
+                           </tr>
+                       </tbody>
+                    </table>
             </div>
         </div>
     </div>

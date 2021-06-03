@@ -27,6 +27,7 @@ use App\Http\Controllers\ModelesTelephoneController;
 use App\Http\Controllers\LogicielController;
 use App\Http\Controllers\LogicielCategoriesController;
 use App\Http\Controllers\CarteSIMController;
+// use App\Http\Controller\TypeCarteSIMController;
 use App\Http\Controllers\ComposantCarteSIMController;
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +55,6 @@ Route::post('/AjouterTelephone', [TeleController::class, 'store'])->name('Ajoute
 Route::post('/AjouterTypeTelephone', [TypesTelephoneController::class, 'store'])->name('AjouterTypeTelephone');
 Route::post('/AjouterModeleTelephone', [ModelesTelephoneController::class, 'store'])->name('AjouterModelsTelephone');
 Route::get('/Imprimante',[ImprimanteController::class, 'index'])->name('Imprimante');
-Route::get('/Moniteur',[MoniteurController::class, 'index'])->name('Moniteur');
 Route::get('/FormAjouterMoniteur', [MoniteurController::class, 'create'])->name('FormAjouterMoniteur');
 Route::post('/AjouterMoniteur', [MoniteurController::class, 'store'])->name('AjouterMoniteur');
 Route::post('/AjouterTypeMoniteur', [TypeMoniteurController::class, 'store'])->name('AjouterTypeMoniteur');
@@ -91,14 +91,18 @@ Route::post('/AjouterTypeLogiciels', [LogicielCategoriesController::class, 'stor
 Route::get('/CarteSIM', [CarteSIMController::class, 'index'])->name('CarteSIM');
 Route::get('/FormAjouterCarteSIM', [CarteSIMController::class, 'create'])->name('FormAjouterCarteSIM');
 Route::post('/AjouterComposantCarteSIM', [ComposantCarteSIMController::class, 'store'])->name('AjouterComposantCarteSIM');
-Route::post('/AjouterTypeCarteSIM', [TypeCarteSIMController::class, 'store'])->name('AjouterTypeCarteSIM');
+// Route::post('/AjouterTypeCarteSIM', [TypeCarteSIMController::class, 'store'])->name('AjouterTypeCarteSIM');
 Route::post('/AjouterCarteSIM', [CarteSIMController::class, 'store'])->name('AjouterCarteSIM');
 
 
 /**
  *
- * update
+ * resource
  */
-Route::get('/EditComputer/{id}', [ComputerController::class, 'edit'])->name('EditComputer');
-Route::put('/updateComputer/{id}',[ComputerController::class, 'update'])->name('updateComputer');
 Route::resource('/Computer','ComputerController');
+Route::resource('/Moniteur','MoniteurController');
+Route::resource('/Imprimante','ImprimanteController');
+Route::resource('/Telephone', 'TeleController');
+Route::resource('/MaterielReseau','Materiel_ReseauController');
+Route::resource('/Peripherique','PeripheriqueController');
+// Route::resource('/')

@@ -69,7 +69,7 @@
                                 </label>
                             </span>
                         </td>
-                        <td><a href="#">{{ $Telephone->name}}</a></td>
+                        <td><a href="{{route('Telephone.edit',$Telephone->id)}}">{{ $Telephone->name}}</a></td>
                         <td></td>
                         <td>{{App\Models\glpi_fabricant::findOrFail($Telephone->fabricant_id)->Nom}}</td>
                         <td>{{App\Models\glpi_location::findOrFail($Telephone->locations_id)->Nom}}</td>

@@ -2,31 +2,31 @@
 @section('content')
         <div class="container align-content-center border-0">
               <h4 class="alert-heading alert text-white">{{$header}}</h4>
-            <div id="card" class="card border-0">
-                    <div class="card-header alert-heading  border-success border-5 text-center">
-                            <h3>{{$Computer->nom}}</h3>
+            <div class="card">
+                    <div class="card-header alert-heading border-success border-5 text-center">
+                            <h3>{{$MaterielReseau->nom}}</h3>
                     </div>
                 <div class="card-body">
-                    <form action="{{route('Computer.update',$Computer->id)}}" method="POST">
-                      {{ method_field('PUT') }}
-                      {{ csrf_field() }}
-                     <table class="tab_cadre_fixe">
+                    <form action="{{route('MaterielReseau.update',$MaterielReseau->id)}}" method="POST">
+                        {{ method_field('PUT') }}
+                          {{ csrf_field() }}
+                        <table class="tab_cadre_fixe">
                         <tr>
                             <td>
                             <label for="model">Nom</label>
                             </td>
                             <td>
-                            <input type="text" name="nom" id="Nom" value="{{$Computer->nom ?? ''}}" class="" required placeholder="" aria-describedby="helpId">
+                            <input type="text" name="nom" value="{{$MaterielReseau->nom ?? ''}}" id="Nom" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                             <label for="Lieu">Lieu</label>
                             </td>
                             <td>
                             <select name="locations_id" id="Lieu" class="">
-                            <option selected disabled value="">-----</option>
-                            @foreach($Locations as $Location)
-                            <option value="{{$Computer->Locations_id ?? $Location->id}}">{{$Location->Nom}}</option>
-                            @endforeach
+                                <option hidden value="" selected disabled>-----</option>
+                                @foreach($Locations as $Location)
+                                <option value="{{$Location->id}}">{{$Location->name}}</option>
+                                @endforeach
                             </select>
                             <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -59,13 +59,13 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                    <input type="text" name="UsagerNumero" value="{{$Computer->UsagerNumero ?? ''}}" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" value="{{$MaterielReseau->UsagerNumero ?? ''}}" name="UsagerNumero" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                             <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                    <input type="text" name="Usager" value="{{$Computer->Usager ?? ''}}" id="Usager" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="Usager" value="{{$MaterielReseau->Usager ?? ''}}" id="Usager" class="" required placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -74,9 +74,9 @@
                             </td>
                             <td>
                                     <select name="Utilisateur" id="user" class="" required>
-                                        <option hidden value="" selected disabled>-----</option>
+                                        <option value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
-                                            <option value="{{$User->id}}">{{$User->name}}</option>
+                                            <option value="{{$User->name}}">{{$User->name}}</option>
                                         @endforeach
                                     </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -95,29 +95,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                            <label for="UUID">UUID</label>
+                            <td colspan="2">
+                                <label for="group">L'adresse MAC et l'adresse IP de l'équipement sont inclus dans un port réseau agrégé</label>
                             </td>
                             <td>
-                                    <select name="users_id" id="user" class="" required>
-                                        <option hidden value="" selected disabled>-----</option>
-                                        @foreach ($Users as $User)
-                                            <option value="{{$User->id}}">{{$User->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+                                    <label for="Mémoire">Mémoire (Mio)</label>
                             </td>
                             <td>
-                                        <label for="SMJ">Source mise à jour</label>
-                            </td>
-                            <td>
-                                        <select name="autoupdatesystems_id" id="SMJ" class="" required>
-                                        <option hidden value="" selected disabled>-----</option>
-                                        @foreach ($SourceMiseAjours as $SourceMiseAjour)
-                                            <option value="{{$SourceMiseAjour->id}}">{{$SourceMiseAjour->Nom}}</option>
-                                        @endforeach
-                                        </select>
-                                        <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#exampleModal"></i>
+                                    <input type="text" name="Memoire" value="{{$MaterielReseau->Memoire ?? ''}}" class="" id="Mémoire">
                             </td>
                         </tr>
                         <tr>
@@ -132,24 +117,25 @@
                             </td>
                             <td>
                                     <label for="Type">Type</label>
+
                             </td>
                             <td>
-                                    <select name="computertypes_id" id="Type" class="" required>
-                                            <option hidden value="" selected disabled>-----</option>
-                                        @foreach ($Types as $Type)
-                                            <option value="{{$Type->id}}">{{$Type->name}}</option>
-                                        @endforeach
-                                    </select>
+                                   <select name="MaterielReseauTypes_id" id="Type" class="" required>
+                                        <option hidden value="" selected disabled>-----</option>
+                                    @foreach ($Types as $Type)
+                                        <option value="{{$Type->id}}">{{$Type->name}}</option>
+                                    @endforeach
+                                </select>
                                     <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#TypeOrdinateurs"></i>
                             </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                             <label for="Fab">Fabricant</label>
                             </td>
                             <td>
                                     <select name="fabricant_id" id="Fab" class="" required>
-                                        <option value="" selected disabled>-----</option>
+                                        <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Fabricants as $Fabricant)
                                             <option value="{{$Fabricant->id}}">{{$Fabricant->Nom}}</option>
                                         @endforeach
@@ -157,14 +143,14 @@
                                     <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#Fabricants"></i>
                             </td>
                             <td>
-                                    <label for="model">Modél</label>
+                                      <label for="model">Modél</label>
                             </td>
                             <td>
-                                    <select name="computermodels_id" id="model" class="" required>
-                                            <option hidden value="" selected disabled>-----</option>
-                                        @foreach ($Models as $Model)
-                                            <option value="{{$Model->id}}">{{$Model->Nom}}</option>
-                                        @endforeach
+                                    <select name="MaterielReseauModels_id" id="model" class="" required>
+                                    <option hidden value="" selected disabled>-----</option>
+                                    @foreach ($Modeles as $Modele)
+                                        <option value="{{$Modele->id}}">{{$Modele->Nom}}</option>
+                                    @endforeach
                                     </select>
                                     <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#ModaleOrdinateurs"></i>
                             </td>
@@ -174,13 +160,13 @@
                                     <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                    <input type="text" name="numeroDeSerie" value="{{$Computer->numeroDeSerie ?? ''}}" id="NumSerie" class="" required>
+                                    <input type="text" name="numeroDeSerie" value="{{$MaterielReseau->numeroDeSerie ?? ''}}" id="NumSerie" class="" required>
                             </td>
                             <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" value="{{$Computer->NumeroDinventaire ?? ''}}" id="NumDinventaire" class="" required>
+                                <input type="text" name="NumeroDinventaire" value="{{$MaterielReseau->NumeroDinventaire ?? ''}}" id="NumDinventaire" class="" required>
                             </td>
                         </tr>
                         <tr>
@@ -189,7 +175,7 @@
                             </td>
                             <td>
                                     <select name="networks_id" id="reseau" class="" required>
-                                            <option value="" selected disabled>-----</option>
+                                            <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Reseaux as $Reseau)
                                             <option value="{{$Reseau->id}}">{{$Reseau->name}}</option>
                                         @endforeach
@@ -197,37 +183,38 @@
                                     <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal" data-target="#ModalReseaux" onclick="$('#Add_Reseau').dialog('open');"></i>
                             </td>
                             <td>
-                                    <label for="comment">Comment</label>
+                                    <label for="comment">Commentaires</label>
                             </td>
                             <td>
-                                    <textarea name="comment" value="{{$Computer->comment ?? ''}}" id="comment" cols="40" rows="3" class="" required></textarea>
+                                    <textarea name="comment" id="comment" value="{{$MaterielReseau->comment ?? ''}}" cols="30" rows="8" class="" required></textarea>
                             </td>
+                        </tr>
                         </tr>
                         <tr class="alert alert-dark">
                             <th colspan="2">
-                                  Créé le {{$Computer->created_at}}
+                                  Créé le {{$MaterielReseau->created_at}}
                             </th>
                             <th colspan="2">
-                                   Dernière mise à jour le{{$Computer->updated_at}}
+                                   Dernière mise à jour le {{$MaterielReseau->updated_at}}
                             </th>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                    <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i> Sauvegarder</button>
+                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i> Sauvegarder</button>
                             </td>
                         </tr>
                      </table>
                     </form>
-                    <table class="tab_cadre_fixe">
+                     <table class="tab_cadre_fixe">
                        <tbody>
                            <tr>
                               <td>
-                                 <form method="POST" action="{{ route('Computer.destroy',$Computer->id) }}">
-                            <input name="_method" type="hidden" value="DELETE">
-                            @csrf
-                                  <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')" class="btn btn-danger float-right" title="Supprimer">
+                                    <form method="POST" action="{{ route('MaterielReseau.destroy',$MaterielReseau->id) }}">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')" class="btn btn-danger float-right" title="Supprimer">
                                   <i class="fa fa-trash mx-1"></i>Supprimer</button>
-                            </form>
+                                    </form>
                               </td>
                            </tr>
                        </tbody>
@@ -236,56 +223,25 @@
             </div>
         </div>
 <div>
-{{--  Source de mise à jour --}}
-<div class="modal fade my-5 py-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Source de mise à jour</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-                    {!! Form::open(['method' => 'POST','route' => 'Ajouter.SourceMiseAJour', 'class' => 'form-horizontal']) !!}
-      <div class="modal-body">
-                        <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
-                            {!! Form::label('Nom', 'Nom') !!}
-                            {!! Form::text('Nom', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                        </div>
-                        <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
-                            {!! Form::label('commentaires', 'Commentaires') !!}
-                            {!! Form::textarea('commentaires', null, ['class' => 'form-control', 'required' => 'required', 'rows' => '5', 'cols' => '5']) !!}
-                        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">
-        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-        Ajouter</button>
-      </div>
-                    {!! Form::close() !!}
-    </div>
-  </div>
-</div>
  {{-- model pour le types des Ordinateurs--}}
-    <div class="modal fade my-5 py-5" id="TypeOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="TypeOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Type d'ordinateur</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nouvel élément - Type de matériel réseau</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-            {!! Form::open(['method' => 'POST','route' => 'Computer.type', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['method' => 'POST','route' => 'AjouterTypesMateriel-Reseau', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
         <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
             {!! Form::label('name', 'Nom') !!}
             {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
         <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
-            {!! Form::label('comment', 'Commentaires') !!}
-            {!! Form::text('comment', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::label('Comment', 'Commentaires') !!}
+            {!! Form::text('Comment', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
         </div>
       <div class="modal-footer">
@@ -300,11 +256,11 @@
 </div>
 
        {{-- model pour le Fabricant des Ordinateurs--}}
-   <div class="modal fade my-5 py-5" id="Fabricants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="Fabricants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Fabricant des Ordinateurs</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nouvel élément - Fabricant</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -322,9 +278,8 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">
-        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-        Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -333,16 +288,16 @@
 </div>
 
 {{-- Modal pour ajouter un Modele --}}
-<div class="modal fade my-5 py-5" id="ModaleOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModaleOrdinateurs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modéle des Ordinateurs</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nouvel élément - Modèle de matériel réseau</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-                    {!! Form::open(['method' => 'POST', 'route' => 'Computer.Models', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'AjouterModelsMateriel-Reseau', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
@@ -397,9 +352,8 @@
     </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">
-        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-        Ajouter</button>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+Ajouter</button>
       </div>
             {!! Form::close() !!}
     </div>
@@ -408,11 +362,11 @@
 
 
    {{--  Modal pour ajouter un reseau --}}
-<div class="modal fade my-5 py-5" id="ModalReseaux" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalReseaux" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nauveau Reseau</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nouvel élément - Réseau</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -430,8 +384,7 @@
       </div>
       <div class="modal-footer">
         <button type="reset" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">
-        <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+        <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
         Ajouter</button>
       </div>
                     {!! Form::close() !!}

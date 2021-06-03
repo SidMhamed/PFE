@@ -57,15 +57,28 @@
                     </tr>
                  </thead>
                  <tbody>
-                     {{-- @foreach ($computers as $computer)
+                     @foreach ($Peripheriques as $Peripherique)
                      <tr>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                        <td>{{ $computer }}</td>
-                     </tr>
-                     @endforeach --}}
+                        <td width="10px" valign="top">
+                            <span class="form-group-checkbox">
+                                <input id="check_1515325751"  value="1" type="checkbox" class="new_checkbox" data-glpicore-ma-tags="common" name="checkbox" onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
+                                {return true;}" title="Tout cocher Comme">
+                                <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
+                                   <span class="check"></span>
+                                   <span class="box"></span>
+                                </label>
+                            </span>
+                        </td>
+                        <td><a href="{{route('Peripherique.edit',$Peripherique->id)}}">{{ $Peripherique->name }}</a></td>
+                        <td>{{ $Peripherique->statut_id }}</td>
+                        <td>{{ App\Models\glpi_fabricant::findOrFail($Peripherique->fabricant_id)->Nom }}</td>
+                        <td>{{ App\Models\glpi_location::findOrFail($Peripherique->locations_id)->Nom }}</td>
+                        <td>{{ App\Models\TypesPeripherique::findOrFail($Peripherique->Peripheriquetypes_id)->name }}</td>
+                        <td>{{ App\Models\ModelPeripherique::findOrFail($Peripherique->Peripheriquemodels_id)->name }}</td>
+                        <td>{{$Peripherique->updated_at}}</td>
+                        <td>{{$Peripherique->Usager}}</td>
+                    </tr>
+                     @endforeach
                      <tr class="bg-white">
                         <th class="">
                             <div class="form-group-checkbox">

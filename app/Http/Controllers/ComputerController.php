@@ -10,6 +10,7 @@ use App\Models\glpi_computermodels;
 use App\Models\glpi_reseaux;
 use App\Models\glpi_SourceMiseAjour;
 use App\Models\User;
+use App\Models\glpi_location;
 use App\Models\glpi_groups;
 class ComputerController extends Controller
 {
@@ -106,7 +107,7 @@ class ComputerController extends Controller
      */
     public function edit($id)
     {
-        $title = 'GLPI-Ordinateurs';
+        $title = "GLPI-Ordinateurs --$id";
         $header = 'Ordinateur';
         $types = glpi_computertypes::all();
         $Fabricants = glpi_fabricant::all();
@@ -115,6 +116,7 @@ class ComputerController extends Controller
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
         $user = User::all();
         $groups =glpi_groups::all();
+        $Location = glpi_location::all();
         $Computer = glpi_computers::find($id);
         return view('front.edit.ComputerEdit')->with([
             'title' => $title,
@@ -126,6 +128,7 @@ class ComputerController extends Controller
             'SourceMiseAjours' => $SourceMiseAjours,
             'Users' => $user,
             'groups' => $groups,
+            'Locations' => $Location,
             'Computer' => $Computer
         ]);
     }
@@ -152,6 +155,7 @@ class ComputerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Computer =  glpi_computers::where('id', $id)->delete();
+        return redirect()->route('front.computer')->with(['success' => 'Élément Supprimer']);
     }
 }

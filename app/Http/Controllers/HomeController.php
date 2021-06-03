@@ -11,7 +11,8 @@ use App\Models\glpi_Moniteur;
 use App\Models\glpi_Telephone;
 use App\Models\glpi_Peripherique;
 use App\Models\glpi_MaterielBureau;
-
+use App\Models\Logiciel;
+use App\Models\ItemsCarteSIM;
 class HomeController extends Controller
 {
     /**
@@ -38,6 +39,8 @@ class HomeController extends Controller
         $Count_Tel = glpi_Telephone::count();
         $Count_peripherique = glpi_Peripherique::count();
         $MaterielBureaux = glpi_MaterielBureau::count();
+        $Logiciel = Logiciel::count();
+        $CarteSim = ItemsCarteSIM::count();
         $title = 'Accueil';
         return view("front.home")->with([
             'countComputer'=> $Count_Computer,
@@ -47,7 +50,9 @@ class HomeController extends Controller
             'Count_Moniteur' => $Count_Moniteur,
             'Count_Tel' => $Count_Tel,
             'Count_peripherique' => $Count_peripherique,
-            'MaterielBureaux' => $MaterielBureaux
+            'MaterielBureaux' => $MaterielBureaux,
+            'Logiciel' => $Logiciel,
+            'CarteSim' => $CarteSim
             ]);
     }
 }
