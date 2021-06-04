@@ -24,7 +24,7 @@
                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
                         </td>
                         <td class="left" width="100%">
-                            <a href="{{route('FormAjouterLogiciels')}}" class="btn btn-success px-2 py-0">
+                            <a href="{{route('Logiciel.create')}}" class="btn btn-success px-2 py-0">
                               <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>
@@ -67,7 +67,7 @@
                                 </label>
                             </span>
                         </td>
-                        <td  valign="top"><a id="a" href="#">{{ $logiciel->name }}</a></td>
+                        <td  valign="top"><a id="a" href="{{route('Logiciel.edit',$logiciel->id)}}">{{ $logiciel->name }}</a></td>
                         <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($logiciel->fabricant_id)->Nom}}</td>
                         <td  valign="top"></td>
                         <td  valign="top"></td>

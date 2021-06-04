@@ -27,7 +27,7 @@ use App\Http\Controllers\ModelesTelephoneController;
 use App\Http\Controllers\LogicielController;
 use App\Http\Controllers\LogicielCategoriesController;
 use App\Http\Controllers\CarteSIMController;
-// use App\Http\Controller\TypeCarteSIMController;
+use App\Http\Controller\TypeCarteSIMController;
 use App\Http\Controllers\ComposantCarteSIMController;
 /*
 |--------------------------------------------------------------------------
@@ -91,13 +91,13 @@ Route::post('/AjouterTypeLogiciels', [LogicielCategoriesController::class, 'stor
 Route::get('/CarteSIM', [CarteSIMController::class, 'index'])->name('CarteSIM');
 Route::get('/FormAjouterCarteSIM', [CarteSIMController::class, 'create'])->name('FormAjouterCarteSIM');
 Route::post('/AjouterComposantCarteSIM', [ComposantCarteSIMController::class, 'store'])->name('AjouterComposantCarteSIM');
-// Route::post('/AjouterTypeCarteSIM', [TypeCarteSIMController::class, 'store'])->name('AjouterTypeCarteSIM');
+Route::post('/AjouterTypeCarteSIM', [TypeCarteSIMController::class, 'store'])->name('AjouterTypeCarteSIM');
 Route::post('/AjouterCarteSIM', [CarteSIMController::class, 'store'])->name('AjouterCarteSIM');
 
 
 /**
  *
- * resource
+ * Resource
  */
 Route::resource('/Computer','ComputerController');
 Route::resource('/Moniteur','MoniteurController');
@@ -105,4 +105,7 @@ Route::resource('/Imprimante','ImprimanteController');
 Route::resource('/Telephone', 'TeleController');
 Route::resource('/MaterielReseau','Materiel_ReseauController');
 Route::resource('/Peripherique','PeripheriqueController');
-// Route::resource('/')
+Route::resource('/Logiciel','LogicielController');
+Route::resource('/CarteSIM','CarteSIMController');
+Route::resource('/Groups','GroupController');
+Route::resource('/Reseau','ReseauController');

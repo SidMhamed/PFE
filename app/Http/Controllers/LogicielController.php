@@ -7,7 +7,9 @@ use App\Models\Logiciel;
 use App\Models\User;
 use App\Models\glpi_fabricant;
 use App\Models\glpi_groups;
+use App\Models\glpi_location;
 use App\Models\LogicielCategories;
+use App\Models\glpi_SourceMiseAjour;
 class LogicielController extends Controller
 {
 
@@ -38,6 +40,7 @@ class LogicielController extends Controller
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
         $groups =glpi_groups::all();
+        $Locations = glpi_location::all();
         $LogicielCategories = LogicielCategories::all();
         return view('front.logicielsForm')->with([
             'title' => $title,
@@ -45,6 +48,7 @@ class LogicielController extends Controller
             'Users' => $Users,
             'groups' => $groups,
             'Fabricants' => $Fabricants,
+            'Locations' => $Locations,
             'LogicielCategories' => $LogicielCategories
         ]);
     }
@@ -57,26 +61,8 @@ class LogicielController extends Controller
      */
     public function store(Request $request)
     {
-        Logiciel::create([
-            'name' => $request -> name,
-            'comment' => $request -> comment,
-            'locations_id' => $request -> locations_id,
-            'users_id' => $request -> users_id,
-            'groups_id' => $request -> groups_id,
-            'users_id_tech' => $request -> users_id_tech,
-            // 'groups_id_tech' => $request -> groups_id_tech,
-            // 'is_update' => $request -> is_update,
-            'logiciels_id' => $request -> logiciels_id,
-            'fabricant_id' => $request -> fabricant_id,
-            // 'is_deleted' => $request -> is_deleted,
-            // 'is_template' => $request -> is_template,
-            // 'template_name' => $request -> template_name,
-            'ticket_tco' => $request -> ticket_tco,
-            // 'is_helpdesk_visible' => $request -> is_helpdesk_visible,
-            'LogicielCategories_id' => $request -> LogicielCategories_id,
-            // 'is_valid' => $request -> is_valid,
-        ]);
-        return redirect()->route('FormAjouterLogiciels')->with(['success' => 'Élément ajouté']);
+        Logiciel::create($request->all());
+        return redirect()->route('Logiciel.index')->with(['success' => 'Élément ajouté']);
     }
 
     /**
@@ -98,7 +84,26 @@ class LogicielController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Logiciels - $id";
+        $header = 'Logiciel';
+        $Users = User::all();
+        $Fabricants = glpi_fabricant::all();
+        $groups =glpi_groups::all();
+        $locations = glpi_location::all();
+        $LogicielCategories = LogicielCategories::all();
+        $SourceMiseAjours = glpi_SourceMiseAjour::all();
+        $logiciels = Logiciel::find($id);
+        return view('front.edit.LogicielEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Users' => $Users,
+            'groups' => $groups,
+            'Fabricants' => $Fabricants,
+            'Locations' => $locations,
+            'LogicielCategories' => $LogicielCategories,
+            'Logiciel' => $logiciels,
+            'SourceMiseAjours' => $SourceMiseAjours
+        ]);
     }
 
     /**
@@ -110,7 +115,9 @@ class LogicielController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $logiciel = Logiciel::find($id);
+        $logiciel->update($request->all());
+        return redirect()->route('Logiciel.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -121,6 +128,7 @@ class LogicielController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logiciel =  Logiciel::where('id', $id)->delete();
+        return redirect()->route('Logiciel.index')->with(['success' => 'Élément Supprimer']);
     }
 }

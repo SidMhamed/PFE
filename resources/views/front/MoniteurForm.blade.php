@@ -7,7 +7,7 @@
                     Nouvel élément - Moniteur
             </div>
             <div class="card-body">
-                 <form action="{{route('AjouterMoniteur')}}" method="POST">
+                 <form action="{{route('Moniteur.store')}}" method="POST">
                  @csrf
                     <table class="tab_cadre_fixe">
                        <tr>

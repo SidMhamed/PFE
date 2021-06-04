@@ -246,7 +246,11 @@ input {
     padding: 8px 5px;
 
 }
-
+td.subheader, th.subheader {
+    background-color: #EEEEEE;
+    text-align: center;
+    font-weight: bold;
+}
 .tab_cadrehov tr:hover{
     background-color: #dedede;
 

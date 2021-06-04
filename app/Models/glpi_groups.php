@@ -9,7 +9,10 @@ class glpi_groups extends Model
 {
     use HasFactory;
     protected $fillable =[
+        'entities_id',
         'name',
-        'comment'
+        'comment',
+        'is_itemgroup',
+        'is_usergroup'
     ];
 }

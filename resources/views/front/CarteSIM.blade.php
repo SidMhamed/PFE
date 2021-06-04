@@ -24,7 +24,7 @@
                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
                         </td>
                         <td class="left" width="100%">
-                            <a href="{{route('FormAjouterCarteSIM')}}" class="btn btn-success px-2 py-0">
+                            <a href="{{route('CarteSIM.create')}}" class="btn btn-success px-2 py-0">
                               <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>
@@ -47,18 +47,11 @@
                          </div>
                      </th>
                      <th><a href="#">ID</a></th>
-                     <th><a href="#">Statut</a></th>
-                     <th><a href="#">Fabricant</a></th>
-                     <th><a href="#">Numéro de série</a></th>
-                     <th><a href="#">Type </a></th>
-                     <th><a href="#">Modèle </a></th>
-                     <th><a href="#">Système d'exploitation-Nom</a></th>
-                     <th><a href="#">Lieu</a></th>
                      <th><a href="#">Dernière modification</a></th>
                     </tr>
                  </thead>
                  <tbody>
-                     {{-- @foreach ($cartes as $carte)
+                     @foreach ($cartes as $carte)
                      <tr>
                         <td width="10px" valign="top">
                             <span class="form-group-checkbox">
@@ -70,17 +63,10 @@
                                 </label>
                             </span>
                         </td>
-                        <td  valign="top"><a id="a" href="#">{{ $carte->nom }}</a></td>
-                        <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_fabricant::findOrFail($carte->fabricant_id)->Nom}}</td>
-                        <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_computertypes::findOrFail($carte->computertypes_id)->name}}</td>
-                        <td  valign="top">{{App\Models\glpi_computermodels::findOrFail($carte->computermodels_id)->Nom}}</td>
-                        <td  valign="top"></td>
-                        <td  valign="top">{{App\Models\glpi_location::findOrFail($carte->locations_id)->Nom}}</td>
-                        <td  valign="top">{{ $computer->updated_at }}</td>
+                        <td  valign="top"><a href="{{route('CarteSIM.edit',$carte->id)}}">{{ $carte->id }}</a></td>
+                        <td  valign="top">{{ $carte->updated_at }}</td>
                      </tr>
-                     @endforeach --}}
+                     @endforeach
                      <tr class="bg-white">
                         <th class="">
                             <div class="form-group-checkbox">
@@ -92,14 +78,7 @@
                                </label>
                             </div>
                         </th>
-                        <th><a href="#">Nom</a></th>
-                        <th><a href="#">Statut</a></th>
-                        <th><a href="#">Fabricant</a></th>
-                        <th><a href="#">Numéro de série</a></th>
-                        <th><a href="#">Type </a></th>
-                        <th><a href="#">Modèle </a></th>
-                        <th><a href="#">Système d'exploitation-Nom</a></th>
-                        <th><a href="#">Lieu</a></th>
+                        <th><a href="#">ID</a></th>
                         <th><a href="#">Dernière modification</a></th>
                        </tr>
                  </tbody>

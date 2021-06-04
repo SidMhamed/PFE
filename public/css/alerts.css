@@ -14,6 +14,7 @@ body {
     background-color: #0002;
     background-blend-mode: multiply;
     font-size: 13px;
+    overflow: hidden;
 }
 
 :root {
@@ -29,16 +30,63 @@ body {
     border-left-width: 10px;
     box-shadow: 0 4px 10px #0004, 0 2px 20px #0008;
     display: flex;
+    min-width: 420px;
+    bottom: 10px;
+    right: 0px;
+    position: absolute;
     align-items: center;
     padding: 15px 25px;
+    overflow: hidden;
     margin: 15px 0;
     border-radius: 15px;
     backdrop-filter: blur(10px);
     background-color: #008080;
     transition-property: opacity, transform;
     transition: 0.5s ease-in;
+    opacity: 0;
+    pointer-events: none;
+}
+.alerts.showAlert{
+    opacity: 1;
+    pointer-events: auto;
+}
+.alerts.show{
+    animation: show_slide 3s ease  forwards;
+}
+@keyframes show_slide {
+   0%{
+       transform: translateX(100%);
+   }
+   40%{
+    transform: translateX(-10%);
+   }
+   80%{
+    transform: translateX(0%);
+   }
+   100%{
+    transform: translateX(-10px);
+   }
+}
+.alerts.hide{
+
+    animation: hide_slide 1s ease forwards;
+
+    }
+    @keyframes hide_slide{
+0%{
+    transform: translateX(-10%);
+}
+40%{
+    transform: translateX(0%);
+}
+80%{
+    transform: translateX(-10%);
+}
+100%{
+    transform: translateX(100%);
 }
 
+    }
 .alerts.close {
     opacity: 0;
     transform: translate3d(40px);

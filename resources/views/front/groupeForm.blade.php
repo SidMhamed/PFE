@@ -1,32 +1,65 @@
 @extends('layouts.app')
 @section('content')
    <div class="container align-content-center alert border-0" role="alert">
-              <h4 class="alert-heading alert bg-white">Groupes</h4>
+              <h4 class="alert-heading alert text-white">{{$header}}</h4>
         <div class="card">
             <div class="card-header alert-heading  border-success border-5">
                     Nouvel élément - Groupes
             </div>
             <div class="card-body">
-                {!! Form::open(['method' => 'POST', 'route' => 'AddGroups', 'class' => 'form-horizontal']) !!}
-                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
-                        {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                        </div>
-                        <div class="form-group{{ $errors->has('inputname') ? ' has-error' : '' }}">
-                        {!! Form::label('comment', 'Commentaires') !!}
-                        {!! Form::text('comment', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                    </div>
-                    <div class="col-md-12">
-                       <button type="submit" class="btn btn-success">
-                              <i class="fa fa-plus-circle" title="Ajouter"></i>
-                        Ajouter</button>
-                    </div>
-                 </div>
+                {!! Form::open(['method' => 'POST', 'route' => 'Groups.store', 'class' => 'form-horizontal']) !!}
+                    <table class="tab_cadre_fixe">
+                      <tbody>
+                        <tr>
+                           <td>
+                                {!! Form::label('name', 'Nom') !!}
+                           </td>
+                           <td>
+                                {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                           </td>
+                           <td rowspan="4">
+                                {!! Form::label('comment', 'Commentaires') !!}
+
+                           </td>
+                           <td rowspan="4">
+                               {!! Form::textarea('comment', '', ['rows' => '5','col' => '40','class' => 'form-control','required' => 'required']) !!}
+                           </td>
+                        </tr>
+                        <tr>
+                           <td class="subheader" colspan="2">Peut contenir</td>
+                        </tr>
+                        <tr>
+                           <td>
+                                Éléments
+                           </td>
+                           <td>
+                            <select name="is_itemgroup" id="Série" class="py-1 px-3">
+                                          <option value="0">Non</option>
+                                          <option value="1">Oui</option>
+                            </select>
+                           </td>
+                        </tr>
+                        <tr>
+                          <td>
+                          Utilisateurs
+                          </td>
+                          <td>
+                            <select name="is_usergroup" id="Série" class="py-1 px-3">
+                                 <option value="0">Non</option>
+                                 <option value="1">Oui</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                        <td colspan="4" class="text-center">
+                             <button type="submit" class="btn btn-success">
+                           <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+                           Ajouter
+                        </button>
+                        </td>
+                        </tr>
+                      </tbody>
+                    </table>
                 {!! Form::close() !!}
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\glpi_groups;
 use App\Models\glpi_fabricant;
 use App\Models\ItemsCarteSIM;
+use App\Models\glpi_location;
 class CarteSIMController extends Controller
 {
     /**
@@ -18,8 +19,10 @@ class CarteSIMController extends Controller
     public function index()
     {
         $title = 'Carte SIM';
+        $cartes = ItemsCarteSIM::all();
         return view('front.CarteSIM')->with([
             'title' => $title,
+            'cartes' => $cartes
         ]);
     }
 
@@ -54,28 +57,8 @@ class CarteSIMController extends Controller
      */
     public function store(Request $request)
     {
-        ItemsCarteSIM::create([
-            'items_id' => $request ->  items_id,
-            'itemstype' => $request ->  itemstype,
-            'devicesimcards_id' => $request ->  devicesimcards_id,
-            'is_deleted' => $request ->  is_deleted,
-            'is_dynamic' => $request ->  is_dynamic,
-            'entities_id' => $request ->  entities_id,
-            'is_recursive' => $request ->  is_recursive,
-            'serial' => $request ->  serial,
-            'otherserial' => $request ->  otherserial,
-            'states_id' => $request ->  states_id,
-            'locations_id' => $request ->  locations_id,
-            'lines_id' => $request ->  lines_id,
-            'users_id' => $request ->  users_id,
-            'groups_id' => $request ->  groups_id,
-            'pin' => $request ->  pin,
-            'pin2' => $request ->  pin2,
-            'puk' => $request ->  puk,
-            'puk2' => $request ->  puk2,
-            'msin' => $request ->  msin,
-        ]);
-        return redirect()->route('FormAjouterCarteSIM')->with(['success' => 'Élément ajouté']);
+        ItemsCarteSIM::create($request->all());
+        return redirect()->route('CarteSIM.index')->with(['success' => 'Élément ajouté']);
     }
 
     /**
@@ -97,7 +80,24 @@ class CarteSIMController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Cartes SIM - $id";
+        $header = 'Catre SIM';
+        $user = User::all();
+        $groups =glpi_groups::all();
+        $Fabricants = glpi_fabricant::all();
+        $Composants = ComposatsCarteSIM::all();
+        $Locations = glpi_location::all();
+        $CarteSIM = ItemsCarteSIM::find($id);
+        return view('front.edit.CarteSIMEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'Users' => $user,
+            'Groups' => $groups,
+            'Fabricants' => $Fabricants,
+            'Composants' => $Composants,
+            'locations' => $Locations,
+            'CarteSIM'=> $CarteSIM
+        ]);
     }
 
     /**
@@ -109,7 +109,9 @@ class CarteSIMController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $CarteSIM = ItemsCarteSIM::find($id);
+        $CarteSIM->update($request->all());
+        return redirect()->route('CarteSIM.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -120,6 +122,7 @@ class CarteSIMController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $CarteSIM = ItemsCarteSIM::where('id',$id)->delete();
+        return redirect()->route('CarteSIM.index')->with(['success' => 'Élément Supprimer']);
     }
 }

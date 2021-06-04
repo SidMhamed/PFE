@@ -48,7 +48,7 @@
                             <i class="fas fa-cube float-right" title="Logiciel" style="font-size:2em;"></i><br><br>
                             <h6 class="text-left" title="Logiciel">Logiciel</h6>
                         </a>
-                        <a href="{{route('CarteSIM')}}" class="col-md-3 py-0  px-0 mx-1 text-decoration-none alert carte">
+                        <a href="{{route('CarteSIM.index')}}" class="col-md-3 py-0  px-0 mx-1 text-decoration-none alert carte">
                             <span class="text-left float-left" title="{{$CarteSim}}" data-precision="0" style="font-size:2.2em;">{{$CarteSim}} </span>
                             <i class="fas fa-sim-card float-right" title="Cartes SIM" style="font-size:2em;"></i><br><br>
                             <h6 class="text-left" title="Cartes SIM">Cartes SIM</h6>

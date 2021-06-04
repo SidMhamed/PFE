@@ -19,14 +19,7 @@ class GroupController extends Controller
         $Groupes = glpi_groups::all();
         return view('front.groupe')->with([
             'title' => $title,
-            'groups' => $Groupes
-        ]);
-    }
-
-    public function form(){
-        $title = 'GLPI-Groupes --1';
-        return view('front.groupeForm')->with([
-            'title' => $title
+            'groups' => $Groupes,
         ]);
     }
     /**
@@ -36,7 +29,12 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'GLPI-Groupes --1';
+        $header = 'Groupes';
+        return view('front.groupeForm')->with([
+            'title' => $title,
+            'header' => $header
+        ]);
     }
 
     /**
@@ -47,11 +45,8 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        glpi_groups::create([
-            'name' => $request -> name,
-            'comment' => $request -> comment
-        ]);
-        return redirect()->route('Groupes.form')->with(['success' => 'Élément ajouté']);
+        glpi_groups::create($request->all());
+        return redirect()->route('Groups.index')->with(['success' => 'Élément ajouté']);
     }
 
     /**
@@ -73,7 +68,14 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "GLPI-Groupes - $id";
+        $header = "Groupes";
+        $Groups = glpi_groups::find($id);
+        return view('front.edit.GroupsEdit')->with([
+        'title' => $title,
+        'header' => $header,
+        'Groups' => $Groups
+        ]);
     }
 
     /**
@@ -85,7 +87,9 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Groups = glpi_groups::find($id);
+        $Groups->update($request->all());
+        return redirect()->route('Groups.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -96,6 +100,7 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $Groups = glpi_groups::where('id',$id)->delete();
+        return redirect()->route('Groups.index')->with(['success' => 'Élément Supprimer']);
+      }
 }

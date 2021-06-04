@@ -3,12 +3,13 @@
 <div class="container align-content-center border-0" role="alert">
               <h4 class="alert-heading alert text-white">{{$header}}</h4>
         <div class="card border-0">
-            <div class="card-header alert-heading  border-success border-5">
-                   Nouvel élément - Carte SIM
+            <div class="card-header alert-heading  border-success border-5 text-center">
+                   <h3>  {{App\Models\ComposatsCarteSIM::findOrFail($CarteSIM->devicesimcards_id)->name}} </h3>
             </div>
             <div class="card-body">
-                 <form action="{{route('CarteSIM.store')}}" method="POST">
-                 @csrf
+                 <form action="{{route('CarteSIM.update', $CarteSIM->id)}}" method="POST">
+                  {{ method_field('PUT') }}
+                  {{ csrf_field() }}
                     <table class="tab_cadre_fixe">
                        <tr>
                         <td>
@@ -31,17 +32,17 @@
                             </td>
                        </tr>
                        <tr>
-                        <td>
+                       <td>
                             <label for="serial">Numéro de série</label>
                         </td>
                         <td>
-                           <input type="text" name="serial" id="serial">
+                           <input type="text" name="serial" value="{{$CarteSIM->serial ?? ''}}" id="serial">
                         </td>
                           <td>
                             <label for="otherserial">Numéro d'inventaire</label>
                         </td>
                         <td>
-                           <input type="text" name="otherserial" id="otherserial">
+                           <input type="text" name="otherserial" value="{{$CarteSIM->otherserial ?? ''}}" id="otherserial">
                         </td>
                        </tr>
                        <tr>
@@ -51,9 +52,9 @@
                             <td>
                                     <select name="locations_id" id="locations_id" class="">
                                         <option value="" selected disabled>-----</option>
-                                        {{-- @foreach ($locations as $location)
+                                        @foreach ($locations as $location)
                                             <option value="{{$location->id}}">{{$location->name}}</option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -75,13 +76,13 @@
                                     <label for="pin">Code PIN</label>
                             </td>
                             <td>
-                                    <input type="text" name="pin" id="pin" class="" placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="pin" value="{{$CarteSIM->pin ?? ''}}" id="pin" class="" placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                     <label for="pin2">Code PIN2</label>
                             </td>
                             <td>
-                                    <input type="text" name="pin2" id="pin2" class="" placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="pin2" value="{{$CarteSIM->pin2 ?? ''}}" id="pin2" class="" placeholder="" aria-describedby="helpId">
                             </td>
                        </tr>
                        <tr>
@@ -89,13 +90,13 @@
                                 <label for="puk">Code PUK</label>
                             </td>
                             <td>
-                                <input type="text" name="puk" id="puk" class="" placeholder="" aria-describedby="helpId">
+                                <input type="text" name="puk" value="{{$CarteSIM->puk ?? ''}}" id="puk" class="" placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="puk2">Code PUK2</label>
                             </td>
                             <td>
-                                <input type="text" name="puk2" id="puk2" class="" placeholder="" aria-describedby="helpId">
+                                <input type="text" name="puk2" value="{{$CarteSIM->puk2 ?? ''}}" id="puk2" class="" placeholder="" aria-describedby="helpId">
                             </td>
                        </tr>
                        <tr>
@@ -105,8 +106,8 @@
                         <td>
                             <select name="lines_id" id="lines_id" class="">
                                         <option  value="" selected disabled>-----</option>
-                                        {{-- @foreach ($Users as $User)
-                                            <option value="{{$User->name}}">{{$User->name}}</option>
+                                        {{-- @foreach ($Locations as $Location)
+                                            <option value="{{$Location->id}}">{{$Location->name}}</option>
                                         @endforeach --}}
                             </select>
                          </td>
@@ -114,7 +115,7 @@
                                 <label for="msin">Mobile Subscriber Identification Number</label>
                             </td>
                          <td>
-                                <input type="text" name="msin" id="msin" class="" required>
+                                <input type="text" name="msin" value="{{$CarteSIM->msin ?? ''}}" id="msin" class="" required>
                                 <i class="fas fa-info pointer" title="Le MSIN est Constitué des 8 ou 10 derniers Chiffres de l'IMSI"></i>
                          </td>
                        </tr>
@@ -143,13 +144,35 @@
                             </select>
                         </td>
                     </tr>
-                    <tr>
-                         <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>ajouter</button>
-                         </td>
-                     </tr>
+                    <tr class="alert alert-dark">
+                            <th colspan="2">
+                                  Créé le {{$CarteSIM->created_at}}
+                            </th>
+                            <th colspan="2">
+                                   Dernière mise à jour le{{$CarteSIM->updated_at}}
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                    <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i> Sauvegarder</button>
+                            </td>
+                        </tr>
                     </table>
                 </form>
+                <table class="tab_cadre_fixe">
+                       <tbody>
+                           <tr>
+                              <td>
+                                 <form method="POST" action="{{ route('CarteSIM.destroy',$CarteSIM->id) }}">
+                            <input name="_method" type="hidden" value="DELETE">
+                            @csrf
+                                  <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')" class="btn btn-danger float-right" title="Supprimer">
+                                  <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                            </form>
+                              </td>
+                           </tr>
+                       </tbody>
+                    </table>
             </div>
         </div>
     </div>
@@ -260,4 +283,3 @@
 
 </div>
 @endsection
-

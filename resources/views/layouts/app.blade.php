@@ -169,7 +169,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="{{route('CarteSIM')}}" class="dropdown-item">
+                                        <a href="{{route('CarteSIM.index')}}" class="dropdown-item">
                                         <i class='fa-fw fas fa-sim-card'></i>
                                         Cartes SIM
                                         </a>

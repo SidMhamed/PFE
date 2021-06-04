@@ -24,7 +24,7 @@
                            <a class="vsubmit" onclick="" title="Actions" href="">Actions</a>
                         </td>
                         <td class="left" width="100%">
-                            <a href="{{route('Groupes.form')}}" class="btn btn-success px-2 py-0">
+                            <a href="{{route('Groups.create')}}" class="btn btn-success px-2 py-0">
                               <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>
@@ -63,8 +63,8 @@
                                 </label>
                             </span>
                         </td>
-                        <td  valign="top"><a id="a" href="#">{{ $group->name }}</a></td>
-                        <td  valign="top"></td>
+                        <td  valign="top"><a href="{{route('Groups.edit',$group->id)}}">{{ $group->name }}</a></td>
+                        <td  valign="top">{{$group->comment}}</td>
                      </tr>
                      @endforeach
                      <tr class="bg-white">

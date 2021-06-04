@@ -1,5 +1,5 @@
 @if(Session::get('success'))
-    <div class="alerts alerts-success">
+    <div class="alerts alerts-success hide">
         <span class="icon">
             <i class="fa fa-check"></i>
         </span>
@@ -16,7 +16,7 @@
 @endif
 
 @if(Session::get('info'))
-    <div class="alerts alerts-info">
+    <div class="alerts alerts-info hide">
           <span class="icon">
             <i class="fa fa-info"></i>
         </span>
@@ -33,7 +33,7 @@
 @endif
 
 @if(Session::get('error'))
-    <div class="alerts alerts-danger">
+    <div class="alerts alerts-danger hide">
         <span class="icon">
             <i class="fa fa-close"></i>
         </span>
@@ -51,7 +51,7 @@
 
 @if($errors->count() > 0)
    @foreach ($errors->all() as $error)
-        <div class="alerts alerts-danger">
+        <div class="alerts alerts-danger hide">
         <span class="icon">
             <i class="fa fa-close"></i>
         </span>
