@@ -21,10 +21,12 @@ class LogicielController extends Controller
     public function index()
     {
         $title = 'GLPI-Logiciels';
+        $header = 'Logiciel';
         $logiciels = Logiciel::all();
         return view('front.logiciels')->with([
             'title' => $title,
-            'logiciels' => $logiciels
+            'logiciels' => $logiciels,
+            'header' => $header
         ]);
     }
 

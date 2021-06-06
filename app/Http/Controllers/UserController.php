@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\glpi_location;
 use App\Models\glpi_groups;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
@@ -16,10 +17,12 @@ class UserController extends Controller
     public function index()
     {
         $title = 'GLPI-Utilisateurs';
+        $header = 'Utilisateurs';
         $User = User::all();
         return view('front.User')->with([
             'title' => $title,
-            'User' => $User
+            'User' => $User,
+            'header' => $header
         ]);
     }
 
@@ -50,7 +53,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        User::create([
+            'name' => $request -> name,
+            'fieldlist' => $request ->fieldlist,
+            'phone' => $request ->phone,
+            'phone2' => $request ->phone2,
+            'mobile' => $request ->mobile,
+            'locations_id' => $request ->locations_id,
+            'profiles_id' => $request ->profiles_id,
+            'language' => $request ->language,
+            'use_mode' => $request ->use_mode,
+            'list_limit' => $request ->list_limit,
+            'is_active' => $request ->is_active,
+            'auths_id' => $request ->auths_id,
+            'authtype' => $request ->authtype,
+            'last_login' => $request ->last_login,
+            'date_sync' => $request ->date_sync,
+            'is_deleted' => $request ->is_deleted,
+            'entities_id' => $request ->entities_id,
+            'usertitles_id' => $request ->usertitles_id,
+            'usercategories_id' => $request ->usercategories_id,
+            'csv_delimiter' => $request ->csv_delimiter,
+            'api_token' => $request ->api_token,
+            'api_token_date' => $request ->api_token_date,
+            'cookie_token' => $request ->cookie_token,
+            'cookie_token_date' => $request ->cookie_token_date,
+            'groups_id' => $request ->groups_id,
+            'users_id_supervisor' => $request ->users_id_supervisor,
+            'email' => $request -> email,
+            'email_verified_at' => $request -> email_verified_at,
+            'password' => Hash::make($request->password),
+
+        ]);
         return redirect()->route('users.index')->with(['success' => 'Élément ajouté']);
     }
 
@@ -97,7 +131,37 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $User = User::find($id);
-        $User->update($request->all());
+        $User->update([
+            'name' => $request -> name,
+            'fieldlist' => $request ->fieldlist,
+            'phone' => $request ->phone,
+            'phone2' => $request ->phone2,
+            'mobile' => $request ->mobile,
+            'locations_id' => $request ->locations_id,
+            'profiles_id' => $request ->profiles_id,
+            'language' => $request ->language,
+            'use_mode' => $request ->use_mode,
+            'list_limit' => $request ->list_limit,
+            'is_active' => $request ->is_active,
+            'auths_id' => $request ->auths_id,
+            'authtype' => $request ->authtype,
+            'last_login' => $request ->last_login,
+            'date_sync' => $request ->date_sync,
+            'is_deleted' => $request ->is_deleted,
+            'entities_id' => $request ->entities_id,
+            'usertitles_id' => $request ->usertitles_id,
+            'usercategories_id' => $request ->usercategories_id,
+            'csv_delimiter' => $request ->csv_delimiter,
+            'api_token' => $request ->api_token,
+            'api_token_date' => $request ->api_token_date,
+            'cookie_token' => $request ->cookie_token,
+            'cookie_token_date' => $request ->cookie_token_date,
+            'groups_id' => $request ->groups_id,
+            'users_id_supervisor' => $request ->users_id_supervisor,
+            'email' => $request -> email,
+            'email_verified_at' => $request -> email_verified_at,
+            'password' => Hash::make($request->password),
+        ]);
         return redirect()->route('users.index')->with(['success' => 'Élément modifié']);
     }
 

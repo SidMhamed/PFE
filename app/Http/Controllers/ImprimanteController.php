@@ -21,10 +21,12 @@ class ImprimanteController extends Controller
     public function index()
     {
         $title = 'GLPI-Imprimantes';
+        $header = 'Imprimantes';
         $Imprimantes = glpi_Imprimante::all();
         return view('front.Imprimante')->with([
             'title' => $title,
-            'Imprimantes' => $Imprimantes
+            'Imprimantes' => $Imprimantes,
+            'header' => $header
         ]);
     }
 
@@ -63,38 +65,7 @@ class ImprimanteController extends Controller
      */
     public function store(Request $request)
     {
-        glpi_Imprimante::create([
-            'name' => $request -> name,
-            // 'contact' => $request -> contact,
-            // 'contact_num' => $request -> contact_num,
-            'users_id_tech' => $request ->users_id_tech,
-            'groups_id_tech' => $request ->groups_id_tech,
-            'serial' => $request ->serial,
-            'otherserial' => $request ->otherserial,
-            'have_serial' => $request ->have_serial,
-            'have_parallel' => $request ->have_parallel,
-            'have_usb' => $request ->have_usb,
-            'have_wifi' => $request ->have_wifi,
-            'have_ethernet' => $request ->have_ethernet,
-            'comment' => $request ->comment,
-            'memory_size' => $request ->memory_size,
-            'locations_id' => $request ->locations_id,
-            'networks_id' => $request ->networks_id,
-            'printertype_id' => $request ->printertype_id,
-            'printermodels_id' => $request ->printermodels_id,
-            'manufacturers_id' => $request ->manufacturers_id,
-            // 'is_global' => $request ->is_global,
-            // 'is_deleted' => $request ->is_deleted,
-            // 'is_template' => $request ->is_template,
-            // 'template_name' => $request ->template_name,
-            'init_pages_couter' => $request ->init_pages_couter,
-            'last_pages_counter' => $request ->last_pages_counter,
-            'users_id' => $request ->users_id,
-            'groups_id' => $request ->groups_id,
-            'states' => $request ->states,
-            'ticket_tco' => $request ->ticket_tco,
-            'is_dynamic' => $request ->is_dynamic,
-        ]);
+        glpi_Imprimante::create($request->all());
         return redirect()->route('FormImprimante')->with(['success' => 'Élément ajouté']);
     }
 
@@ -118,7 +89,7 @@ class ImprimanteController extends Controller
     public function edit($id)
     {
         $title = "GLPI-Imprimantes - $id";
-        $header = 'Imprimante';
+        $header = 'Imprimantes';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
         $Reseaux = glpi_reseaux::all();

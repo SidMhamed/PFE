@@ -21,10 +21,12 @@ class TeleController extends Controller
     public function index()
     {
         $title = 'Téléphones';
+        $header = 'Téléphone';
         $Telephones = glpi_Telephone::all();
         return view('front.Telephone')->with([
             'title' => $title,
-            'Telephones' => $Telephones
+            'Telephones' => $Telephones,
+            'header' => $header
         ]);
     }
 

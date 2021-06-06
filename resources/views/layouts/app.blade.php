@@ -68,7 +68,7 @@
         <nav id="c_menu" class="nav navbar-expand-md shadow-none p-1">
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav text-center px-3">
+            <ul class="navbar-nav text-center px-3">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle-split text-white text-center" href="#" id="Assistance" role="button" data-bs-toggle="dropdown" ria-haspopup="true"  aria-expanded="false" v-pre>
                                 Parc
@@ -436,7 +436,7 @@
                                                 </a>
                                              </li>
                                              <li>
-                                                <a href="#" class="dropdown-item">
+                                                <a href="{{route('profile.index')}}" class="dropdown-item">
                                                    <i class='fa-fw fas fa-user-check'></i>
                                                    Profils
                                                 </a>
@@ -457,8 +457,29 @@
                             </div>
                             </li>
                         </ul>
-                </li>
+                      </li>
                     </ul>
+                    {{-- <script type="text/javascript">
+                    //<![CDATA[
+                            $(document).ready(
+                                function() {
+                                $('#show_all_menu').dialog({
+                                    height: 'auto',
+                                    width: 'auto',
+                                    modal: true,
+                                    autoOpen: false
+                                });
+                                }
+                            );
+                    //]]>
+                    </script>
+                    <ul class="navbar-nav">
+                    <li nav-item>
+                    <a href="#" class="nav-link" onclick="$('#show_all_menu').dialog('open'); return false;" id="menu_all_button">
+                    <i class="fa fa-bars"></i>
+                    </a></li>
+                    </ul> --}}
+
                 </div>
             </div>
         </nav>
@@ -482,5 +503,4 @@
   <script src="{{ asset('js/app.js.map') }}"></script>
   <script src="{{ asset('/jquery-3.6.0.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-
 </html>

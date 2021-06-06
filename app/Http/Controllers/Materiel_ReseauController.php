@@ -22,10 +22,12 @@ class Materiel_ReseauController extends Controller
     public function index()
     {
       $title = 'GLPI-Matèriel-Reseaux';
+      $header ='Matèriel-Reseaux';
       $Materiel_Reseaux = glpi_Materiel_Reseaux::all();
       return view('front.Materiel-reseau')->with([
           'title' => $title,
-          'Materiel_Reseaux' => $Materiel_Reseaux
+          'Materiel_Reseaux' => $Materiel_Reseaux,
+          'header' => $header
       ]);
     }
 

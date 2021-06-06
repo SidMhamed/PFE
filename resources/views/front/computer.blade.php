@@ -1,14 +1,44 @@
 @extends('layouts.app')
 @section('content')
 <main id="page">
+  <h4 class="alert-heading alert text-white">
+      <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
+      <a class="text-white aa" href="{{route('Computer.index')}}">{{$header}}</a>
+</h4>
     <div>
         <table class="tab_cadre_pager">
             <tbody>
                   <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>
+                      <form method="POST" action="#">
+                      <table>
+                        <tbody>
+                            <tr>
+                            <td>
+                                <select class="px-2 py-1">
+                                    <option value="" class="alert-dark">Éléments visualisés</option>
+                                    <option value="Nom">Nom</option>
+                                    <option value="Statut">Statut</option>
+                                    <option value="Fabricant">Fabricant</option>
+                                    <option value="NumeroSerie">Numéro de série</option>
+                                    <option value="Type">Type</option>
+                                    <option value="Modele">Modèle</option>
+                                    <option value="Systeme">Système d'exploitation-Nom</option>
+                                    <option value="Lieu">Lieu</option>
+                                    <option value="DateDerniereModification">Dernière modification</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="search" class="">
+                            </td>
+                            </tr>
+                        </tbody>
+                      </table>
+                      </form>
+                      </td>
+                      <td>
+
+                      </td>
                   </tr>
             </tbody>
         </table>

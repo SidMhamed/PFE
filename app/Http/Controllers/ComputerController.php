@@ -23,9 +23,11 @@ class ComputerController extends Controller
     {
         $computers = glpi_computers::all();
         $title = 'GLPI-Ordinateurs';
+        $header = 'Ordinateurs';
         return view('front.computer')->with([
             'title' => $title,
-            'computers' => $computers
+            'computers' => $computers,
+            'header' => $header
         ]);
     }
     /**
@@ -36,7 +38,7 @@ class ComputerController extends Controller
     public function create()
     {
         $title = 'GLPI-Ordinateurs --1';
-        $header = 'Ordinateur';
+        $header = 'Ordinateurs';
         $types = glpi_computertypes::all();
         $Fabricants = glpi_fabricant::all();
         $Models = glpi_computermodels::all();

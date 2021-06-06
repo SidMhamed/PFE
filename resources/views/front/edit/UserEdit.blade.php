@@ -27,11 +27,11 @@
                         </tr>
                         <tr>
                            <td><label for="password">Mot de Passe</label></td>
-                           <td><input type="password" name="password" id="password" value="{{$User->password ?? ''}}"></td>
+                           <td><input type="password" name="password" id="password" value=""></td>
                         </tr>
                         <tr>
                             <td><label for="Cpassword">Confirmation de Mot de Passe</label></td>
-                            <td><input type="password" name="password" id="Cpassword" value="{{$User->password ?? ''}}"></td>
+                            <td><input type="password" name="password" id="Cpassword" value=""></td>
                             <td><label for="groups">groups</label></td>
                             <td>
                                 <select name="groups_id" id="groups_id" class="py-1 px-3">

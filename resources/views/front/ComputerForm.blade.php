@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
         <div class="container align-content-center border-0">
-              <h4 class="alert-heading alert text-white">{{$header}}</h4>
+                <h4 class="alert-heading alert text-white">
+              <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
+              <a class="text-white aa" href="{{route('Computer.index')}}">{{$header}}</a> >
+              <a class="text-white aa" href="{{route('Computer.create')}}"><i class="fa fa-plus-circle"></i></a>
+              </h4>
             <div id="card" class="card border-0">
                     <div class="card-header alert-heading  border-success border-5">
                             Nouvel élément - Ordinateur

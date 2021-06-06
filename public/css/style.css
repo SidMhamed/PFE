@@ -596,7 +596,10 @@ th .label-checkbox .box {
     -moz-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
-
+.aa:hover{
+    text-decoration-color: fff;
+    text-decoration: underline;
+}
 label.checkbox {
     display: inline-block;
     margin-bottom: .5rem;
@@ -645,4 +648,13 @@ a:link {
 		line-height: 45px;
 		font-size: 43px;
 	} */
+}
+#menu_all_button {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    /* display: inline-block; */
+    margin-top: 2px;
+    font-size: 1.6em;
+    float: right;
 }

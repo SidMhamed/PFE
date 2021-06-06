@@ -17,9 +17,11 @@ class GroupController extends Controller
     {
         $title = 'GLPI-Groupes';
         $Groupes = glpi_groups::all();
+        $header = 'Groupes';
         return view('front.groupe')->with([
             'title' => $title,
             'groups' => $Groupes,
+            'header' => $header
         ]);
     }
     /**

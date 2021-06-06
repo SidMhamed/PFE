@@ -19,10 +19,12 @@ class CarteSIMController extends Controller
     public function index()
     {
         $title = 'Carte SIM';
+        $header = 'Catre SIM';
         $cartes = ItemsCarteSIM::all();
         return view('front.CarteSIM')->with([
             'title' => $title,
-            'cartes' => $cartes
+            'cartes' => $cartes,
+            'header' => $header
         ]);
     }
 

@@ -4,14 +4,12 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-md-8">
+              <h4 class="alert-heading alert text-white">
+              <a class="text-white aa" href="{{route('home')}}">{{__('Accueil')}}</a>
+            </h4>
             <div class="card border-0">
                 <div class="card-header">{{ __('Tableau de bord') }}</div>
                 <div class="card-body">
-                    {{-- @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif --}}
                     <div class="row">
                         <a href="{{ route('showComputer') }}" class="col-md-3 py-0  px-0 mx-1 text-decoration-none alert Ordina">
                                     <span class="text-left float-auto" title="{{ $countComputer }}" style="font-size:2.2em;color:#8c2121">{{$countComputer}}</span>

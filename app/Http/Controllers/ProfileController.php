@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\glpi_profile;
 
 class ProfileController extends Controller
 {
@@ -13,7 +14,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'GLPI-Profils';
+        $header = 'Profil';
+        $profils = glpi_profile::all();
+        return view('front.profiles')->with([
+            'title' => $title,
+            'header' => $header,
+            'profils' => $profils
+        ]);
     }
 
     /**
@@ -23,7 +31,12 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'GLPI-Profils';
+        $header = 'Profil';
+        return view('front.profileForm')->with([
+            'title' => $title,
+            'header' => $header
+        ]);
     }
 
     /**
@@ -34,7 +47,8 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        glpi_profile::create($request->all());
+        return redirect()->route('profile.index')->with(['success' => 'Élément modifié']);
     }
 
     /**
