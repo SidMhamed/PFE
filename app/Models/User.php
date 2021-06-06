@@ -19,12 +19,36 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'groups_id',
-        'locations_id',
-        // 'profiles_id'
+            'name',
+            'fieldlist',
+            'phone',
+            'phone2',
+            'mobile',
+            'locations_id',
+            'profiles_id',
+            'language',
+            'use_mode',
+            'list_limit',
+            'is_active',
+            'auths_id',
+            'authtype',
+            'last_login',
+            'date_sync',
+            'is_deleted',
+            'entities_id',
+            'usertitles_id',
+            'usercategories_id',
+            'csv_delimiter',
+            'api_token',
+            'api_token_date',
+            'cookie_token',
+            'cookie_token_date',
+            'groups_id',
+            'users_id_supervisor',
+            'email',
+            'email_verified_at',
+            'password',
+
     ];
 
     /**
@@ -47,10 +71,10 @@ class User extends Authenticatable
     ];
 
 
-    // public function profile()
-    // {
-    //     $this->belongsTo(glpi_profile::class, 'profiles_id', 'id');
-    // }
+    public function profile()
+    {
+        $this->belongsTo(glpi_profile::class, 'profiles_id', 'id');
+    }
     public function groups()
     {
         $this->belongsTo(glpi_groups::class, 'groups_id', 'id');

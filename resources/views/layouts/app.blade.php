@@ -79,7 +79,7 @@
                                 <div class="row" style="width: 500px;">
                                     <ul class="list-unstyled col-md-6">
                                         <li>
-                                        <a href="{{ route('showComputer') }}" class="dropdown-item"  accesskey='o'>
+                                        <a href="{{ route('Computer.index') }}" class="dropdown-item"  accesskey='o'>
                                         <i class='fa-fw fas fa-laptop'></i>
                                         <u>O</u>rdinateurs
                                         </a></li>
@@ -403,7 +403,7 @@
                                 <div class="row" style="width: 500px;">
                                     <ul class="list-unstyled col-md-4">
                                         <li>
-                                            <a href="#"  accesskey='u' class="dropdown-item">
+                                            <a href="{{route('users.index')}}"  accesskey='u' class="dropdown-item">
                                                <i class='fa-fw fas fa-user'></i>
                                                <u>U</u>tilisateurs
                                             </a>
@@ -471,8 +471,8 @@
         </div> --}}
     </div>
         <main class="py-5 my-5">
-            @include('includes.messages')
             @yield('content')
+            @include('includes.messages')
         </main>
 </body>
   <!-- Scripts -->

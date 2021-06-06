@@ -62,7 +62,7 @@ class TeleController extends Controller
     public function store(Request $request)
     {
         glpi_Telephone::create($request->all());
-        return redirect()->route('FormTelephone')->with(['success' => 'Élément ajouté']);
+        return redirect()->route('Telephone.create')->with(['success' => 'Élément ajouté']);
     }
 
     /**

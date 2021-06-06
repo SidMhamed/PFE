@@ -29,6 +29,8 @@ use App\Http\Controllers\LogicielCategoriesController;
 use App\Http\Controllers\CarteSIMController;
 use App\Http\Controller\TypeCarteSIMController;
 use App\Http\Controllers\ComposantCarteSIMController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -109,3 +111,6 @@ Route::resource('/Logiciel','LogicielController');
 Route::resource('/CarteSIM','CarteSIMController');
 Route::resource('/Groups','GroupController');
 Route::resource('/Reseau','ReseauController');
+Route::resource('/users', 'UserController');
+Route::resource('/profile', 'ProfileController');
+// Route::resource('/','')

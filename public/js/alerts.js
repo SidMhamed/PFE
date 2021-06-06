@@ -13,20 +13,29 @@
 //     });
 // }
 
-$('button').click(function(){
-    $('.alerts').removeClass('hide');
-    $('.alerts').addClass('show');
-    $('.alerts').addClass('showAlert');
-    setTimeout(function(){
+// $('button').click(function(){
+//     $('.alerts').removeClass('hide');
+//     $('.alerts').addClass('show');
+//     $('.alerts').addClass('showAlert');
+//     setTimeout(function(){
 
-    $('.alerts').addClass('hide');
-    $('.alerts').removeClass('show');
+//     $('.alerts').addClass('hide');
+//     $('.alerts').removeClass('show');
 
-    }, 5000);//hide alert  automatically  after 5sec
+//     }, 5000);//hide alert  automatically  after 5sec
 
-            });
-    $('.close').click(function(){
-    $('.alerts').addClass('hide');
-    $('.alerts').removeClass('show');
+//             });
+//     $('.close').click(function(){
+//     $('.alerts').addClass('hide');
+//     $('.alerts').removeClass('show');
 
-            });
+//             });
+
+
+jQuery(document).ready(function(){
+    jQuery('.toast__close').click(function(e){
+      e.preventDefault();
+      var parent = $(this).parent('.toast');
+      parent.fadeOut("slow", function() { $(this).remove(); } );
+    });
+  });
