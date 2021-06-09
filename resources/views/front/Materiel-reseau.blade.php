@@ -6,16 +6,10 @@
               <a class="text-white aa" href="{{route('MaterielReseau.index')}}">{{$header}}</a>
      </h4>
     <div>
-        <table class="tab_cadre_pager">
-            <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-            </tbody>
-        </table>
+         {!! Form::open(['method' => 'POST', 'route' => 'SearchMR.index', 'class' => 'form-horizontal']) !!}
+            @csrf
+            @include('front.SearchForm')
+         {!! Form::close() !!}
     </div>
     <form action="#" method="post" name="massformComputer" id="massformComputer">
             <table class="tab_glpi" width="95%">
@@ -119,5 +113,8 @@
             </tbody>
         </table>
     </form>
+    <div class="d-flex justify-content-center">
+                {!! $Materiel_Reseaux->links() !!}
+    </div>
     </main>
 @endsection

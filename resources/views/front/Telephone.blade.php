@@ -5,16 +5,10 @@
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('Telephone.index')}}">{{$header}}</a></h4>
     <div>
-        <table class="tab_cadre_pager">
-            <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-            </tbody>
-        </table>
+     {!! Form::open(['method' => 'POST', 'route' => 'SearchTelephone.index', 'class' => 'form-horizontal']) !!}
+            @csrf
+            @include('front.SearchForm')
+    {!! Form::close() !!}
     </div>
     <form action="#" method="post" name="massformComputer" id="massformComputer">
             <table class="tab_glpi" width="95%">
@@ -118,5 +112,8 @@
             </tbody>
         </table>
     </form>
+     <div class="d-flex justify-content-center">
+        {!! $Telephones->links() !!}
+    </div>
     </main>
 @endsection

@@ -17,16 +17,31 @@ class MoniteurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'GLPI-Moniteurs';
-        $header = 'Moniteur';
-        $Moniteurs = glpi_Moniteur::all();
-        return view('front.Moniteur')->with([
-            'title' => $title,
-            'Moniteurs' => $Moniteurs,
-            'header' => $header
-        ]);
+        if($request->search !== null){
+            $title = 'GLPI-Moniteurs';
+            $header = 'Moniteur';
+            $search = $request->search;
+            $Moniteurs = glpi_Moniteur::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
+                                                  ->OrWhere('name', 'like','%'.$search.'%')->paginate(2);
+            return view('front.Moniteur')->with([
+                'title' => $title,
+                'Moniteurs' => $Moniteurs,
+                'header' => $header
+            ]);
+        }else
+        {
+            $title = 'GLPI-Moniteurs';
+            $header = 'Moniteur';
+            $Moniteurs = glpi_Moniteur::paginate(2);
+            return view('front.Moniteur')->with([
+                'title' => $title,
+                'Moniteurs' => $Moniteurs,
+                'header' => $header
+            ]);
+        }
+
     }
 
     /**

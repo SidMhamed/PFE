@@ -117,7 +117,21 @@ body {
     height: 30px;
     font-size: 1.3em;
 }
+  .home, .recherche{
+       padding:20px;
+       box-shadow: -3px -3px 7px #ffffff73,
+             2px 2px 5px rgba(94, 104, 121, 0.288);
 
+   }
+button.unstyled {
+    background: none;
+    border: none;
+    margin: none;
+}
+.pointer {
+    opacity: 0.7;
+    cursor: pointer;
+}
 input.submit {
     padding: 5px;
     cursor: pointer;

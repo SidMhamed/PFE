@@ -18,16 +18,30 @@ class ImprimanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'GLPI-Imprimantes';
-        $header = 'Imprimantes';
-        $Imprimantes = glpi_Imprimante::all();
-        return view('front.Imprimante')->with([
-            'title' => $title,
-            'Imprimantes' => $Imprimantes,
-            'header' => $header
-        ]);
+        if($request->search !== null){
+            $search = $request->search;
+            $title = 'GLPI-Imprimantes';
+            $header = 'Imprimantes';
+            $Imprimantes = glpi_Imprimante::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
+            ->orWhere('name','like','%'.$search.'%')->paginate(2);
+            return view('front.Imprimante')->with([
+                'title' => $title,
+                'Imprimantes' => $Imprimantes,
+                'header' => $header
+            ]);
+        }else{
+            $title = 'GLPI-Imprimantes';
+            $header = 'Imprimantes';
+            $Imprimantes = glpi_Imprimante::paginate(2);
+            return view('front.Imprimante')->with([
+                'title' => $title,
+                'Imprimantes' => $Imprimantes,
+                'header' => $header
+            ]);
+        }
+
     }
 
     /**

@@ -18,16 +18,29 @@ class LogicielController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'GLPI-Logiciels';
-        $header = 'Logiciel';
-        $logiciels = Logiciel::all();
-        return view('front.logiciels')->with([
-            'title' => $title,
-            'logiciels' => $logiciels,
-            'header' => $header
-        ]);
+        if($request->search !== null){
+            $title = 'GLPI-Logiciels';
+            $header = 'Logiciel';
+            $search = $request->search;
+            $logiciels = Logiciel::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
+                                ->OrWhere('name','like','%'.$search.'%')->paginate(2);
+            return view('front.logiciels')->with([
+                'title' => $title,
+                'logiciels' => $logiciels,
+                'header' => $header
+            ]);
+        }else{
+            $title = 'GLPI-Logiciels';
+            $header = 'Logiciel';
+            $logiciels = Logiciel::paginate(2);
+            return view('front.logiciels')->with([
+                'title' => $title,
+                'logiciels' => $logiciels,
+                'header' => $header
+            ]);
+        }
     }
 
     /**
@@ -44,6 +57,7 @@ class LogicielController extends Controller
         $groups =glpi_groups::all();
         $Locations = glpi_location::all();
         $LogicielCategories = LogicielCategories::all();
+        $SourceMiseAjours = glpi_SourceMiseAjour::all();
         return view('front.logicielsForm')->with([
             'title' => $title,
             'header' => $header,
@@ -51,7 +65,8 @@ class LogicielController extends Controller
             'groups' => $groups,
             'Fabricants' => $Fabricants,
             'Locations' => $Locations,
-            'LogicielCategories' => $LogicielCategories
+            'LogicielCategories' => $LogicielCategories,
+            'SourceMiseAjours' => $SourceMiseAjours
         ]);
     }
 

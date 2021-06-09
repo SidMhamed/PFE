@@ -8,7 +8,7 @@
             </h4>
         <div class="card border-0">
             <div class="card-header alert-heading  border-success border-5">
-                   Nouvel élément - Téléphone
+                   Nouvel élément - Périphérique
             </div>
             <div class="card-body">
                  <form action="{{route('AjouterPeripherique')}}" method="POST">
@@ -19,13 +19,13 @@
                             <label for="name">Nom</label>
                         </td>
                         <td>
-                        <input type="text" id="name" class="" name="name" required>
+                        <input type="text" id="name"  name="name" required>
                         </td>
                         <td>
                                     <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                    <select name="states_id" id="Statut" class="">
+                                    <select name="states_id" id="Statut" class="px-2 py-1">
                                         <option value="" selected disabled>-----</option>
                                     </select>
                                     <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -36,7 +36,7 @@
                             <label for="Lieu">Lieu</label>
                         </td>
                         <td>
-                            <select name="locations_id" id="Lieu" class="">
+                            <select name="locations_id" id="Lieu" class="px-2 py-1">
                             <option hidden value="" selected disabled>-----</option>
                             <option value="1">iscae</option>
                             </select>
@@ -46,7 +46,7 @@
                                     <label for="Type">Type</label>
                         </td>
                         <td>
-                                    <select name="Peripheriquetypes_id" id="Type" class="" >
+                                    <select name="Peripheriquetypes_id" id="Type" class="px-2 py-1">
                                             <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Types as $Type)
                                             <option value="{{$Type->id}}">{{$Type->name}}</option>
@@ -60,7 +60,7 @@
                                 <label for="RespTech">Responsable technique</label>
                             </td>
                             <td>
-                                    <select name="users_id_tech" id="RespTech" class="" required>
+                                    <select name="users_id_tech" id="RespTech" class="px-2 py-1" required>
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
                                             <option value="{{$User->id}}">{{$User->name}}</option>
@@ -72,7 +72,7 @@
                             <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                    <select name="fabricant_id" id="Fab" class="" required>
+                                    <select name="fabricant_id" id="Fab" class="px-2 py-1" required>
                                         <option  value="" selected disabled>-----</option>
                                         @foreach ($Fabricants as $Fabricant)
                                             <option value="{{$Fabricant->id}}">{{$Fabricant->Nom}}</option>
@@ -86,7 +86,7 @@
                                     <label for="GpTech">Groupe technique</label>
                             </td>
                             <td>
-                                    <select name="gruops_tech" id="GpTech" class="">
+                                    <select name="gruops_tech" id="GpTech" class="px-2 py-1">
                                         <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -95,7 +95,7 @@
                                     <label for="model">Modél</label>
                             </td>
                             <td>
-                                    <select name="Peripheriquemodels_id" id="model" class="">
+                                    <select name="Peripheriquemodels_id" id="model" class="px-2 py-1">
                                             <option value="" selected disabled>-----</option>
                                         @foreach ($Models as $Model)
                                             <option value="{{$Model->id}}">{{$Model->name}}</option>
@@ -109,13 +109,13 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                    <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="UsagerNumero" id="UsaNum" required placeholder="" aria-describedby="helpId">
                             </td>
                         <td>
                                     <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                    <input type="text" name="numeroDeSerie" id="NumSerie" class="" required>
+                                    <input type="text" name="numeroDeSerie" id="NumSerie" required>
                             </td>
                        </tr>
                         <tr>
@@ -123,13 +123,13 @@
                             <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                    <input type="text" name="Usager" id="Usager" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="Usager" id="Usager" required placeholder="" aria-describedby="helpId">
                             </td>
                          <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="" required>
+                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" required>
                             </td>
                        </tr>
                      <tr>
@@ -137,7 +137,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                    <select name="Utilisateur" id="user" class="" required>
+                                    <select name="Utilisateur" id="user" class="px-2 py-1" required>
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
                                             <option value="{{$User->name}}">{{$User->name}}</option>
@@ -149,7 +149,7 @@
                         <label for="TypeDeGestion">Type de Gestion</label>
                         </td>
                         <td>
-                             <select name="TypeDeGestion" id="TypeDeGestion" class="">
+                             <select name="TypeDeGestion" id="TypeDeGestion" class="px-2 py-1">
                                         <option  value="0">Gestion unitaire</option>
                                         <option  value="1">Gestion globale</option>
                             </select>
@@ -160,7 +160,7 @@
                                     <label for="group">Group</label>
                             </td>
                             <td>
-                                    <select name="groups_id" id="group" class="" >
+                                    <select name="groups_id" id="group" class="px-2 py-1" >
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($groups as $group)
                                             <option value="{{$group->id}}">{{$group->name}}</option>
@@ -172,7 +172,7 @@
                                     <label for="comment">Comment</label>
                          </td>
                          <td  rowspan="2">
-                                    <textarea name="comment" id="comment" cols="35" rows="3" class="" required></textarea>
+                                    <textarea name="comment" id="comment" cols="35" rows="3" required></textarea>
                          </td>
                      </tr>
                      <tr>
@@ -180,7 +180,7 @@
                           <label for="marque">Marque</label>
                         </td>
                         <td>
-                        <input type="text" class="" name="Marque" id="marque">
+                        <input type="text" name="Marque" id="marque">
                         </td>
                      </tr>
                      <tr>

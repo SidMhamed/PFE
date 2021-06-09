@@ -18,16 +18,29 @@ class TeleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'Téléphones';
-        $header = 'Téléphone';
-        $Telephones = glpi_Telephone::all();
-        return view('front.Telephone')->with([
+        if($request->search !== null){
+            $title = 'Téléphones';
+            $header = 'Téléphone';
+            $search = $request->search;
+            $Telephones = glpi_Telephone::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
+                                        ->orWhere('name','like','%'.$search.'%')->paginate(2);
+            return view('front.Telephone')->with([
             'title' => $title,
             'Telephones' => $Telephones,
             'header' => $header
-        ]);
+            ]);
+        }else{
+            $title = 'Téléphones';
+            $header = 'Téléphone';
+            $Telephones = glpi_Telephone::paginate(2);
+            return view('front.Telephone')->with([
+                'title' => $title,
+                'Telephones' => $Telephones,
+                'header' => $header
+            ]);
+        }
     }
 
     /**

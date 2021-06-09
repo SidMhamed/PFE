@@ -289,7 +289,7 @@
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="#" class="dropdown-item">
+                                                                    <a href="{{route('Document.index')}}" class="dropdown-item">
                                                                         <i class='fa-fw far fa-file'></i>
                                                                         <u>D</u>ocuments
                                                                     </a>

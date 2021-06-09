@@ -25,7 +25,7 @@
                                     <label for="devicesimcards_id">Composant</label>
                             </td>
                             <td>
-                                    <select name="devicesimcards_id" id="devicesimcards_id" class="">
+                                    <select name="devicesimcards_id" id="devicesimcards_id" class="py-1 px-2">
                                         <option value="" selected disabled>-----</option>
                                         @foreach($Composants as $Composant)
                                         <option value="{{$Composant->id}}">{{$Composant->name}}</option>
@@ -53,11 +53,11 @@
                                 <label for="locations_id">Lieu</label>
                             </td>
                             <td>
-                                    <select name="locations_id" id="locations_id" class="">
+                                    <select name="locations_id" id="locations_id" class="py-1 px-2">
                                         <option value="" selected disabled>-----</option>
-                                        {{-- @foreach ($locations as $location)
-                                            <option value="{{$location->id}}">{{$location->name}}</option>
-                                        @endforeach --}}
+                                        @foreach ($Locations as $Location)
+                                            <option value="{{$Location->id}}">{{$Location->Nom}}</option>
+                                        @endforeach
                                     </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -65,7 +65,7 @@
                             <label for="Statuts_id">Statut</label>
                             </td>
                             <td>
-                                    <select name="Statuts_id" id="Statuts_id" class="">
+                                    <select name="Statuts_id" id="Statuts_id" class="py-1 px-2">
                                         <option value="" selected disabled>-----</option>
                                         {{-- @foreach ($Statuts as $Statut)
                                             <option value="{{$Statut->id}}">{{$Statut->Nom}}</option>
@@ -107,7 +107,7 @@
                             <label for="Ligne">Ligne</label>
                         </td>
                         <td>
-                            <select name="lines_id" id="lines_id" class="">
+                            <select name="lines_id" id="lines_id" class="py-1 px-2">
                                         <option  value="" selected disabled>-----</option>
                                         {{-- @foreach ($Users as $User)
                                             <option value="{{$User->name}}">{{$User->name}}</option>
@@ -127,7 +127,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                    <select name="users_id" id="user" class="">
+                                    <select name="users_id" id="user" class="py-1 px-2">
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
                                             <option value="{{$User->id}}">{{$User->name}}</option>
@@ -139,7 +139,7 @@
                         <label for="Groupe">Groupe</label>
                         </td>
                         <td>
-                             <select name="Groups_id" id="Groupe" class="">
+                             <select name="groups_id" id="Groupe" class="py-1 px-2">
                                         <option value="" selected disabled>-----</option>
                                         @foreach ($Groups as $group)
                                             <option value="{{$group->id}}">{{$group->name}}</option>

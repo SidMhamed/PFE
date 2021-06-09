@@ -17,14 +17,30 @@ class PeripheriqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->search !== null){
         $title = 'GLPI-Péripheriques';
-        $Peripherique = glpi_Peripherique::all();
+        $header = 'Péripherique';
+        $search = $request->search;
+        $Peripherique = glpi_Peripherique::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
+                                        ->OrWhere('name','like','%'.$search.'%')->paginate(2);
         return view('front.Peripherique')->with([
-            'title' => $title,
-            'Peripheriques' => $Peripherique
+        'title' => $title,
+        'Peripheriques' => $Peripherique,
+        'header' => $header
         ]);
+        }else{
+            $title = 'GLPI-Péripheriques';
+            $header = 'Péripherique';
+            $Peripherique = glpi_Peripherique::paginate(2);
+            // dd($Peripherique);
+            return view('front.Peripherique')->with([
+                'title' => $title,
+                'Peripheriques' => $Peripherique,
+                'header' => $header
+            ]);
+        }
     }
 
     /**

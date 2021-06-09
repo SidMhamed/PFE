@@ -6,16 +6,10 @@
               <a class="text-white aa" href="{{route('CarteSIM.index')}}">{{$header}}</a>
      </h4>
     <div>
-        <table class="tab_cadre_pager">
-            <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-            </tbody>
-        </table>
+        {!! Form::open(['method' => 'POST', 'route' => 'SearchCarteSIM.index', 'class' => 'form-horizontal']) !!}
+            @csrf
+            @include('front.SearchForm')
+        {!! Form::close() !!}
     </div>
     <form action="#" method="post" name="massformComputer" id="massformComputer">
         <table class="tab_glpi" width="95%">
@@ -51,6 +45,7 @@
                          </div>
                      </th>
                      <th><a href="#">ID</a></th>
+                     <th><a href="#">Numéro de série</a></th>
                      <th><a href="#">Dernière modification</a></th>
                     </tr>
                  </thead>
@@ -68,6 +63,7 @@
                             </span>
                         </td>
                         <td  valign="top"><a href="{{route('CarteSIM.edit',$carte->id)}}">{{ $carte->id }}</a></td>
+                        <td  valign="top">{{ $carte->serial }}</td>
                         <td  valign="top">{{ $carte->updated_at }}</td>
                      </tr>
                      @endforeach
@@ -82,8 +78,9 @@
                                </label>
                             </div>
                         </th>
-                        <th><a href="#">ID</a></th>
-                        <th><a href="#">Dernière modification</a></th>
+                            <th><a href="#">ID</a></th>
+                            <th><a href="#">Numéro de série</a></th>
+                            <th><a href="#">Dernière modification</a></th>
                        </tr>
                  </tbody>
              </table>
@@ -102,5 +99,8 @@
         </table>
     </table>
     </form>
+    <div class="d-flex justify-content-center">
+        {!! $cartes->links() !!}
+    </div>
     </main>
 @endsection

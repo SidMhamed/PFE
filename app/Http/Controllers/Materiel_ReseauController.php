@@ -19,16 +19,29 @@ class Materiel_ReseauController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $title = 'GLPI-Matèriel-Reseaux';
-      $header ='Matèriel-Reseaux';
-      $Materiel_Reseaux = glpi_Materiel_Reseaux::all();
-      return view('front.Materiel-reseau')->with([
-          'title' => $title,
-          'Materiel_Reseaux' => $Materiel_Reseaux,
-          'header' => $header
-      ]);
+        if($request->search !== null){
+            $search = $request->search;
+            $Materiel_Reseaux = glpi_Materiel_Reseaux::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
+                                                    ->orWhere('nom','like','%'.$search.'%')->paginate(2); $title = 'GLPI-Matèriel-Reseaux';
+            $header ='Matèriel-Reseaux';
+            return view('front.Materiel-reseau')->with([
+                'title' => $title,
+                'Materiel_Reseaux' => $Materiel_Reseaux,
+                'header' => $header
+            ]);
+        }
+        else{
+            $title = 'GLPI-Matèriel-Reseaux';
+            $header ='Matèriel-Reseaux';
+            $Materiel_Reseaux = glpi_Materiel_Reseaux::paginate(2);
+            return view('front.Materiel-reseau')->with([
+                'title' => $title,
+                'Materiel_Reseaux' => $Materiel_Reseaux,
+                'header' => $header
+            ]);
+            }
     }
 
     /**

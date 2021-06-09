@@ -31,6 +31,7 @@ use App\Http\Controller\TypeCarteSIMController;
 use App\Http\Controllers\ComposantCarteSIMController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DocumentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,4 +114,16 @@ Route::resource('/Groups','GroupController');
 Route::resource('/Reseau','ReseauController');
 Route::resource('/users', 'UserController');
 Route::resource('/profile', 'ProfileController');
-// Route::resource('/','')
+Route::resource('/Document', 'DocumentController');
+
+/**
+ * Search
+ */
+Route::post('/searchComputer', [ComputerController::class, 'index'])->name('search.index');
+Route::post('/searchMaterielReseau', [Materiel_ReseauController::class, 'index'])->name('SearchMR.index');
+Route::post('/searchImprimante', [ImprimanteController::class, 'index'])->name('SearchImprimante.index');
+Route::post('/searchTelephone', [TeleController::class, 'index'])->name('SearchTelephone.index');
+Route::post('/searchPeripherique',[PeripheriqueController::class, 'index'])->name('SearchPeripherique.index');
+Route::post('/searchMoniteur',[MoniteurController::class, 'index'])->name('SearchMoniteur.index');
+Route::post('/searchLogiciels', [LogicielController::class, 'index'])->name('SearchLogiciels.index');
+Route::post('/searchCarteSIM', [CarteSIMController::class, 'index'])->name('SearchCarteSIM.index');

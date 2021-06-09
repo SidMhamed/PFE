@@ -6,16 +6,12 @@
               <a class="text-white aa" href="{{route('Moniteur.index')}}">{{$header}}</a>
     </h4>
     <div>
-        <table class="tab_cadre_pager">
-            <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-            </tbody>
-        </table>
+   <div>
+        {!! Form::open(['method' => 'POST', 'route' => 'SearchMoniteur.index', 'class' => 'form-horizontal']) !!}
+            @csrf
+            @include('front.SearchForm')
+        {!! Form::close() !!}
+    </div>
     </div>
     <form action="#" method="post" name="massformComputer" id="massformComputer">
             <table class="tab_glpi" width="95%">
@@ -119,5 +115,8 @@
             </tbody>
         </table>
     </form>
+    <div class="d-flex justify-content-center">
+        {!! $Moniteurs->links() !!}
+    </div>
     </main>
 @endsection

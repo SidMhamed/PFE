@@ -19,16 +19,31 @@ class ComputerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $computers = glpi_computers::all();
-        $title = 'GLPI-Ordinateurs';
-        $header = 'Ordinateurs';
-        return view('front.computer')->with([
-            'title' => $title,
-            'computers' => $computers,
-            'header' => $header
-        ]);
+        if($request->search !== null){
+            $search = $request->search;
+            $computers = glpi_computers::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
+                                                                      ->orWhere('nom','like','%'.$search.'%')->paginate(2);
+            $title = 'GLPI-Ordinateurs';
+            $header = 'Ordinateurs';
+            return view('front.computer')->with([
+                'title' => $title,
+                'computers' => $computers,
+                'header' => $header
+            ]);
+        }else{
+            $computers = glpi_computers::all();
+            // dd($computers);
+            $title = 'GLPI-Ordinateurs';
+            $header = 'Ordinateurs';
+            return view('front.computer')->with([
+                'title' => $title,
+                'computers' => glpi_computers::paginate(2),
+                'header' => $header
+            ]);
+        }
+
     }
     /**
      * Show the form for creating a new resource.
