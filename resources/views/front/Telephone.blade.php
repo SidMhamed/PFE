@@ -113,7 +113,7 @@
         </table>
     </form>
      <div class="d-flex justify-content-center">
-        {!! $Telephones->links() !!}
+        {!! $Telephones->links('layouts.pagination') !!}
     </div>
     </main>
 @endsection

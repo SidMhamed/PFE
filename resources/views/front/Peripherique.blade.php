@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <main id="page">
-       <h4 class="alert-heading alert text-white">
+       <h4 class="alert-heading alert text-white home">
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('Peripherique.index')}}">{{$header}}</a>
        </h4>
-    <div>
+    <div class=" home my-2">
         {!! Form::open(['method' => 'POST', 'route' => 'SearchPeripherique.index', 'class' => 'form-horizontal']) !!}
             @csrf
             @include('front.SearchForm')
         {!! Form::close() !!}
     </div>
-    <form action="#" method="post" name="massformComputer" id="massformComputer">
+    <form action="#" method="post" name="massformComputer" id="massformComputer" class="home">
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
@@ -114,7 +114,7 @@
         </table>
     </form>
      <div class="d-flex justify-content-center">
-        {!! $Peripheriques->links() !!}
+        {!! $Peripheriques->links('layouts.pagination') !!}
     </div>
     </main>
 @endsection

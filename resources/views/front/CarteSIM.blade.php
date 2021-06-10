@@ -100,7 +100,7 @@
     </table>
     </form>
     <div class="d-flex justify-content-center">
-        {!! $cartes->links() !!}
+        {!! $cartes->links('layouts.pagination') !!}
     </div>
     </main>
 @endsection

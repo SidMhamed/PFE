@@ -493,11 +493,11 @@
     </div>
         <main class="py-5 my-5">
             @yield('content')
-            @include('includes.messages')
         </main>
+        @include('includes.messages')
 </body>
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{asset('js/app.js') }}"></script>
   <script src="{{asset('js/alerts.js')}}"></script>
   <script src="{{ asset('js/animation.min.js') }}"></script>
   <script src="{{ asset('js/app.js.map') }}"></script>

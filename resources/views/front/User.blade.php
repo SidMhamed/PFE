@@ -6,16 +6,10 @@
               <a class="text-white aa" href="{{route('users.index')}}">{{$header}}</a>
         </h4>
     <div>
-        <table class="tab_cadre_pager">
-            <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-            </tbody>
-        </table>
+         {!! Form::open(['method' => 'POST', 'route' => 'SearchUser.index', 'class' => 'form-horizontal']) !!}
+            @csrf
+            @include('front.SearchForm')
+         {!! Form::close() !!}
     </div>
     <form action="#" method="post" name="massformComputer" id="massformComputer">
             <table class="tab_glpi" width="95%">
@@ -60,7 +54,7 @@
                     </tr>
                  </thead>
                  <tbody>
-                     @foreach ($User as $User)
+                     @foreach ($Users as $User)
                      <tr>
                         <td width="10px" valign="top">
                             <span class="form-group-checkbox">
@@ -117,5 +111,8 @@
             </tbody>
         </table>
     </form>
+      <div class="d-flex justify-content-center">
+        {!! $Users->links('layouts.pagination') !!}
+    </div>
     </main>
 @endsection

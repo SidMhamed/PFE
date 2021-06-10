@@ -14,16 +14,30 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'GLPI-Utilisateurs';
-        $header = 'Utilisateurs';
-        $User = User::all();
-        return view('front.User')->with([
-            'title' => $title,
-            'User' => $User,
-            'header' => $header
-        ]);
+        if($request->search !== null){
+            $title = 'GLPI-Utilisateurs';
+            $header = 'Utilisateurs';
+            $search = $request->search;
+            $Users = User::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
+            ->OrWhere('name','like','%'.$search.'%')->paginate(2);
+            // $Users->appends($request->all());
+            return view('front.User')->with([
+                'title' => $title,
+                'Users' => $Users,
+                'header' => $header
+            ]);
+        }else{
+            $title = 'GLPI-Utilisateurs';
+            $header = 'Utilisateurs';
+            $Users = User::paginate(2);
+            return view('front.User')->with([
+                'title' => $title,
+                'Users' => $Users,
+                'header' => $header
+            ]);
+        }
     }
 
     /**

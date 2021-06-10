@@ -13,16 +13,29 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'GLPI-Groupes';
-        $Groupes = glpi_groups::all();
-        $header = 'Groupes';
-        return view('front.groupe')->with([
+        if($request->search !== null){
+            $search = $request->search;
+            $Groupes = glpi_groups::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
+                                    ->OrWhere('name','like','%'.$search.'%')->paginate(2);
+            $title = 'GLPI-Groupes';
+            $header = 'Groupes';
+            return view('front.groupe')->with([
+                'title' => $title,
+                'groups' => $Groupes,
+                'header' => $header
+            ]);
+        }else{
+            $Groupes = glpi_groups::paginate(2);
+            $title = 'GLPI-Groupes';
+            $header = 'Groupes';
+            return view('front.groupe')->with([
             'title' => $title,
             'groups' => $Groupes,
             'header' => $header
-        ]);
+]);
+        }
     }
     /**
      * Show the form for creating a new resource.

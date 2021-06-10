@@ -127,3 +127,5 @@ Route::post('/searchPeripherique',[PeripheriqueController::class, 'index'])->nam
 Route::post('/searchMoniteur',[MoniteurController::class, 'index'])->name('SearchMoniteur.index');
 Route::post('/searchLogiciels', [LogicielController::class, 'index'])->name('SearchLogiciels.index');
 Route::post('/searchCarteSIM', [CarteSIMController::class, 'index'])->name('SearchCarteSIM.index');
+Route::post('/searchUser', [UserController::class, 'index'])->name('SearchUser.index');
+Route::post('/Searchgroups', [GroupController::class, 'index'])->name('GroupSearch.index');

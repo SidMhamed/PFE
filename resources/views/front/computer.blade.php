@@ -118,7 +118,7 @@
     </table>
     </form>
        <div class="d-flex justify-content-center">
-                {!! $computers->links() !!}
+                {!! $computers->links('layouts.pagination') !!}
        </div>
     </main>
 @endsection

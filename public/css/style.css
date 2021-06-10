@@ -672,3 +672,20 @@ a:link {
     font-size: 1.6em;
     float: right;
 }
+.fileupload {
+    text-align: center;
+    border: 1px dashed #cccccc;
+    min-height: 65px;
+    background-color: #fff;
+    border-radius: 5px;
+    max-width: 950px;
+    margin: 0.5em auto;
+    padding: 0.5em;
+    margin-top: 5px;
+}
+.fileupload_info {
+    margin-bottom: 10px;
+}
+div{
+    display: block;
+}

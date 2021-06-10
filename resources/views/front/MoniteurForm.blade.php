@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container align-content-center border-0" role="alert">
-            <h4 class="alert-heading alert text-white">
+            <h4 class="alert-heading alert text-white home my-2">
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('Moniteur.index')}}">{{$header}}</a> >
               <a class="text-white aa" href="{{route('Moniteur.create')}}"><i class="fa fa-plus-circle"></i></a>
@@ -19,13 +19,13 @@
                             <label for="name">Nom</label>
                         </td>
                         <td>
-                        <input type="text" id="name" class="" name="name" required>
+                        <input type="text" id="name" class="form-control" name="name" required>
                         </td>
                         <td>
                                     <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                    <select name="states_id" id="Statut" class="">
+                                    <select name="states_id" id="Statut" class="py-2 px-3">
                                         <option value="" selected disabled>-----</option>
                                     </select>
                                     <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -36,9 +36,9 @@
                             <label for="Lieu">Lieu</label>
                         </td>
                         <td>
-                            <select name="locations_id" id="Lieu" class="">
+                            <select name="locations_id" id="Lieu" class="py-2 px-3">
                             <option hidden value="" selected disabled>-----</option>
-                            <option value="1">iscae</option>
+                                 <option value="1">iscae</option>
                             </select>
                             <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                         </td>
@@ -46,7 +46,7 @@
                                     <label for="Type">Type</label>
                         </td>
                         <td>
-                                    <select name="Moniteurtypes_id" id="Type" class="" >
+                                    <select name="Moniteurtypes_id" id="Type" class="py-2 px-3" >
                                             <option value="" selected disabled>-----</option>
                                         @foreach ($Types as $Type)
                                             <option value="{{$Type->id}}">{{$Type->name}}</option>
@@ -60,7 +60,7 @@
                                 <label for="RespTech">Responsable technique</label>
                             </td>
                             <td>
-                                    <select name="users_id_tech" id="RespTech" class="" required>
+                                    <select name="users_id_tech" id="RespTech" class="py-2 px-3" required>
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
                                             <option value="{{$User->id}}">{{$User->name}}</option>
@@ -72,7 +72,7 @@
                             <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                    <select name="fabricant_id" id="Fab" class="" required>
+                                    <select name="fabricant_id" id="Fab" class="py-2 px-3" required>
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Fabricants as $Fabricant)
                                             <option value="{{$Fabricant->id}}">{{$Fabricant->Nom}}</option>
@@ -86,7 +86,7 @@
                                     <label for="GpTech">Groupe technique</label>
                             </td>
                             <td>
-                                    <select name="gruops_tech" id="GpTech" class="">
+                                    <select name="gruops_tech" id="GpTech" class="py-2 px-3">
                                         <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -95,7 +95,7 @@
                                     <label for="model">Modél</label>
                             </td>
                             <td>
-                                    <select name="Moniteurmodels_id" id="model" class="">
+                                    <select name="Moniteurmodels_id" id="model" class="py-2 px-3">
                                             <option value="" selected disabled>-----</option>
                                         @foreach ($Models as $Model)
                                             <option value="{{$Model->id}}">{{$Model->Nom}}</option>
@@ -109,13 +109,13 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                    <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="UsagerNumero" id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                         <td>
                                     <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                    <input type="text" name="numeroDeSerie" id="NumSerie" class="" required>
+                                    <input type="text" name="numeroDeSerie" id="NumSerie" class="form-control" required>
                             </td>
                        </tr>
                         <tr>
@@ -123,13 +123,13 @@
                             <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                    <input type="text" name="Usager" id="Usager" class="" required placeholder="" aria-describedby="helpId">
+                                    <input type="text" name="Usager" id="Usager" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                          <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="" required>
+                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="form-control" required>
                             </td>
                        </tr>
                      <tr>
@@ -137,7 +137,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                    <select name="Utilisateur" id="user" class="" required>
+                                    <select name="Utilisateur" id="user" class="py-2 px-3">
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($Users as $User)
                                             <option value="{{$User->name}}">{{$User->name}}</option>
@@ -149,7 +149,7 @@
                         <label for="TypeDeGestion">Type de Gestion</label>
                         </td>
                         <td>
-                             <select name="TypeDeGestion" id="TypeDeGestion" class="">
+                             <select name="TypeDeGestion" id="TypeDeGestion" class="py-2 px-3">
                                         <option  value="0">Gestion unitaire</option>
                                         <option  value="1">Gestion globale</option>
                             </select>
@@ -160,7 +160,7 @@
                                     <label for="group">Group</label>
                             </td>
                             <td>
-                                    <select name="groups_id" id="group" class="" >
+                                    <select name="groups_id" id="group" class="py-2 px-3" >
                                         <option hidden value="" selected disabled>-----</option>
                                         @foreach ($groups as $group)
                                             <option value="{{$group->id}}">{{$group->name}}</option>
@@ -172,7 +172,7 @@
                                     <label for="comment">Comment</label>
                          </td>
                          <td  rowspan="5">
-                                    <textarea name="comment" id="comment" cols="30" rows="8" class="" required></textarea>
+                                    <textarea name="comment" id="comment" cols="30" rows="8" class="form-control" required></textarea>
                          </td>
                      </tr>
                      <tr>
@@ -180,7 +180,7 @@
                           <label for="Taille">Taille</label>
                         </td>
                         <td>
-                        <input type="text" class="" name="Taille" id="Taille">
+                        <input type="text" class="form-control" name="Taille" id="Taille">
                         </td>
                      </tr>
                      <tr>
@@ -192,14 +192,14 @@
                                   <tr>
                                         <td>Microphone</td>
                                         <td>
-                                        <select name="Microphone" id="Microphone" class="">
+                                        <select name="Microphone" id="Microphone" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
                                         </td>
                                         <td>Enceintes</td>
                                         <td>
-                                        <select name="Enceints" id="Enceintes" class="">
+                                        <select name="Enceints" id="Enceintes" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
@@ -208,14 +208,14 @@
                                    <tr>
                                         <td>Sub-D</td>
                                         <td>
-                                        <select name="Sub-D" id="Sub-D" class="">
+                                        <select name="Sub-D" id="Sub-D" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
                                         </td>
                                           <td>BNC</td>
                                         <td>
-                                        <select name="BNC" id="BNC" class="">
+                                        <select name="BNC" id="BNC" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
@@ -224,14 +224,14 @@
                                    <tr>
                                         <td>DVI</td>
                                         <td>
-                                        <select name="DVI" id="DVI" class="">
+                                        <select name="DVI" id="DVI" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
                                         </td>
                                           <td>Pivot</td>
                                         <td>
-                                        <select name="Pivot" id="Pivot" class="">
+                                        <select name="Pivot" id="Pivot" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
@@ -240,14 +240,14 @@
                                      <tr>
                                         <td>HDMI</td>
                                         <td>
-                                        <select name="HDMI" id="HDMI" class="">
+                                        <select name="HDMI" id="HDMI" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>
                                         </td>
                                           <td>DisplayPort</td>
                                         <td>
-                                        <select name="DisplayPort" id="DisplayPort" class="">
+                                        <select name="DisplayPort" id="DisplayPort" class="py-2 px-3">
                                             <option  value="0">Non</option>
                                             <option  value="1">Oui</option>
                                         </select>

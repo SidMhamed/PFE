@@ -1,26 +1,26 @@
 <table class="tab_cadre_pager">
-            <tbody class="home">
+            <tbody class="">
                   <tr>
                       <td class="float-left">
-                                <select class="px-2 py-1" name="selectSearch" id="selectSearch">
-                                    <option value="" class="alert-dark">Éléments visualisés</option>
-                                    <option value="Nom">Nom</option>
-                                    <option value="Statut">Statut</option>
-                                    <option value="Fabricant">Fabricant</option>
-                                    <option value="NumeroSerie">Numéro de série</option>
-                                    <option value="Type">Type</option>
-                                    <option value="Modele">Modèle</option>
-                                    <option value="Systeme">Système d'exploitation-Nom</option>
-                                    <option value="Lieu">Lieu</option>
-                                    <option value="DateDerniereModification">Dernière modification</option>
-                                </select>
-                                </td>
-                                <td width="50%" class="text-center">
-                                    <input type="search" name="search" class="form-control  px-2 border-0" placeholder="Rechercher">
-                                </td>
-                                <td class="float-right">
-                                    <button type="submit" class="btn btn-success py-0 px-3"><i class="fa fa-search text-white mx-1"></i>Rechercher</button>
-                                </td>
+                        <select class="px-2 py-1" name="selectSearch" id="selectSearch">
+                            <option value="" class="alert-dark">Éléments visualisés</option>
+                            <option value="Nom">Nom</option>
+                            <option value="Statut">Statut</option>
+                            <option value="Fabricant">Fabricant</option>
+                            <option value="NumeroSerie">Numéro de série</option>
+                            <option value="Type">Type</option>
+                            <option value="Modele">Modèle</option>
+                            <option value="Systeme">Système d'exploitation-Nom</option>
+                            <option value="Lieu">Lieu</option>
+                            <option value="DateDerniereModification">Dernière modification</option>
+                        </select>
+                      </td>
+                    <td width="50%" class="text-center">
+                        <input type="search" name="search" class="form-control  px-2 border-0" placeholder="Rechercher">
+                    </td>
+                    <td class="float-right">
+                        <button type="submit" class="btn btn-success py-0 px-3"><i class="fa fa-search text-white mx-1"></i>Rechercher</button>
+                    </td>
                       {{-- <td>
                       <form method="POST" action="#">
                          <select class="px-2 py-1">

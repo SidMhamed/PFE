@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
-
+use App\Models\DocumentCategories;
 class DocumentController extends Controller
 {
     /**
@@ -45,7 +45,14 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'GLPI-Documents';
+        $header = 'Documents';
+        $documentCategories = DocumentCategories::all();
+        return view('front.DocumentForm')->with([
+         'title' => $title,
+         'header' => $header,
+         'documentCategories' => $documentCategories
+        ]);
     }
 
     /**
@@ -56,7 +63,8 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Document::create($request->all());
+        return redirect()->route('Document.index')->with(['success' => 'Élément ajouté']);
     }
 
     /**
