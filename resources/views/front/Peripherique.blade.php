@@ -5,13 +5,13 @@
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('Peripherique.index')}}">{{$header}}</a>
        </h4>
-    <div class=" home my-2">
+    <div class="home">
         {!! Form::open(['method' => 'POST', 'route' => 'SearchPeripherique.index', 'class' => 'form-horizontal']) !!}
             @csrf
             @include('front.SearchForm')
         {!! Form::close() !!}
     </div>
-    <form action="#" method="post" name="massformComputer" id="massformComputer" class="home">
+    <form action="#" method="post" name="massformComputer" id="massformComputer" class="home my-3">
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
@@ -113,7 +113,7 @@
             </tbody>
         </table>
     </form>
-     <div class="d-flex justify-content-center">
+     <div class="d-flex justify-content-center my-3">
         {!! $Peripheriques->links('layouts.pagination') !!}
     </div>
     </main>

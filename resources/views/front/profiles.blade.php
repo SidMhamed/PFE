@@ -1,23 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <main id="page">
-    <div>
-        <table class="tab_cadre_pager">
-            <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-            </tbody>
-        </table>
-    </div>
-            <h4 class="alert-heading alert text-white">
+            <h4 class="alert-heading alert text-white home">
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('profile.index')}}">{{$header}}</a>
-              </h4>
-    <form action="#" method="post" name="massformComputer" id="massformComputer">
+            </h4>
+    <div class="home">
+   {!! Form::open(['method' => 'POST', 'route' => 'SearchProfile.index', 'class' => 'form-horizontal']) !!}
+            @csrf
+            @include('front.SearchForm')
+   {!! Form::close() !!}
+    </div>
+    <form action="#" method="post" name="massformComputer" id="massformComputer" class="home my-3">
         <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
@@ -95,16 +89,9 @@
              </table>
         </div>
         <table class="tab_glpi" width="95%">
-            <tbody>
-                <tr class="">
-                    <td width="30px">
-                        <img src="/images/arrow-left.png" alt="" srcset="">
-                    </td>
-                    <td class="left" width="100%">
-                       <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("open");" title="Actions" href="">Actions</a>
-                    </td>
-                </tr>
-            </tbody>
+        <div class="d-flex justify-content-center my-3">
+           {!! $profils->links('layouts.pagination') !!}
+        </div>
         </table>
     </table>
     </form>

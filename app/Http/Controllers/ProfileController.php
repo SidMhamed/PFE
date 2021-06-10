@@ -12,16 +12,30 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'GLPI-Profils';
-        $header = 'Profil';
-        $profils = glpi_profile::all();
-        return view('front.profiles')->with([
-            'title' => $title,
-            'header' => $header,
-            'profils' => $profils
-        ]);
+        if($request->search !== null){
+            $title = 'GLPI-Profils';
+            $header = 'Profil';
+            $search = $request->search;
+            $profils = glpi_profile::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
+            ->OrWhere('name','like','%'.$search.'%')->paginate(2);
+            return view('front.profiles')->with([
+                'title' => $title,
+                'header' => $header,
+                'profils' => $profils
+            ]);
+        }else{
+            $title = 'GLPI-Profils';
+            $header = 'Profil';
+            $search = $request->search;
+            $profils = glpi_profile::paginate(2);
+            return view('front.profiles')->with([
+                'title' => $title,
+                'header' => $header,
+                'profils' => $profils
+            ]);
+        }
     }
 
     /**

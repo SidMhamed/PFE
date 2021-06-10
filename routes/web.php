@@ -129,3 +129,4 @@ Route::post('/searchLogiciels', [LogicielController::class, 'index'])->name('Sea
 Route::post('/searchCarteSIM', [CarteSIMController::class, 'index'])->name('SearchCarteSIM.index');
 Route::post('/searchUser', [UserController::class, 'index'])->name('SearchUser.index');
 Route::post('/Searchgroups', [GroupController::class, 'index'])->name('GroupSearch.index');
+Route::post('/Searchprofile', [ProfileController::class, 'index'])->name('SearchProfile.index');

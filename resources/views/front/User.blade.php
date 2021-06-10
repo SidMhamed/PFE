@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <main id="page">
-        <h4 class="alert-heading alert text-white">
+        <h4 class="alert-heading alert text-white home">
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('users.index')}}">{{$header}}</a>
         </h4>
-    <div>
+    <div class="home">
          {!! Form::open(['method' => 'POST', 'route' => 'SearchUser.index', 'class' => 'form-horizontal']) !!}
             @csrf
             @include('front.SearchForm')
          {!! Form::close() !!}
     </div>
-    <form action="#" method="post" name="massformComputer" id="massformComputer">
+    <form action="#" method="post" name="massformComputer" id="massformComputer" class="home my-3">
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
@@ -111,7 +111,7 @@
             </tbody>
         </table>
     </form>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center my-4">
         {!! $Users->links('layouts.pagination') !!}
     </div>
     </main>

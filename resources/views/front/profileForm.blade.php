@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
    <div class="container align-content-center alert border-0" role="alert">
-              <h4 class="alert-heading alert text-white">
+              <h4 class="alert-heading alert text-white-2 home my-2">
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('profile.index')}}">{{$header}}</a> >
               <a class="text-white aa" href="{{route('profile.create')}}"><i class="fa fa-plus-circle"></i></a>
