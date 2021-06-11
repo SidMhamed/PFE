@@ -67,10 +67,10 @@
                             </span>
                         </td>
                         <td><a href="{{route('users.edit',$User->id)}}">{{ $User->name}}</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><a href="#">{{ $User->last_login}}</a></td>
+                        <td><a href="#">{{ $User->email}}</a></td>
+                        <td><a href="#">{{ $User->phone}}</a></td>
+                        <td><a href="#">{{App\Models\glpi_location::findOrFail($User->locations_id)->Nom}}</a></td>
                         <td></td>
                         <td>{{ $User->updated_at  }}</td>
 

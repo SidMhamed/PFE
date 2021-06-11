@@ -1,4 +1,4 @@
-{{-- @if(Session::get('success'))
+@if(Session::get('success'))
     <div class="alerts alerts-success hide">
         <span class="icon">
             <i class="fa fa-check"></i>
@@ -66,8 +66,8 @@
         </button>
         </div>
    @endforeach
-@endif --}}
-
+@endif
+{{--
 <div class="toast__container">
 <div class="toast__cell">
 @if(Session::get('success'))
@@ -138,4 +138,4 @@
 </div>
 @endif
 </div>
-</div>
+</div> --}}

@@ -39,7 +39,7 @@ class ComputerController extends Controller
             $header = 'Ordinateurs';
             return view('front.computer')->with([
                 'title' => $title,
-                'computers' => glpi_computers::paginate(2),
+                'computers' => glpi_computers::paginate(3),
                 'header' => $header
             ]);
         }

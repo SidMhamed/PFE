@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container align-content-center border-0" role="alert">
-                     <h4 class="alert-heading alert text-white">
+                     <h4 class="alert-heading alert text-white home my-2">
               <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
               <a class="text-white aa" href="{{route('users.index')}}">{{$header}}</a> >
               <a class="text-white aa" href="{{route('users.create')}}"><i class="fa fa-plus-circle"></i></a>
@@ -16,25 +16,25 @@
                     <table class="tab_cadre_fixe">
                         <tr>
                             <td><label for="name">Identifiant</label></td>
-                            <td><input type="text" name="name" id="name" class=""></td>
+                            <td><input type="text" name="name" id="name" class="form-control"></td>
                             <td rowspan="4"></td>
                             <td rowspan="4"></td>
                         </tr>
                         <tr>
                             <td><label for="fieldlist">Nom de Famille</label></td>
-                            <td><input type="text" id="fieldlist" name="fieldlist" class=""> </td>
+                            <td><input type="text" id="fieldlist" name="fieldlist" class="form-control"> </td>
                         </tr>
                         <tr>
                             <td><label for="last_login">Prénom</label></td>
-                            <td><input type="text" name="Plast_login" id="last_login"></td>
+                            <td><input type="text" name="Plast_login" id="last_login" class="form-control"></td>
                         </tr>
                         <tr>
                            <td><label for="password">Mot de Passe</label></td>
-                           <td><input type="password" name="password" id="password"></td>
+                           <td><input type="password" name="password" id="password" class="form-control"></td>
                         </tr>
                         <tr>
                             <td><label for="Cpassword">Confirmation de Mot de Passe</label></td>
-                            <td><input type="password" name="password" id="Cpassword"></td>
+                            <td><input type="password" name="password" id="Cpassword"class="form-control" ></td>
                             <td><label for="groups">groups</label></td>
                             <td>
                                 <select name="groups_id" id="groups_id" class="py-1 px-3">
@@ -54,7 +54,7 @@
                             </select>
                             </td>
                             <td><label for="email">Adresses de messagerie</label></td>
-                            <td><input type="email" name="email" id="email"></td>
+                            <td><input type="email" name="email" id="email" class="form-control"></td>
                         </tr>
                         <tr>
                             <td><label for="dateD">Valide depuis</label></td>
@@ -64,11 +64,11 @@
                         </tr>
                         <tr>
                           <td><label for="phone">Téléphone</label></td>
-                          <td colspan="3"><input type="tel" name="phone" id="phone"></td>
+                          <td colspan="3"><input type="tel" name="phone" id="phone" class="form-control"></td>
                         </tr>
                         <tr>
                            <td><label for="mobile">Téléphone mobile</label></td>
-                           <td><input type="tel" name="mobile"></td>
+                           <td><input type="tel" name="mobile" class="form-control"></td>
                            <td><label for="usercategories_id">Catégorie</label></td>
                            <td>
                                 <select name="usercategories_id" id="usercategories_id" class="py-1 px-3">
@@ -78,13 +78,13 @@
                         </tr>
                         <tr>
                          <td><label for="phone2">Téléphone 2</label></td>
-                         <td><input type="tel" name="phone2" id="phone2"></td>
+                         <td><input type="tel" name="phone2" id="phone2" class="form-control"></td>
                          <td rowspan="3"><label for="comment">Commentaires</label></td>
                          <td rowspan="3">{!! Form::textarea('comment','', ['rows' => '4','col' => '40']) !!}</td>
                         </tr>
                         <tr>
                         <td><label for="matricule">Matricule</label></td>
-                        <td><input type="text" id="matricule" name="matricule"></td>
+                        <td><input type="text" id="matricule" name="matricule" class="form-control"></td>
                         </tr>
                         <tr>
                          <td><label for="usertitles_id">Titre</label></td>
@@ -117,6 +117,9 @@
                         <td>
                                <select name="profil" id="profil" class="py-1 px-3">
                                     <option value="">----</option>
+                                    @foreach($Profiles as $Profile)
+                                        <option value="{{$Profile->id}}">{{$Profile->name}}</option>
+                                    @endforeach
                                 </select>
                         </td>
                         <td><label for="entities_id">Entité</label></td>

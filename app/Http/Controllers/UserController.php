@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\glpi_location;
 use App\Models\glpi_groups;
+use App\Models\glpi_profile;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
@@ -51,11 +52,13 @@ class UserController extends Controller
         $header = 'Utilisateurs';
         $Locations = glpi_location::all();
         $groups = glpi_groups::all();
+        $Profiles = glpi_profile::all();
         return view('front.UserForm')->with([
             'title' => $title,
             'header' => $header,
             'Locations' => $Locations,
-            'groups' => $groups
+            'groups' => $groups,
+            'Profiles' => $Profiles
         ]);
     }
 
