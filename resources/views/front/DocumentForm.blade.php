@@ -1,85 +1,93 @@
 @extends('layouts.app')
 @section('content')
-   <div class="container align-content-center alert border-0" role="alert">
+    <div class="container align-content-center alert border-0" role="alert">
         <h4 class="alert-heading alert text-white">
-              <a class="text-white aa" href="{{route('home')}}">Accueil</a> >
-              <a class="text-white aa" href="{{route('Document.index')}}">{{$header}}</a> >
-              <a class="text-white aa" href="{{route('Document.create')}}"><i class="fa fa-plus-circle"></i></a>
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Document.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Document.create') }}"><i class="fa fa-plus-circle"></i></a>
         </h4>
         <div class="card">
             <div class="card-header alert-heading  border-success border-5">
-                   Nouvel élément - Document
+                Nouvel élément - Document
             </div>
             <div class="card-body">
                 {!! Form::open(['method' => 'POST', 'route' => 'Document.store', 'class' => 'form-horizontal']) !!}
-                    <table class="tab_cadre_fixe">
-                      <tbody>
+                <table class="tab_cadre_fixe">
+                    <tbody>
                         <tr>
-                           <td>
+                            <td>
                                 {!! Form::label('name', 'Nom') !!}
-                           </td>
-                           <td>
+                            </td>
+                            <td>
                                 {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                           </td>
-                          <td colspan="2"></td>
+                            </td>
+                            <td colspan="2"></td>
                         </tr>
                         <tr>
-                          <td>
-                          Rubrique
-                          </td>
-                          <td>
-                            <select name="documentcategories_id" id="documentcategories_id" class="py-1 px-3">
-                                <option value="" selected>-----</option>
-                            @foreach($documentCategories as $documentCategorie)
-                                <option value="{{$documentCategorie->id}}">{{$documentCategorie->name}}</option>
-                            @endforeach
-                            </select>
-                           </td>
-                          <td colspan="2"></td>
+                            <td>
+                                Rubrique
+                            </td>
+                            <td>
+                                <select name="documentcategories_id" id="documentcategories_id" class="py-1 px-3">
+                                    <option value="" selected>-----</option>
+                                    @foreach ($documentCategories as $documentCategorie)
+                                        <option value="{{ $documentCategorie->id }}">{{ $documentCategorie->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td colspan="2"></td>
                         </tr>
                         <tr>
-                           <td>
-                             <label for=""> Lien web</label>
-                           </td>
-                           <td>
-                             <input type="text" name="" id="" class="form-control">
-                           </td>
-                           <td rowspan="3">
+                            <td>
+                                <label for=""> Lien web</label>
+                            </td>
+                            <td>
+                                <input type="text" name="" id="" class="form-control">
+                            </td>
+                            <td rowspan="3">
                                 {!! Form::label('comment', 'Commentaires') !!}
 
-                           </td>
-                           <td rowspan="3">
-                               {!! Form::textarea('comment', '', ['rows' => '3','col' => '40','class' => 'form-control','required' => 'required']) !!}
-                           </td>
+                            </td>
+                            <td rowspan="3">
+                                {!! Form::textarea('comment', '', ['rows' => '3', 'col' => '40', 'class' => 'form-control', 'required' => 'required']) !!}
+                            </td>
                         </tr>
                         <tr>
-                           <td><label for="mime">Type MIME</label></td>
-                           <td>
-                           <input type="text" name="mime" id="mime" class="form-control">
-                           </td>
+                            <td>
+                                <label for="mime">Type MIME</label>
+                            </td>
+                            <td>
+                                <input type="text" name="mime" id="mime" class="form-control">
+                            </td>
                         </tr>
                         <tr>
-                           <td><label for="mime">Refusé pour l'import</label></td>
-                           <td>
-                           <select name="is_usergroup" id="Série" class="py-1 px-3">
-                                 <option value="0">Non</option>
-                                 <option value="1">Oui</option>
-                            </select>
-                           </td>
+                            <td>
+                                <label for="mime">Refusé pour l'import</label>
+                            </td>
+                            <td>
+                                <select name="is_usergroup" id="Série" class="py-1 px-3">
+                                    <option value="0">Non</option>
+                                    <option value="1">Oui</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
-                         <td>
-                         <label>Sélectionner un fichier installé par FTP</label>
-                         </td>
-                         <td>
-                         <label>Aucun fichier disponible</label>
-                         </td>
-                        <td>
-                        <label>Fichier (200 Mio maximum)</label>
-                        </td>
-                        <td>
-                            <div class="fileupload draghoverable"><b>Fichier(s) (200 Mio maximum)&nbsp;<a href="#" onclick="$('#documenttypelist').dialog('open'); return false;" class="fa fa-info pointer" title="Aide"><span class="sr-only">Aide&gt;</span></a>
-                            {{-- <script type="text/javascript">
+                            <td>
+                                <label>Sélectionner un fichier installé par FTP</label>
+                            </td>
+                            <td>
+                                <label>Aucun fichier disponible</label>
+                            </td>
+                            <td>
+                                <label>Fichier (200 Mio maximum)</label>
+                            </td>
+                            <td>
+                                <div class="fileupload draghoverable"><b>Fichier(s) (200 Mio maximum)&nbsp;<a href="#"
+                                            onclick="$('#documenttypelist').dialog('open'); return false;"
+                                            class="fa fa-info pointer" title="Aide"><span
+                                                class="sr-only">Aide&gt;</span></a>
+                                        {{-- <script type="text/javascript">
                                     $(function() {
                                     $('#documenttypelist').dialog({
                                         modal: true,
@@ -98,11 +106,14 @@
                                     <div id="dropdoc1283380328">
                                         <span class="b">Glissez et déposez votre fichier ici, ou</span>
                                         <br>
-                                        <input id="fileupload1283380328" type="file" name="filename[]" data-url="/glpi/ajax/fileupload.php" data-form-data="{&quot;name&quot;: &quot;filename&quot;,
-                                                                    &quot;showfilesize&quot;: &quot;1&quot;}"><div id="progress1283380328" style="display:none"><div class="uploadbar" style="width: 0%;">
-                                                                    </div>
-                                                                </div>
-                                                            {{-- </div>
+                                        <input id="fileupload1283380328" type="file" name="filename[]"
+                                            data-url="/glpi/ajax/fileupload.php" data-form-data="{&quot;name&quot;: &quot;filename&quot;,
+                                                                                &quot;showfilesize&quot;: &quot;1&quot;}">
+                                        <div id="progress1283380328" style="display:none">
+                                            <div class="uploadbar" style="width: 0%;">
+                                            </div>
+                                        </div>
+                                        {{-- </div>
     <script type="text/javascript">
                             //<![CDATA[
 
@@ -163,23 +174,22 @@
 
                             //]]>
                             </script> --}}
-                        </div>
-                        </td>
+                                    </div>
+                            </td>
                         </tr>
                         <tr>
-                        <td colspan="4" class="text-center">
-                             <button type="submit" class="btn btn-success">
-                           <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                           Ajouter
-                        </button>
-                        </td>
+                            <td colspan="4" class="text-center">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+                                    Ajouter
+                                </button>
+                            </td>
                         </tr>
-                      </tbody>
-                    </table>
+                    </tbody>
+                </table>
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
     </div>
 @endsection
-
