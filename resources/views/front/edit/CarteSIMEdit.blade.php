@@ -22,7 +22,7 @@
                                 <label for="devicesimcards_id">Composant</label>
                             </td>
                             <td>
-                                <select name="devicesimcards_id" id="devicesimcards_id" class="">
+                                <select name="devicesimcards_id" id="devicesimcards_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Composants as $Composant)
                                         <option value="{{ $Composant->id }}">{{ $Composant->name }}</option>
@@ -52,10 +52,10 @@
                                 <label for="locations_id">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="locations_id" class="">
+                                <select name="locations_id" id="locations_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($locations as $location)
-                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                        <option value="{{ $location->id }}">{{ $location->Nom }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -64,7 +64,7 @@
                                 <label for="Statuts_id">Statut</label>
                             </td>
                             <td>
-                                <select name="Statuts_id" id="Statuts_id" class="">
+                                <select name="Statuts_id" id="Statuts_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     {{-- @foreach ($Statuts as $Statut)
                                             <option value="{{$Statut->id}}">{{$Statut->Nom}}</option>
@@ -78,14 +78,14 @@
                                 <label for="pin">Code PIN</label>
                             </td>
                             <td>
-                                <input type="text" name="pin" value="{{ $CarteSIM->pin ?? '' }}" id="pin" class=""
+                                <input type="text" name="pin" value="{{ $CarteSIM->pin ?? '' }}" id="pin" class="form-control"
                                     placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="pin2">Code PIN2</label>
                             </td>
                             <td>
-                                <input type="text" name="pin2" value="{{ $CarteSIM->pin2 ?? '' }}" id="pin2" class=""
+                                <input type="text" name="pin2" value="{{ $CarteSIM->pin2 ?? '' }}" id="pin2" class="form-control"
                                     placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
@@ -94,14 +94,14 @@
                                 <label for="puk">Code PUK</label>
                             </td>
                             <td>
-                                <input type="text" name="puk" value="{{ $CarteSIM->puk ?? '' }}" id="puk" class=""
+                                <input type="text" name="puk" value="{{ $CarteSIM->puk ?? '' }}" id="puk" class="form-control"
                                     placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="puk2">Code PUK2</label>
                             </td>
                             <td>
-                                <input type="text" name="puk2" value="{{ $CarteSIM->puk2 ?? '' }}" id="puk2" class=""
+                                <input type="text" name="puk2" value="{{ $CarteSIM->puk2 ?? '' }}" id="puk2" class="form-control"
                                     placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
@@ -110,7 +110,7 @@
                                 <label for="Ligne">Ligne</label>
                             </td>
                             <td>
-                                <select name="lines_id" id="lines_id" class="">
+                                <select name="lines_id" id="lines_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     {{-- @foreach ($Locations as $Location)
                                             <option value="{{$Location->id}}">{{$Location->name}}</option>
@@ -119,12 +119,11 @@
                             </td>
                             <td>
                                 <label for="msin">Mobile Subscriber Identification Number</label>
+                                <i class="fas fa-info pointer" title="Le MSIN est Constitué des 8 ou 10 derniers Chiffres de l'IMSI"></i>
                             </td>
                             <td>
-                                <input type="text" name="msin" value="{{ $CarteSIM->msin ?? '' }}" id="msin" class=""
-                                    required>
-                                <i class="fas fa-info pointer"
-                                    title="Le MSIN est Constitué des 8 ou 10 derniers Chiffres de l'IMSI"></i>
+                                <input type="text" name="msin" value="{{ $CarteSIM->msin ?? '' }}" id="msin" class="form-control px-0" required>
+
                             </td>
                         </tr>
                         <tr>
@@ -132,7 +131,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="users_id" id="user" class="">
+                                <select name="users_id" id="user" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -144,7 +143,7 @@
                                 <label for="Groupe">Groupe</label>
                             </td>
                             <td>
-                                <select name="Groups_id" id="Groupe" class="">
+                                <select name="Groups_id" id="Groupe" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Groups as $group)
                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -161,28 +160,30 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                            <td colspan="2" class="">
+                                <button type="submit" class="btn btn-success float-left"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
+                            </td>
+                            <td colspan="2" class="">
+                                <table class="tab_cadre_fixe">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <form method="POST" action="{{ route('CarteSIM.destroy', $CarteSIM->id) }}">
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    @csrf
+                                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
+                                                        class="btn btn-danger float-right" title="Supprimer">
+                                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </td>
                         </tr>
                     </table>
                 </form>
-                <table class="tab_cadre_fixe">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <form method="POST" action="{{ route('CarteSIM.destroy', $CarteSIM->id) }}">
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    @csrf
-                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
-                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

@@ -15,32 +15,70 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->search !== null){
             $title = 'GLPI-Utilisateurs';
             $header = 'Utilisateurs';
-            $search = $request->search;
-            $Users = User::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
-            ->OrWhere('name','like','%'.$search.'%')->paginate(2);
-            // $Users->appends($request->all());
             return view('front.User')->with([
                 'title' => $title,
-                'Users' => $Users,
                 'header' => $header
             ]);
-        }else{
-            $title = 'GLPI-Utilisateurs';
-            $header = 'Utilisateurs';
-            $Users = User::paginate(2);
-            return view('front.User')->with([
-                'title' => $title,
-                'Users' => $Users,
-                'header' => $header
-            ]);
-        }
     }
+ /**
+     * Search
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function search(Request $request){
+        if($request->ajax())
+        {
+         $output = '';
+         $query = $request->get('query');
+         if($query != '')
+         {
+               $data = User::where('id', 'like', '%' . $query . '%')
+                   ->OrWhere('name', 'like', '%' . $query . '%')
+                   ->OrWhere('statut_id', 'like', '%' . $query . '%')
+                   ->OrWhere('locations_id', 'like', '%' . $query . '%')
+                   ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                   ->OrWhere('created_at', 'like', '%' . $query . '%')
+                   ->get();
 
+           }
+           else {
+               $data = User::orderBy('created_at', 'DESC')
+               ->get();
+           }
+           $total_row = $data->count();
+           if ($total_row > 0) {
+               foreach ($data as $row) {
+                   $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('Telephone.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top">' . $row->last_login . '</td>
+            <td valign="top">' . $row->email . '</td>
+            <td valign="top">' . $row->phone . '</td>
+            <td valign="top">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+            <td valign="top"></td>
+            <td valign="top"></td>
+            <td valign="top">' . $row->updated_at . '</td>
+           </tr>
+           ';
+               }
+           } else {
+               $output = '
+          <tr>
+           <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+           }
+           $data = array(
+               'table_data' => $output,
+               'total_data' => $total_row,
+           );
+       }
+           return response()->json($data);
+       }
     /**
      * Show the form for creating a new resource.
      *

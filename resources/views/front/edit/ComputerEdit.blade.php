@@ -16,14 +16,14 @@
                                 <label for="model">Nom</label>
                             </td>
                             <td>
-                                <input type="text" name="nom" id="Nom" value="{{ $Computer->nom ?? '' }}" class="" required
+                                <input type="text" name="nom" id="Nom" value="{{ $Computer->nom ?? '' }}" class="form-control" required
                                     placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="">
+                                <select name="locations_id" id="Lieu" class="py-1 px-3">
                                     <option selected disabled value="">-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Computer->Locations_id ?? $Location->id }}">{{ $Location->Nom }}
@@ -38,7 +38,7 @@
                                 <label for="RespTech">Responsable technique</label>
                             </td>
                             <td>
-                                <select name="users_id_tech" id="RespTech" class="" required>
+                                <select name="users_id_tech" id="RespTech" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -50,7 +50,7 @@
                                 <label for="GpTech">Groupe technique</label>
                             </td>
                             <td>
-                                <select name="gruops_tech" id="GpTech" class="">
+                                <select name="gruops_tech" id="GpTech" class="py-1 px-3">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -62,13 +62,13 @@
                             </td>
                             <td>
                                 <input type="text" name="UsagerNumero" value="{{ $Computer->UsagerNumero ?? '' }}"
-                                    id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" value="{{ $Computer->Usager ?? '' }}" id="Usager" class=""
+                                <input type="text" name="Usager" value="{{ $Computer->Usager ?? '' }}" id="Usager" class="form-control"
                                     required placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
@@ -77,7 +77,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="" required>
+                                <select name="Utilisateur" id="user" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -89,7 +89,7 @@
                                 <label for="group">Group</label>
                             </td>
                             <td>
-                                <select name="groups_id" id="group" class="">
+                                <select name="groups_id" id="group" class="py-1 px-3">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($groups as $group)
                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -103,7 +103,7 @@
                                 <label for="UUID">UUID</label>
                             </td>
                             <td>
-                                <select name="users_id" id="user" class="" required>
+                                <select name="users_id" id="user" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -115,7 +115,7 @@
                                 <label for="SMJ">Source mise à jour</label>
                             </td>
                             <td>
-                                <select name="autoupdatesystems_id" id="SMJ" class="" required>
+                                <select name="autoupdatesystems_id" id="SMJ" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($SourceMiseAjours as $SourceMiseAjour)
                                         <option value="{{ $SourceMiseAjour->id }}">{{ $SourceMiseAjour->Nom }}</option>
@@ -130,7 +130,7 @@
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="">
+                                <select name="states_id" id="Statut" class="py-1 px-3">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -139,7 +139,7 @@
                                 <label for="Type">Type</label>
                             </td>
                             <td>
-                                <select name="computertypes_id" id="Type" class="" required>
+                                <select name="computertypes_id" id="Type" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -154,7 +154,7 @@
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="" required>
+                                <select name="fabricant_id" id="Fab" class="py-1 px-3" required>
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -167,7 +167,7 @@
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="computermodels_id" id="model" class="" required>
+                                <select name="computermodels_id" id="model" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Models as $Model)
                                         <option value="{{ $Model->id }}">{{ $Model->Nom }}</option>
@@ -183,14 +183,14 @@
                             </td>
                             <td>
                                 <input type="text" name="numeroDeSerie" value="{{ $Computer->numeroDeSerie ?? '' }}"
-                                    id="NumSerie" class="" required>
+                                    id="NumSerie" class="form-control" required>
                             </td>
                             <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
                                 <input type="text" name="NumeroDinventaire"
-                                    value="{{ $Computer->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="" required>
+                                    value="{{ $Computer->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -198,7 +198,7 @@
                                 <label for="reseau">Réseau</label>
                             </td>
                             <td>
-                                <select name="networks_id" id="reseau" class="" required>
+                                <select name="networks_id" id="reseau" class="py-1 px-3" required>
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Reseaux as $Reseau)
                                         <option value="{{ $Reseau->id }}">{{ $Reseau->name }}</option>
@@ -212,7 +212,7 @@
                             </td>
                             <td>
                                 <textarea name="comment" value="{{ $Computer->comment ?? '' }}" id="comment" cols="40"
-                                    rows="3" class="" required></textarea>
+                                    rows="3" class="form-control" required></textarea>
                             </td>
                         </tr>
                         <tr class="alert alert-dark">
@@ -224,28 +224,30 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                            <td colspan="2" class="">
+                                <button type="submit" class="btn btn-success float-left"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
+                            </td>
+                            <td colspan="2" class="text-center">
+                                <table class="tab_cadre_fixe">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <form method="POST" action="{{ route('Computer.destroy', $Computer->id) }}">
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    @csrf
+                                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
+                                                        class="btn btn-danger float-right" title="Supprimer">
+                                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </td>
                         </tr>
                     </table>
                 </form>
-                <table class="tab_cadre_fixe">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <form method="POST" action="{{ route('Computer.destroy', $Computer->id) }}">
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    @csrf
-                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
-                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

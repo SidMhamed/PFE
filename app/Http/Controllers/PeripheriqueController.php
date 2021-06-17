@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\glpi_fabricant;
 use App\Models\glpi_groups;
 use App\Models\glpi_location;
-use App\Models\glpi_fabricant;
+use App\Models\glpi_Peripherique;
 use App\Models\ModelPeripherique;
 use App\Models\TypesPeripherique;
-use App\Models\glpi_Peripherique;
+use App\Models\User;
+use Illuminate\Http\Request;
+
 class PeripheriqueController extends Controller
 {
     /**
@@ -17,30 +18,73 @@ class PeripheriqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->search !== null){
         $title = 'GLPI-Péripheriques';
         $header = 'Péripherique';
-        $search = $request->search;
-        $Peripherique = glpi_Peripherique::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
-                                        ->OrWhere('name','like','%'.$search.'%')->paginate(2);
         return view('front.Peripherique')->with([
-        'title' => $title,
-        'Peripheriques' => $Peripherique,
-        'header' => $header
+            'title' => $title,
+            'header' => $header,
         ]);
-        }else{
-            $title = 'GLPI-Péripheriques';
-            $header = 'Péripherique';
-            $Peripherique = glpi_Peripherique::paginate(2);
-            // dd($Peripherique);
-            return view('front.Peripherique')->with([
-                'title' => $title,
-                'Peripheriques' => $Peripherique,
-                'header' => $header
-            ]);
+    }
+
+    /**
+     * Search
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = glpi_Peripherique::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('statut_id', 'like', '%' . $query . '%')
+                    ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
+                    ->OrWhere('locations_id', 'like', '%' . $query . '%')
+                    ->OrWhere('Peripheriquetypes_id', 'like', '%' . $query . '%')
+                    ->OrWhere('Peripheriquemodels_id', 'like', '%' . $query . '%')
+                    ->OrWhere('Usager', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
+
+            } else {
+                $data = glpi_Peripherique::orderBy('created_at', 'DESC')
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('Peripherique.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top">' . $row->statut_id . '</td>
+            <td valign="top">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom . '</td>
+            <td valign="top">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+            <td valign="top">' . TypesPeripherique::findOrFail($row->Peripheriquetypes_id)->name . '</td>
+            <td valign="top">' . ModelPeripherique::findOrFail($row->Peripheriquemodels_id)->name . '</td>
+            <td valign="top">' . $row->updated_at . '</td>
+            <td valign="top">' . $row->Usager . '</td>
+           </tr>
+           ';
+                }
+            } else {
+                $output = '
+          <tr>
+           <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
         }
+        return response()->json($data);
     }
 
     /**
@@ -58,13 +102,13 @@ class PeripheriqueController extends Controller
         $Models = ModelPeripherique::all();
         $Types = TypesPeripherique::all();
         return view('front.PeripheriqueForm')->with([
-        'title' => $title,
-        'header' => $header,
-        'Users' => $User,
-        'Fabricants' => $Fabricants,
-        'groups' => $groups,
-        'Models' => $Models,
-        'Types' => $Types
+            'title' => $title,
+            'header' => $header,
+            'Users' => $User,
+            'Fabricants' => $Fabricants,
+            'groups' => $groups,
+            'Models' => $Models,
+            'Types' => $Types,
         ]);
     }
 
@@ -117,7 +161,7 @@ class PeripheriqueController extends Controller
             'Models' => $Models,
             'Types' => $Types,
             'Locations' => $Locations,
-            'Peripherique' => $Peripherique
+            'Peripherique' => $Peripherique,
         ]);
     }
 
@@ -133,7 +177,7 @@ class PeripheriqueController extends Controller
         $Moniteur = glpi_Peripherique::find($id);
         $Moniteur->update($request->all());
         return redirect()->route('Peripherique.index')->with(['success' => 'Élément modifié']);
-       }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -143,7 +187,7 @@ class PeripheriqueController extends Controller
      */
     public function destroy($id)
     {
-        $Peripherique =  glpi_Peripherique::where('id', $id)->delete();
+        $Peripherique = glpi_Peripherique::where('id', $id)->delete();
         return redirect()->route('Peripherique.index')->with(['success' => 'Élément Supprimer']);
     }
 }

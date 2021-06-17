@@ -16,14 +16,14 @@
                                 <label for="model">Nom</label>
                             </td>
                             <td>
-                                <input type="text" name="name" value="{{ $Imprimante->name ?? '' }}" id="Nom" class=""
-                                    required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="name" value="{{ $Imprimante->name ?? '' }}" id="Nom"
+                                    class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="">
+                                <select name="locations_id" id="Lieu" class="py-1 px-3">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
@@ -37,7 +37,7 @@
                                 <label for="RespTech">Responsable technique</label>
                             </td>
                             <td>
-                                <select name="users_id_tech" id="RespTech" class="" required>
+                                <select name="users_id_tech" id="RespTech" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -49,7 +49,7 @@
                                 <label for="GpTech">Groupe technique</label>
                             </td>
                             <td>
-                                <select name="gruops_tech" id="GpTech" class="">
+                                <select name="gruops_tech" id="GpTech" class="py-1 px-3">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -61,14 +61,14 @@
                             </td>
                             <td>
                                 <input type="text" name="UsagerNumero" value="{{ $Imprimante->UsagerNumero ?? '' }}"
-                                    id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
                                 <input type="text" name="Usager" value="{{ $Imprimante->Usager ?? '' }}" id="Usager"
-                                    class="" required placeholder="" aria-describedby="helpId">
+                                    class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -76,7 +76,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="" required>
+                                <select name="Utilisateur" id="user" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->name }}">{{ $User->name }}</option>
@@ -88,7 +88,7 @@
                                 <label for="group">Group</label>
                             </td>
                             <td>
-                                <select name="groups_id" id="group" class="">
+                                <select name="groups_id" id="group" class="py-1 px-3">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($groups as $group)
                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -102,15 +102,15 @@
                                 <label for="Mémoire">Mémoire (Mio)</label>
                             </td>
                             <td>
-                                <input type="text" name="memory_size" value="{{ $Imprimante->memory_size ?? '' }}" class=""
-                                    id="Mémoire">
+                                <input type="text" name="memory_size" value="{{ $Imprimante->memory_size ?? '' }}"
+                                    class="form-control" id="Mémoire">
                             </td>
                             <td>
                                 <label for="CompteurPageInitial">Compteur de page initial</label>
                             </td>
                             <td>
                                 <input type="text" name="init_pages_couter"
-                                    value="{{ $Imprimante->init_pages_couter ?? '' }}" class="" id="Mémoire">
+                                    value="{{ $Imprimante->init_pages_couter ?? '' }}" class="form-control" id="Mémoire">
                             </td>
                         </tr>
                         <tr>
@@ -119,13 +119,14 @@
                             </td>
                             <td>
                                 <input type="text" name="last_pages_counter"
-                                    value="{{ $Imprimante->last_pages_counter ?? '' }}" class="" id="Mémoire">
+                                    value="{{ $Imprimante->last_pages_counter ?? '' }}" class="form-control"
+                                    id="Mémoire">
                             </td>
                             <td>
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states" id="Statut" class="">
+                                <select name="states" id="Statut" class="py-1 px-3">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -136,7 +137,7 @@
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="" required>
+                                <select name="fabricant_id" id="Fab" class="py-1 px-3" required>
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -149,7 +150,7 @@
                                 <label for="Type">Type</label>
                             </td>
                             <td>
-                                <select name="printertype_id" id="Type" class="" required>
+                                <select name="printertype_id" id="Type" class="py-1 px-3" required>
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -164,7 +165,7 @@
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="printermodels_id" id="model" class="" required>
+                                <select name="printermodels_id" id="model" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Modeles as $Modele)
                                         <option value="{{ $Modele->id }}">{{ $Modele->name }}</option>
@@ -178,7 +179,7 @@
                             </td>
                             <td>
                                 <input type="text" name="serial" value="{{ $Imprimante->serial ?? '' }}" id="NumSerie"
-                                    class="" required>
+                                    class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -187,13 +188,13 @@
                             </td>
                             <td>
                                 <input type="text" name="otherserial" value="{{ $Imprimante->otherserial ?? '' }}"
-                                    id="NumDinventaire" class="" required>
+                                    id="NumDinventaire" class="form-control" required>
                             </td>
                             <td>
                                 <label for="reseau">Réseau</label>
                             </td>
                             <td>
-                                <select name="networks_id" id="reseau" class="" required>
+                                <select name="networks_id" id="reseau" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Reseaux as $Reseau)
                                         <option value="{{ $Reseau->id }}">{{ $Reseau->name }}</option>
@@ -214,7 +215,7 @@
                                             <label for="Série">Série</label>
                                         </td>
                                         <td>
-                                            <select name="have_serial" id="Série" class="">
+                                            <select name="have_serial" id="Série" class="py-1 px-3">
                                                 <option value="{{ $Imprimante->have_serial ?? '1' }}">Non</option>
                                                 <option value="{{ $Imprimante->have_serial ?? '0' }}">Oui</option>
                                             </select>
@@ -223,7 +224,7 @@
                                             <label for="Ethernet">Ethernet</label>
                                         </td>
                                         <td>
-                                            <select name="have_usb" id="Ethernet" class="">
+                                            <select name="have_usb" id="Ethernet" class="py-1 px-3">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -234,7 +235,7 @@
                                             <label for="Wifi">Wifi</label>
                                         </td>
                                         <td>
-                                            <select name="have_wifi" id="Wifi" class="">
+                                            <select name="have_wifi" id="Wifi" class="py-1 px-3">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -243,7 +244,7 @@
                                             <label for="Parallèle">Parallèle</label>
                                         </td>
                                         <td>
-                                            <select name="have_parallel" id="Parallèle" class="">
+                                            <select name="have_parallel" id="Parallèle" class="py-1 px-3">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -254,7 +255,7 @@
                                             <label for="USB">USB</label>
                                         </td>
                                         <td colspan="3">
-                                            <select name="have_ethernet" id="USB" class="">
+                                            <select name="have_ethernet" id="USB" class="py-1 px-3">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -267,7 +268,7 @@
                             </td>
                             <td>
                                 <textarea name="comment" value="{{ $Imprimante->comment ?? '' }}" id="comment" cols="45"
-                                    rows="6" class=""></textarea>
+                                    rows="6" class="form-control"></textarea>
                             </td>
                         </tr>
                         <tr class="alert alert-dark">
@@ -280,7 +281,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                                <button type="submit" class="btn btn-success float-left"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
                             </td>
                         </tr>
@@ -289,12 +290,13 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center"
                                 <form method="POST" action="{{ route('Imprimante.destroy', $Imprimante->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
-                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
+                                    <button type="submit"
+                                        onclick="return confirm('Veuillez confirmer la suppression ?')"
+                                        class="btn btn-danger" title="Supprimer">
                                         <i class="fa fa-trash mx-1"></i>Supprimer</button>
                                 </form>
                             </td>

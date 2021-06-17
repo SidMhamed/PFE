@@ -43,7 +43,63 @@ class Materiel_ReseauController extends Controller
             ]);
             }
     }
+/**
+ * Search
+ * 
+ * @return \Illuminate\Http\Response
+ */
+function search(Request $request){
+    if($request->ajax())
+    {
+     $output = '';
+     $query = $request->get('query');
+     if($query != '')
+     {
+           $data = glpi_Materiel_Reseaux::where('id', 'like', '%' . $query . '%')
+               ->OrWhere('nom', 'like', '%' . $query . '%')
+               ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
+               ->OrWhere('locations_id', 'like', '%' . $query . '%')
+               ->OrWhere('MaterielReseauTypes_id', 'like', '%' . $query . '%')
+               ->OrWhere('MaterielReseauModels_id', 'like', '%' . $query . '%')
+               ->OrWhere('updated_at', 'like', '%' . $query . '%')
+               ->OrWhere('created_at', 'like', '%' . $query . '%')
+               ->get();
 
+       }
+       else {
+           $data = glpi_Materiel_Reseaux::orderBy('created_at', 'DESC')
+           ->get();
+       }
+       $total_row = $data->count();
+       if ($total_row > 0) {
+           foreach ($data as $row) {
+               $output .= '
+       <tr>
+       <td valign="top"><a href="' . route('MaterielReseau.edit', $row->id) . '">' . $row->nom . '</a></td>
+       <td>'. $row->states_id .'</td>
+       <td>'.glpi_fabricant::findOrFail($row->fabricant_id)->Nom.'</td>
+       <td>'.glpi_location::findOrFail($row->locations_id)->Nom .'</td>
+       <td>'.glpi_Materiel_ReseauxTypes::findOrFail($row->MaterielReseauTypes_id)->name .'</td>
+       <td>'.glpi_Materiel_ReseauxModele::findOrFail($row->MaterielReseauModels_id)->Nom.'</td>
+       <td></td>
+       <td>'.$row->updated_at.'</td>
+       </tr>
+       ';
+           }
+       } else {
+           $output = '
+      <tr>
+       <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+      </tr>
+      ';
+       }
+       $data = array(
+           'table_data' => $output,
+           'total_data' => $total_row,
+       );
+   }
+       return response()->json($data);
+   }
     /**
      * Show the form for creating a new resource.
      *

@@ -22,7 +22,7 @@
                             <a class="vsubmit" onclick="" title="Actions" href="">Actions</a>
                         </td>
                         <td class="left" width="100%">
-                            <a href="{{ route('profile.create') }}" class="btn btn-success px-2 py-0">
+                            <a href="{{ route('profile.create') }}" class="btn btn-success px-2">
                                 <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>

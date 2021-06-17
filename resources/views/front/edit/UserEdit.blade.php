@@ -13,14 +13,14 @@
                     <table class="tab_cadre_fixe">
                         <tr>
                             <td><label for="name">Identifiant</label></td>
-                            <td><input type="text" name="name" value="{{ $User->name ?? '' }}" id="name" class=""></td>
+                            <td><input type="text" name="name" value="{{ $User->name ?? '' }}" id="name" class="form-control"></td>
                             <td rowspan="4"></td>
                             <td rowspan="4"></td>
                         </tr>
                         <tr>
                             <td><label for="fieldlist">Nom de Famille</label></td>
                             <td><input type="text" id="fieldlist" name="fieldlist" value="{{ $User->fieldlist ?? '' }}"
-                                    class=""> </td>
+                                    class="form-control"> </td>
                         </tr>
                         <tr>
                             <td><label for="last_login">Prénom</label></td>

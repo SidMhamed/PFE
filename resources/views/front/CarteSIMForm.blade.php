@@ -80,13 +80,13 @@
                                 <label for="pin">Code PIN</label>
                             </td>
                             <td>
-                                <input type="text" name="pin" id="pin" class="" placeholder="" aria-describedby="helpId">
+                                <input type="text" name="pin" id="pin" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="pin2">Code PIN2</label>
                             </td>
                             <td>
-                                <input type="text" name="pin2" id="pin2" class="" placeholder="" aria-describedby="helpId">
+                                <input type="text" name="pin2" id="pin2" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -94,13 +94,13 @@
                                 <label for="puk">Code PUK</label>
                             </td>
                             <td>
-                                <input type="text" name="puk" id="puk" class="" placeholder="" aria-describedby="helpId">
+                                <input type="text" name="puk" id="puk" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="puk2">Code PUK2</label>
                             </td>
                             <td>
-                                <input type="text" name="puk2" id="puk2" class="" placeholder="" aria-describedby="helpId">
+                                <input type="text" name="puk2" id="puk2" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -119,7 +119,7 @@
                                 <label for="msin">Mobile Subscriber Identification Number</label>
                             </td>
                             <td>
-                                <input type="text" name="msin" id="msin" class="" required>
+                                <input type="text" name="msin" id="msin" class="form-control" required>
                                 <i class="fas fa-info pointer"
                                     title="Le MSIN est Constitué des 8 ou 10 derniers Chiffres de l'IMSI"></i>
                             </td>

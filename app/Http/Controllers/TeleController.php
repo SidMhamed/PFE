@@ -20,29 +20,71 @@ class TeleController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->search !== null){
             $title = 'Téléphones';
             $header = 'Téléphone';
-            $search = $request->search;
-            $Telephones = glpi_Telephone::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
-                                        ->orWhere('name','like','%'.$search.'%')->paginate(2);
-            return view('front.Telephone')->with([
-            'title' => $title,
-            'Telephones' => $Telephones,
-            'header' => $header
-            ]);
-        }else{
-            $title = 'Téléphones';
-            $header = 'Téléphone';
-            $Telephones = glpi_Telephone::paginate(2);
             return view('front.Telephone')->with([
                 'title' => $title,
-                'Telephones' => $Telephones,
                 'header' => $header
             ]);
-        }
     }
-
+    /**
+     * Search
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    function search(Request $request){
+        if($request->ajax())
+        {
+         $output = '';
+         $query = $request->get('query');
+         if($query != '')
+         {
+               $data = glpi_Telephone::where('id', 'like', '%' . $query . '%')
+                   ->OrWhere('name', 'like', '%' . $query . '%')
+                   ->OrWhere('statut_id', 'like', '%' . $query . '%')
+                   ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
+                   ->OrWhere('locations_id', 'like', '%' . $query . '%')
+                   ->OrWhere('telephonetypes_id', 'like', '%' . $query . '%')
+                   ->OrWhere('telephonemodels_id', 'like', '%' . $query . '%')
+                   ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                   ->OrWhere('created_at', 'like', '%' . $query . '%')
+                   ->get();
+   
+           }
+           else {
+               $data = glpi_Telephone::orderBy('created_at', 'DESC')
+               ->get();
+           }
+           $total_row = $data->count();
+           if ($total_row > 0) {
+               foreach ($data as $row) {
+                   $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('Telephone.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top">' . $row->statut_id . '</td>
+            <td valign="top">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom . '</td>
+            <td valign="top">' . TelephoneTypes::findOrFail($row->telephonetypes_id)->name . '</td>
+            <td valign="top">' . TelephoneModeles::findOrFail($row->telephonemodels_id)->name . '</td>
+            <td valign="top">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+            <td valign="top">' . $row->updated_at . '</td>
+            <td valign="top">' . $row->Usager . '</td>
+           </tr>
+           ';
+               }
+           } else {
+               $output = '
+          <tr>
+           <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+           }
+           $data = array(
+               'table_data' => $output,
+               'total_data' => $total_row,
+           );
+       }
+           return response()->json($data);
+       }
     /**
      * Show the form for creating a new resource.
      *

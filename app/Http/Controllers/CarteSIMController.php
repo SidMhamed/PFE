@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ComposatsCarteSIM;
-use App\Models\User;
-use App\Models\glpi_groups;
 use App\Models\glpi_fabricant;
-use App\Models\ItemsCarteSIM;
+use App\Models\glpi_groups;
 use App\Models\glpi_location;
+use App\Models\ItemsCarteSIM;
+use App\Models\User;
+use Illuminate\Http\Request;
+
 class CarteSIMController extends Controller
 {
     /**
@@ -16,29 +17,60 @@ class CarteSIMController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->search !== null ){
-            $title = 'Carte SIM';
-            $header = 'Catre SIM';
-            $search = $request->search;
-            $cartes = ItemsCarteSIM::orderBy('created_at', 'DESC')->where('id', 'like','%'.$search.'%')
-            ->OrWhere('serial','like','%'.$search.'%')->paginate(2);
-            return view('front.CarteSIM')->with([
-                'title' => $title,
-                'cartes' => $cartes,
-                'header' => $header
-            ]);
-        }else{
-            $title = 'Carte SIM';
-            $header = 'Catre SIM';
-            $cartes = ItemsCarteSIM::paginate(2);
-            return view('front.CarteSIM')->with([
-                'title' => $title,
-                'cartes' => $cartes,
-                'header' => $header
-            ]);
+        $title = 'Carte SIM';
+        $header = 'Catre SIM';
+        return view('front.CarteSIM')->with([
+            'title' => $title,
+            'header' => $header,
+        ]);
+    }
+    /**
+     * Search
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = ItemsCarteSIM::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('serial', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
+
+            } else {
+                $data = ItemsCarteSIM::orderBy('created_at', 'DESC')
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('CarteSIM.edit', $row->id) . '">' . $row->id . '</a></td>
+            <td valign="top">' . $row->serial . '</td>
+            <td valign="top">' . $row->updated_at . '</td>
+           </tr>
+           ';
+                }
+            } else {
+                $output = '
+          <tr>
+           <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
         }
+        return response()->json($data);
     }
 
     /**
@@ -51,7 +83,7 @@ class CarteSIMController extends Controller
         $title = 'GLPI-Cartes SIM';
         $header = 'Catre SIM';
         $user = User::all();
-        $groups =glpi_groups::all();
+        $groups = glpi_groups::all();
         $Locations = glpi_location::all();
         $Fabricants = glpi_fabricant::all();
         $Composants = ComposatsCarteSIM::all();
@@ -62,7 +94,7 @@ class CarteSIMController extends Controller
             'Groups' => $groups,
             'Locations' => $Locations,
             'Fabricants' => $Fabricants,
-            'Composants' => $Composants
+            'Composants' => $Composants,
         ]);
     }
 
@@ -100,7 +132,7 @@ class CarteSIMController extends Controller
         $title = "GLPI-Cartes SIM - $id";
         $header = 'Catre SIM';
         $user = User::all();
-        $groups =glpi_groups::all();
+        $groups = glpi_groups::all();
         $Fabricants = glpi_fabricant::all();
         $Composants = ComposatsCarteSIM::all();
         $Locations = glpi_location::all();
@@ -113,7 +145,7 @@ class CarteSIMController extends Controller
             'Fabricants' => $Fabricants,
             'Composants' => $Composants,
             'locations' => $Locations,
-            'CarteSIM'=> $CarteSIM
+            'CarteSIM' => $CarteSIM,
         ]);
     }
 
@@ -139,7 +171,7 @@ class CarteSIMController extends Controller
      */
     public function destroy($id)
     {
-        $CarteSIM = ItemsCarteSIM::where('id',$id)->delete();
+        $CarteSIM = ItemsCarteSIM::where('id', $id)->delete();
         return redirect()->route('CarteSIM.index')->with(['success' => 'Élément Supprimer']);
     }
 }

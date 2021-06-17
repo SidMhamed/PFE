@@ -20,30 +20,69 @@ class ImprimanteController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->search !== null){
-            $search = $request->search;
-            $title = 'GLPI-Imprimantes';
-            $header = 'Imprimantes';
-            $Imprimantes = glpi_Imprimante::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
-            ->orWhere('name','like','%'.$search.'%')->paginate(2);
-            return view('front.Imprimante')->with([
-                'title' => $title,
-                'Imprimantes' => $Imprimantes,
-                'header' => $header
-            ]);
-        }else{
-            $title = 'GLPI-Imprimantes';
-            $header = 'Imprimantes';
-            $Imprimantes = glpi_Imprimante::paginate(2);
-            return view('front.Imprimante')->with([
-                'title' => $title,
-                'Imprimantes' => $Imprimantes,
-                'header' => $header
-            ]);
-        }
 
+            $title = 'GLPI-Imprimantes';
+            $header = 'Imprimantes';
+            return view('front.Imprimante')->with([
+                'title' => $title,
+                'header' => $header
+            ]);
     }
+/**
+ * Search
+ *
+ * @return \Illuminate\Http\Response
+ */
+public function search(Request $request){
+    if($request->ajax())
+    {
+     $output = '';
+     $query = $request->get('query');
+     if($query != '')
+     {
+           $data = glpi_Imprimante::where('id', 'like', '%' . $query . '%')
+               ->OrWhere('name', 'like', '%' . $query . '%')
+               ->OrWhere('manufacturers_id', 'like', '%' . $query . '%')
+               ->OrWhere('locations_id', 'like', '%' . $query . '%')
+               ->OrWhere('printertype_id', 'like', '%' . $query . '%')
+               ->OrWhere('printermodels_id', 'like', '%' . $query . '%')
+               ->OrWhere('updated_at', 'like', '%' . $query . '%')
+               ->OrWhere('created_at', 'like', '%' . $query . '%')
+               ->get();
 
+       }
+       else {
+           $data = glpi_Imprimante::orderBy('created_at', 'DESC')
+           ->get();
+       }
+       $total_row = $data->count();
+       if ($total_row > 0) {
+           foreach ($data as $row) {
+               $output .= '
+       <tr>
+        <td valign="top"><a href="' . route('Imprimante.edit', $row->id) . '">' . $row->name . '</a></td>
+        <td valign="top">' . glpi_fabricant::findOrFail($row->manufacturers_id)->Nom . '</td>
+        <td valign="top">' . ImprimanteTypes::findOrFail($row->printertype_id)->name . '</td>
+        <td valign="top">' . ImprimanteModel::findOrFail($row->printermodels_id)->name . '</td>
+        <td valign="top">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+        <td valign="top">' . $row->updated_at . '</td>
+       </tr>
+       ';
+           }
+       } else {
+           $output = '
+      <tr>
+       <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+      </tr>
+      ';
+       }
+       $data = array(
+           'table_data' => $output,
+           'total_data' => $total_row,
+       );
+   }
+       return response()->json($data);
+   }
     /**
      * Show the form for creating a new resource.
      *

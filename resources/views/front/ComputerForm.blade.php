@@ -19,7 +19,7 @@
                                 <label for="model">Nom</label>
                             </td>
                             <td>
-                                <input type="text" name="nom" id="Nom" class="" required placeholder=""
+                                <input type="text" name="nom" id="Nom" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                             <td>
@@ -61,14 +61,14 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder=""
+                                <input type="text" name="UsagerNumero" id="UsaNum" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" id="Usager" class="" required placeholder=""
+                                <input type="text" name="Usager" id="Usager" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                         </tr>
@@ -188,7 +188,7 @@
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="" required>
+                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="form-control" required>
                             </td>
                         </tr>
                         <tr>

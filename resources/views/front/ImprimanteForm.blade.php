@@ -20,14 +20,14 @@
 
                             </td>
                             <td>
-                                <input type="text" name="name" id="Nom" class="" required placeholder=""
+                                <input type="text" name="name" id="Nom" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="">
+                                <select name="locations_id" id="Lieu" class="form-control">
                                     <option hidden value="" selected disabled>-----</option>
                                     <option value="1">iscae</option>
                                 </select>
@@ -62,14 +62,14 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder=""
+                                <input type="text" name="UsagerNumero" id="UsaNum" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" id="Usager" class="" required placeholder=""
+                                <input type="text" name="Usager" id="Usager" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                         </tr>
@@ -104,13 +104,13 @@
                                 <label for="Mémoire">Mémoire (Mio)</label>
                             </td>
                             <td>
-                                <input type="text" name="memory_size" class="" id="Mémoire">
+                                <input type="text" name="memory_size" class="form-control" id="Mémoire">
                             </td>
                             <td>
                                 <label for="CompteurPageInitial">Compteur de page initial</label>
                             </td>
                             <td>
-                                <input type="text" name="init_pages_couter" class="" id="Mémoire">
+                                <input type="text" name="init_pages_couter" class="form-control" id="Mémoire">
                             </td>
                         </tr>
                         <tr>
@@ -118,7 +118,7 @@
                                 <label for="CompteurPageActuel">Compteur de page actuel</label>
                             </td>
                             <td>
-                                <input type="text" name="last_pages_counter" class="" id="Mémoire">
+                                <input type="text" name="last_pages_counter" class="form-control" id="Mémoire">
                             </td>
                             <td>
                                 <label for="Statut">Statut</label>
@@ -176,7 +176,7 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="serial" id="NumSerie" class="" required>
+                                <input type="text" name="serial" id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -184,7 +184,7 @@
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="otherserial" id="NumDinventaire" class="" required>
+                                <input type="text" name="otherserial" id="NumDinventaire" class="form-control" required>
                             </td>
                             <td>
                                 <label for="reseau">Réseau</label>
@@ -211,7 +211,7 @@
                                             <label for="Série">Série</label>
                                         </td>
                                         <td>
-                                            <select name="have_serial" id="Série" class="">
+                                            <select name="have_serial" id="Série" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -220,7 +220,7 @@
                                             <label for="Ethernet">Ethernet</label>
                                         </td>
                                         <td>
-                                            <select name="have_usb" id="Ethernet" class="">
+                                            <select name="have_usb" id="Ethernet" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -231,7 +231,7 @@
                                             <label for="Wifi">Wifi</label>
                                         </td>
                                         <td>
-                                            <select name="have_wifi" id="Wifi" class="">
+                                            <select name="have_wifi" id="Wifi" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -240,7 +240,7 @@
                                             <label for="Parallèle">Parallèle</label>
                                         </td>
                                         <td>
-                                            <select name="have_parallel" id="Parallèle" class="">
+                                            <select name="have_parallel" id="Parallèle" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -251,7 +251,7 @@
                                             <label for="USB">USB</label>
                                         </td>
                                         <td colspan="3">
-                                            <select name="have_ethernet" id="USB" class="">
+                                            <select name="have_ethernet" id="USB" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -263,7 +263,7 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td>
-                                <textarea name="comment" id="comment" cols="30" rows="8" class=""></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="8" class="form-control"></textarea>
                             </td>
                         </tr>
                         <tr>

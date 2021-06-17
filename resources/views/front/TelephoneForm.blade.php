@@ -19,13 +19,13 @@
                                 <label for="name">Nom</label>
                             </td>
                             <td>
-                                <input type="text" id="name" class="" name="name" required>
+                                <input type="text" id="name" class="form-control" name="name" required>
                             </td>
                             <td>
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="">
+                                <select name="states_id" id="Statut" class="form-control">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -114,14 +114,14 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" name="UsagerNumero" id="UsaNum" class="" required placeholder=""
+                                <input type="text" name="UsagerNumero" id="UsaNum" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" id="NumSerie" class="" required>
+                                <input type="text" name="numeroDeSerie" id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -129,14 +129,14 @@
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" id="Usager" class="" required placeholder=""
+                                <input type="text" name="Usager" id="Usager" class="form-control" required placeholder=""
                                     aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="" required>
+                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -179,7 +179,7 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td rowspan="5">
-                                <textarea name="comment" id="comment" cols="30" rows="8" class="" required></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="8" class="form-control" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -187,7 +187,7 @@
                                 <label for="marque">Marque</label>
                             </td>
                             <td>
-                                <input type="text" class="" name="Marque" id="marque">
+                                <input type="text" class="form-control" name="Marque" id="marque">
                             </td>
                         </tr>
                         <tr>
@@ -209,7 +209,7 @@
                                 <label for="NombreLignes">Nombre de lignes</label>
                             </td>
                             <td>
-                                <input type="text" class="" name="Nombrelignes" id="NombreLignes">
+                                <input type="text" class="form-control" name="Nombrelignes" id="NombreLignes">
                             </td>
                         </tr>
                         <tr>

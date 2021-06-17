@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Logiciel;
-use App\Models\User;
 use App\Models\glpi_fabricant;
 use App\Models\glpi_groups;
 use App\Models\glpi_location;
-use App\Models\LogicielCategories;
 use App\Models\glpi_SourceMiseAjour;
+use App\Models\Logiciel;
+use App\Models\LogicielCategories;
+use App\Models\User;
+use Illuminate\Http\Request;
+
 class LogicielController extends Controller
 {
 
@@ -20,29 +21,66 @@ class LogicielController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->search !== null){
-            $title = 'GLPI-Logiciels';
-            $header = 'Logiciel';
-            $search = $request->search;
-            $logiciels = Logiciel::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
-                                ->OrWhere('name','like','%'.$search.'%')->paginate(2);
-            return view('front.logiciels')->with([
-                'title' => $title,
-                'logiciels' => $logiciels,
-                'header' => $header
-            ]);
-        }else{
-            $title = 'GLPI-Logiciels';
-            $header = 'Logiciel';
-            $logiciels = Logiciel::paginate(2);
-            return view('front.logiciels')->with([
-                'title' => $title,
-                'logiciels' => $logiciels,
-                'header' => $header
-            ]);
-        }
+
+        $title = 'GLPI-Logiciels';
+        $header = 'Logiciel';
+        return view('front.logiciels')->with([
+            'title' => $title,
+            'header' => $header,
+        ]);
     }
 
+    /**
+     * Search
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = Logiciel::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
+
+            } else {
+                $data = Logiciel::orderBy('created_at', 'DESC')
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('Logiciel.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom . '</td>
+            <td valign="top"></td>
+            <td valign="top"></td>
+            <td valign="top"></td>
+            <td valign="top"></td>
+            <td valign="top">' . $row->updated_at . '</td>
+           </tr>
+           ';
+                }
+            } else {
+                $output = '
+          <tr>
+           <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
+        }
+        return response()->json($data);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -54,7 +92,7 @@ class LogicielController extends Controller
         $header = 'Logiciel';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups =glpi_groups::all();
+        $groups = glpi_groups::all();
         $Locations = glpi_location::all();
         $LogicielCategories = LogicielCategories::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
@@ -66,7 +104,7 @@ class LogicielController extends Controller
             'Fabricants' => $Fabricants,
             'Locations' => $Locations,
             'LogicielCategories' => $LogicielCategories,
-            'SourceMiseAjours' => $SourceMiseAjours
+            'SourceMiseAjours' => $SourceMiseAjours,
         ]);
     }
 
@@ -105,7 +143,7 @@ class LogicielController extends Controller
         $header = 'Logiciel';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups =glpi_groups::all();
+        $groups = glpi_groups::all();
         $locations = glpi_location::all();
         $LogicielCategories = LogicielCategories::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
@@ -119,7 +157,7 @@ class LogicielController extends Controller
             'Locations' => $locations,
             'LogicielCategories' => $LogicielCategories,
             'Logiciel' => $logiciels,
-            'SourceMiseAjours' => $SourceMiseAjours
+            'SourceMiseAjours' => $SourceMiseAjours,
         ]);
     }
 
@@ -145,7 +183,7 @@ class LogicielController extends Controller
      */
     public function destroy($id)
     {
-        $logiciel =  Logiciel::where('id', $id)->delete();
+        $logiciel = Logiciel::where('id', $id)->delete();
         return redirect()->route('Logiciel.index')->with(['success' => 'Élément Supprimer']);
     }
 }

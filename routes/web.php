@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ComputerController;
@@ -32,6 +32,11 @@ use App\Http\Controllers\ComposantCarteSIMController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\DomainesController;
+use App\Http\Controllers\SuppliertypesController;
+use App\Http\Controllers\SuppliersController;
+use App\Http\Controllers\CotactsController;
+use App\Http\Controllers\GlpiLineController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,18 +120,35 @@ Route::resource('/Reseau','ReseauController');
 Route::resource('/users', 'UserController');
 Route::resource('/profile', 'ProfileController');
 Route::resource('/Document', 'DocumentController');
-
+Route::resource('Fournisseur', 'SuppliersController');
+Route::resource('/TypeFournisseur', 'SuppliertypesController');
+Route::resource('/Domaines', 'DomainesController');
+Route::resource('/DomainesType' ,'DomainesTypeController');
+Route::resource('/Contacts', 'CotactsController');
+Route::resource('/Lines', 'GlpiLineController');
 /**
  * Search
  */
-Route::post('/searchComputer', [ComputerController::class, 'index'])->name('search.index');
-Route::post('/searchMaterielReseau', [Materiel_ReseauController::class, 'index'])->name('SearchMR.index');
-Route::post('/searchImprimante', [ImprimanteController::class, 'index'])->name('SearchImprimante.index');
-Route::post('/searchTelephone', [TeleController::class, 'index'])->name('SearchTelephone.index');
-Route::post('/searchPeripherique',[PeripheriqueController::class, 'index'])->name('SearchPeripherique.index');
-Route::post('/searchMoniteur',[MoniteurController::class, 'index'])->name('SearchMoniteur.index');
-Route::post('/searchLogiciels', [LogicielController::class, 'index'])->name('SearchLogiciels.index');
-Route::post('/searchCarteSIM', [CarteSIMController::class, 'index'])->name('SearchCarteSIM.index');
+Route::get('/ComputerSearch', [ComputerController::class, 'action']);
+Route::get('/MaterielReseauSearch', [Materiel_ReseauController::class, 'search']);
+Route::get('/ImprimanteSearch', [ImprimanteController::class, 'search']);
+Route::get('/TelephoneSearch', [TeleController::class, 'search']);
+Route::get('/PeripheriqueSearch',[PeripheriqueController::class, 'search']);
+Route::get('/MoniteurSearch',[MoniteurController::class, 'search']);
+Route::get('/LogicielsSearch', [LogicielController::class, 'search']);
+Route::get('/CarteSIMSearch', [CarteSIMController::class, 'search']);
+Route::get('/FournisseurSearch', [SuppliersController::class, 'search']);
+Route::get('/DomaineSearch', [DomainesController::class,'search']);
+Route::get('/ContactsSearch', [CotactsController::class,'search']);
+Route::get('/LinesSearch', [GlpiLineController::class,'search']);
 Route::post('/searchUser', [UserController::class, 'index'])->name('SearchUser.index');
 Route::post('/Searchgroups', [GroupController::class, 'index'])->name('GroupSearch.index');
 Route::post('/Searchprofile', [ProfileController::class, 'index'])->name('SearchProfile.index');
+
+
+Route::get('/Rapport', function () {
+return view('front.Rapport')->with([
+'title' => 'GLPI-Rapports',
+'header' => 'Rapports'
+]);
+});

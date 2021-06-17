@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ComposatsCarteSIM;
+use Illuminate\Http\Request;
+
 class ComposantCarteSIMController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class ComposantCarteSIMController extends Controller
      */
     public function index()
     {
-      //
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class ComposantCarteSIMController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -35,14 +36,14 @@ class ComposantCarteSIMController extends Controller
     public function store(Request $request)
     {
         ComposatsCarteSIM::create([
-            'name' => $request -> name,
-            'comment' => $request -> comment,
-            'entities_id' => $request -> entities_id,
-            'is_recursive' => $request -> is_recursive,
-            'fabricant_id' => $request -> fabricant_id,
-            'voltage' => $request -> voltage,
-            'devicesimcardtypes_id' => $request -> devicesimcardtypes_id,
-            'allow_voip' => $request -> allow_voip,
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'entities_id' => $request->entities_id,
+            'is_recursive' => $request->is_recursive,
+            'fabricant_id' => $request->fabricant_id,
+            'voltage' => $request->voltage,
+            'devicesimcardtypes_id' => $request->devicesimcardtypes_id,
+            'allow_voip' => $request->allow_voip,
         ]);
         return redirect()->route('FormAjouterCarteSIM')->with(['success' => 'Élément ajouté']);
     }

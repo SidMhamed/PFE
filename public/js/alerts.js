@@ -13,23 +13,23 @@
 //     });
 // }
 
-$('button').click(function(){
+$('button').click(function() {
     $('.alerts').removeClass('hide');
     $('.alerts').addClass('show');
     $('.alerts').addClass('showAlert');
-    setTimeout(function(){
+    setTimeout(function() {
 
+        $('.alerts').addClass('hide');
+        $('.alerts').removeClass('show');
+
+    }, 5000); //hide alert  automatically  after 5sec
+
+});
+$('.close').click(function() {
     $('.alerts').addClass('hide');
     $('.alerts').removeClass('show');
 
-    }, 5000);//hide alert  automatically  after 5sec
-
-            });
-    $('.close').click(function(){
-    $('.alerts').addClass('hide');
-    $('.alerts').removeClass('show');
-
-            });
+});
 
 // jQuery(document).ready(function(){
 //     jQuery('.toast__close').click(function(e){

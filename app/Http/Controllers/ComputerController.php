@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\glpi_computermodels;
 use App\Models\glpi_computers;
 use App\Models\glpi_computertypes;
 use App\Models\glpi_fabricant;
-use App\Models\glpi_computermodels;
+use App\Models\glpi_groups;
+use App\Models\glpi_location;
 use App\Models\glpi_reseaux;
 use App\Models\glpi_SourceMiseAjour;
 use App\Models\User;
-use App\Models\glpi_location;
-use App\Models\glpi_groups;
+use Illuminate\Http\Request;
+
 class ComputerController extends Controller
 {
     /**
@@ -19,31 +20,65 @@ class ComputerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->search !== null){
-            $search = $request->search;
-            $computers = glpi_computers::orderBy('created_at', 'DESC')->where('id', 'like', '%'.$search.'%')
-                                                                      ->orWhere('nom','like','%'.$search.'%')->paginate(2);
-            $title = 'GLPI-Ordinateurs';
-            $header = 'Ordinateurs';
-            return view('front.computer')->with([
-                'title' => $title,
-                'computers' => $computers,
-                'header' => $header
-            ]);
-        }else{
-            $computers = glpi_computers::all();
-            // dd($computers);
-            $title = 'GLPI-Ordinateurs';
-            $header = 'Ordinateurs';
-            return view('front.computer')->with([
-                'title' => $title,
-                'computers' => glpi_computers::paginate(3),
-                'header' => $header
-            ]);
-        }
+        $title = 'GLPI-Ordinateurs';
+        $header = 'Ordinateurs';
+        return view('front.computer')->with([
+            'title' => $title,
+            'header' => $header,
+        ]);
+    }
+    function action(Request $request){
+     if($request->ajax())
+     {
+      $output = '';
+      $query = $request->get('query');
+      if($query != '')
+      {
+            $data = glpi_computers::where('id', 'like', '%' . $query . '%')
+                ->OrWhere('nom', 'like', '%' . $query . '%')
+                ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
+                ->OrWhere('locations_id', 'like', '%' . $query . '%')
+                ->OrWhere('computermodels_id', 'like', '%' . $query . '%')
+                ->OrWhere('numeroDeSerie', 'like', '%' . $query . '%')
+                ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                ->OrWhere('created_at', 'like', '%' . $query . '%')
+                ->get();
 
+        }
+        else {
+            $data = glpi_computers::orderBy('created_at', 'DESC')
+            ->get();
+        }
+        $total_row = $data->count();
+        if ($total_row > 0) {
+            foreach ($data as $row) {
+                $output .= '
+        <tr>
+         <td valign="top"><a href="' . route('Computer.edit', $row->id) . '">' . $row->nom . '</a></td>
+         <td valign="top">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom . '</td>
+         <td valign="top">' . $row->numeroDeSerie . '</td>
+         <td valign="top">' . glpi_computertypes::findOrFail($row->computertypes_id)->name . '</td>
+         <td valign="top">' . glpi_computermodels::findOrFail($row->computermodels_id)->Nom . '</td>
+         <td valign="top">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+         <td valign="top">' . $row->updated_at . '</td>
+        </tr>
+        ';
+            }
+        } else {
+            $output = '
+       <tr>
+        <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+       </tr>
+       ';
+        }
+        $data = array(
+            'table_data' => $output,
+            'total_data' => $total_row,
+        );
+    }
+        return response()->json($data);
     }
     /**
      * Show the form for creating a new resource.
@@ -60,7 +95,7 @@ class ComputerController extends Controller
         $Reseaux = glpi_reseaux::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
         $user = User::all();
-        $groups =glpi_groups::all();
+        $groups = glpi_groups::all();
         return view('front.ComputerForm')->with([
             'title' => $title,
             'header' => $header,
@@ -70,7 +105,7 @@ class ComputerController extends Controller
             'Reseaux' => $Reseaux,
             'SourceMiseAjours' => $SourceMiseAjours,
             'Users' => $user,
-            'groups' => $groups
+            'groups' => $groups,
         ]);
     }
 
@@ -82,26 +117,7 @@ class ComputerController extends Controller
      */
     public function store(Request $request)
     {
-        glpi_computers::create([
-            'nom'=>$request->nom,
-            'locations_id'=>$request->locations_id,
-            'users_id_tech'=>$request->users_id_tech,
-            'UsagerNumero'=>$request->UsagerNumero,
-            'Usager'=>$request->Usager,
-            'Utilisateur'=>$request->Utilisateur,
-            'groups_id'=>$request->groups_id,
-            'users_id'=>$request->users_id,
-            'uuid'=>$request->uuid,
-            'autoupdatesystems_id'=>$request->autoupdatesystems_id,
-            'states_id'=>$request->states_id,
-            'computertypes_id'=>$request->computertypes_id,
-            'fabricant_id'=>$request->fabricant_id,
-            'computermodels_id'=>$request->computermodels_id,
-            'numeroDeSerie'=>$request->numeroDeSerie,
-            'NumeroDinventaire'=>$request->NumeroDinventaire,
-            'networks_id'=>$request->networks_id,
-            'comment'=>$request->comment,
-            ]);
+        glpi_computers::create($request->all());
         return redirect()->route('Computer.form')->with(['success' => 'Élément ajouté']);
     }
 
@@ -132,7 +148,7 @@ class ComputerController extends Controller
         $Reseaux = glpi_reseaux::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
         $user = User::all();
-        $groups =glpi_groups::all();
+        $groups = glpi_groups::all();
         $Location = glpi_location::all();
         $Computer = glpi_computers::find($id);
         return view('front.edit.ComputerEdit')->with([
@@ -146,7 +162,7 @@ class ComputerController extends Controller
             'Users' => $user,
             'groups' => $groups,
             'Locations' => $Location,
-            'Computer' => $Computer
+            'Computer' => $Computer,
         ]);
     }
 
@@ -161,7 +177,7 @@ class ComputerController extends Controller
     {
         $Computer = glpi_computers::find($id);
         $Computer->update($request->all());
-      return redirect()->route('front.computer')->with(['success' => 'Élément modifié']);
+        return redirect()->route('front.computer')->with(['success' => 'Élément modifié']);
     }
 
     /**
@@ -172,7 +188,7 @@ class ComputerController extends Controller
      */
     public function destroy($id)
     {
-        $Computer =  glpi_computers::where('id', $id)->delete();
+        $Computer = glpi_computers::where('id', $id)->delete();
         return redirect()->route('front.computer')->with(['success' => 'Élément Supprimer']);
     }
 }

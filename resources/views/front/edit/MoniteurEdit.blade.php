@@ -16,14 +16,14 @@
                                 <label for="name">Nom</label>
                             </td>
                             <td>
-                                <input type="text" id="name" value="{{ $Moniteur->name ?? '' }}" class="" name="name"
+                                <input type="text" id="name" value="{{ $Moniteur->name ?? '' }}" class="form-control" name="name"
                                     required>
                             </td>
                             <td>
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="">
+                                <select name="states_id" id="Statut" class="form-control">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -34,7 +34,7 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="">
+                                <select name="locations_id" id="Lieu" class="form-control">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
@@ -46,7 +46,7 @@
                                 <label for="Type">Type</label>
                             </td>
                             <td>
-                                <select name="Moniteurtypes_id" id="Type" class="">
+                                <select name="Moniteurtypes_id" id="Type" class="form-control">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -61,7 +61,7 @@
                                 <label for="RespTech">Responsable technique</label>
                             </td>
                             <td>
-                                <select name="users_id_tech" id="RespTech" class="" required>
+                                <select name="users_id_tech" id="RespTech" class="form-control" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -73,7 +73,7 @@
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="" required>
+                                <select name="fabricant_id" id="Fab" class="form-control" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -88,7 +88,7 @@
                                 <label for="GpTech">Groupe technique</label>
                             </td>
                             <td>
-                                <select name="gruops_tech" id="GpTech" class="">
+                                <select name="gruops_tech" id="GpTech" class="form-control">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -97,7 +97,7 @@
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="Moniteurmodels_id" id="model" class="">
+                                <select name="Moniteurmodels_id" id="model" class="form-control">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Models as $Model)
                                         <option value="{{ $Model->id }}">{{ $Model->Nom }}</option>
@@ -113,14 +113,14 @@
                             </td>
                             <td>
                                 <input type="text" name="UsagerNumero" value="{{ $Moniteur->UsagerNumero ?? '' }}"
-                                    id="UsaNum" class="" required placeholder="" aria-describedby="helpId">
+                                    id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
                                 <input type="text" name="numeroDeSerie" value="{{ $Moniteur->numeroDeSerie ?? '' }}"
-                                    id="NumSerie" class="" required>
+                                    id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -128,7 +128,7 @@
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" value="{{ $Moniteur->Usager ?? '' }}" id="Usager" class=""
+                                <input type="text" name="Usager" value="{{ $Moniteur->Usager ?? '' }}" id="Usager" class="form-control"
                                     required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
@@ -136,7 +136,7 @@
                             </td>
                             <td>
                                 <input type="text" name="NumeroDinventaire"
-                                    value="{{ $Moniteur->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="" required>
+                                    value="{{ $Moniteur->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -144,7 +144,7 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="" required>
+                                <select name="Utilisateur" id="user" class="form-control" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->name }}">{{ $User->name }}</option>
@@ -156,7 +156,7 @@
                                 <label for="TypeDeGestion">Type de Gestion</label>
                             </td>
                             <td>
-                                <select name="TypeDeGestion" id="TypeDeGestion" class="">
+                                <select name="TypeDeGestion" id="TypeDeGestion" class="form-control">
                                     <option value="0">Gestion unitaire</option>
                                     <option value="1">Gestion globale</option>
                                 </select>
@@ -167,7 +167,7 @@
                                 <label for="group">Group</label>
                             </td>
                             <td>
-                                <select name="groups_id" id="group" class="">
+                                <select name="groups_id" id="group" class="form-control">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($groups as $group)
                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -180,7 +180,7 @@
                             </td>
                             <td rowspan="3">
                                 <textarea name="comment" value="{{ $Moniteur->comment }}" id="comment" cols="40" rows="5"
-                                    class="" required></textarea>
+                                    class="form-control" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -188,7 +188,7 @@
                                 <label for="Taille">Taille</label>
                             </td>
                             <td>
-                                <input type="text" class="" value="{{ $Moniteur->Taille }}" name="Taille" id="Taille">
+                                <input type="text" class="form-control" value="{{ $Moniteur->Taille }}" name="Taille" id="Taille">
                             </td>
                         </tr>
                         <tr>
@@ -200,14 +200,14 @@
                                     <tr>
                                         <td>Microphone</td>
                                         <td>
-                                            <select name="Microphone" id="Microphone" class="">
+                                            <select name="Microphone" id="Microphone" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>Enceintes</td>
                                         <td>
-                                            <select name="Enceints" id="Enceintes" class="">
+                                            <select name="Enceints" id="Enceintes" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -216,14 +216,14 @@
                                     <tr>
                                         <td>Sub-D</td>
                                         <td>
-                                            <select name="Sub-D" id="Sub-D" class="">
+                                            <select name="Sub-D" id="Sub-D" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>BNC</td>
                                         <td>
-                                            <select name="BNC" id="BNC" class="">
+                                            <select name="BNC" id="BNC" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -232,14 +232,14 @@
                                     <tr>
                                         <td>DVI</td>
                                         <td>
-                                            <select name="DVI" id="DVI" class="">
+                                            <select name="DVI" id="DVI" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>Pivot</td>
                                         <td>
-                                            <select name="Pivot" id="Pivot" class="">
+                                            <select name="Pivot" id="Pivot" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -248,14 +248,14 @@
                                     <tr>
                                         <td>HDMI</td>
                                         <td>
-                                            <select name="HDMI" id="HDMI" class="">
+                                            <select name="HDMI" id="HDMI" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>DisplayPort</td>
                                         <td>
-                                            <select name="DisplayPort" id="DisplayPort" class="">
+                                            <select name="DisplayPort" id="DisplayPort" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
