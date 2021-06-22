@@ -23,7 +23,7 @@
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="form-control">
+                                <select name="states_id" id="Statut" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -34,7 +34,7 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="form-control">
+                                <select name="locations_id" id="Lieu" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
@@ -46,7 +46,7 @@
                                 <label for="Type">Type</label>
                             </td>
                             <td>
-                                <select name="Moniteurtypes_id" id="Type" class="form-control">
+                                <select name="Moniteurtypes_id" id="Type" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -58,22 +58,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="RespTech">Responsable technique</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="form-control" required>
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="form-control" required>
+                                <select name="fabricant_id" id="Fab" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -82,22 +70,11 @@
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal"
                                     data-target="#Fabricants"></i>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="GpTech">Groupe technique</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="form-control">
-                                    <option value="" selected disabled>-----</option>
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
                             <td>
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="Moniteurmodels_id" id="model" class="form-control">
+                                <select name="Moniteurmodels_id" id="model" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Models as $Model)
                                         <option value="{{ $Model->id }}">{{ $Model->Nom }}</option>
@@ -156,29 +133,17 @@
                                 <label for="TypeDeGestion">Type de Gestion</label>
                             </td>
                             <td>
-                                <select name="TypeDeGestion" id="TypeDeGestion" class="form-control">
+                                <select name="TypeDeGestion" id="TypeDeGestion" class="py-1 px-2">
                                     <option value="0">Gestion unitaire</option>
                                     <option value="1">Gestion globale</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="group">Group</label>
-                            </td>
-                            <td>
-                                <select name="groups_id" id="group" class="form-control">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td rowspan="3">
+                            <td rowspan="2">
                                 <label for="comment">Comment</label>
                             </td>
-                            <td rowspan="3">
+                            <td rowspan="2">
                                 <textarea name="comment" value="{{ $Moniteur->comment }}" id="comment" cols="40" rows="5"
                                     class="form-control" required></textarea>
                             </td>
@@ -200,14 +165,14 @@
                                     <tr>
                                         <td>Microphone</td>
                                         <td>
-                                            <select name="Microphone" id="Microphone" class="form-control">
+                                            <select name="Microphone" id="Microphone" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>Enceintes</td>
                                         <td>
-                                            <select name="Enceints" id="Enceintes" class="form-control">
+                                            <select name="Enceints" id="Enceintes" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -216,14 +181,14 @@
                                     <tr>
                                         <td>Sub-D</td>
                                         <td>
-                                            <select name="Sub-D" id="Sub-D" class="form-control">
+                                            <select name="Sub-D" id="Sub-D" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>BNC</td>
                                         <td>
-                                            <select name="BNC" id="BNC" class="form-control">
+                                            <select name="BNC" id="BNC" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -232,14 +197,14 @@
                                     <tr>
                                         <td>DVI</td>
                                         <td>
-                                            <select name="DVI" id="DVI" class="form-control">
+                                            <select name="DVI" id="DVI" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>Pivot</td>
                                         <td>
-                                            <select name="Pivot" id="Pivot" class="form-control">
+                                            <select name="Pivot" id="Pivot" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -248,14 +213,14 @@
                                     <tr>
                                         <td>HDMI</td>
                                         <td>
-                                            <select name="HDMI" id="HDMI" class="form-control">
+                                            <select name="HDMI" id="HDMI" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
                                         </td>
                                         <td>DisplayPort</td>
                                         <td>
-                                            <select name="DisplayPort" id="DisplayPort" class="form-control">
+                                            <select name="DisplayPort" id="DisplayPort" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>

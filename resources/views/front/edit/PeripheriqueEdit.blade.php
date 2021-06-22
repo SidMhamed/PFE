@@ -57,18 +57,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="RespTech">Responsable technique</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="form-control" required>
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
+
                             <td>
                                 <label for="Fab">Fabricant</label>
                             </td>
@@ -81,17 +70,6 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal"
                                     data-target="#Fabricants"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="GpTech">Groupe technique</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="form-control">
-                                    <option value="" selected disabled>-----</option>
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
                             <td>
                                 <label for="model">Modél</label>
@@ -141,6 +119,13 @@
                             </td>
                         </tr>
                         <tr>
+                            <td rowspan="3">
+                                <label for="comment">Comment</label>
+                            </td>
+                            <td rowspan="3">
+                                <textarea name="comment" value="{{ $Peripherique->comment ?? '' }}" v id="comment"
+                                    cols="35" rows="3" class="form-control" required></textarea>
+                            </td>
                             <td>
                                 <label for="user">Utilisateur</label>
                             </td>
@@ -153,36 +138,17 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
-                            <td>
-                                <label for="TypeDeGestion">Type de Gestion</label>
-                            </td>
-                            <td>
-                                <select name="TypeDeGestion" id="TypeDeGestion" class="form-control">
-                                    <option value="0">Gestion unitaire</option>
-                                    <option value="1">Gestion globale</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="group">Group</label>
-                            </td>
-                            <td>
-                                <select name="groups_id" id="group" class="form-control">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td rowspan="2">
-                                <label for="comment">Comment</label>
-                            </td>
-                            <td rowspan="2">
-                                <textarea name="comment" value="{{ $Peripherique->comment ?? '' }}" v id="comment"
-                                    cols="35" rows="3" class="form-control" required></textarea>
-                            </td>
+                            <tr>
+                                <td>
+                                    <label for="TypeDeGestion">Type de Gestion</label>
+                                </td>
+                                <td>
+                                    <select name="TypeDeGestion" id="TypeDeGestion" class="form-control">
+                                        <option value="0">Gestion unitaire</option>
+                                        <option value="1">Gestion globale</option>
+                                    </select>
+                                </td>
+                            </tr>
                         </tr>
                         <tr>
                             <td>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\glpi_location;
 use App\Models\glpi_groups;
+use App\Models\glpi_location;
 use App\Models\glpi_profile;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     /**
@@ -17,42 +18,41 @@ class UserController extends Controller
      */
     public function index()
     {
-            $title = 'GLPI-Utilisateurs';
-            $header = 'Utilisateurs';
-            return view('front.User')->with([
-                'title' => $title,
-                'header' => $header
-            ]);
+        $title = 'GLPI-Utilisateurs';
+        $header = 'Utilisateurs';
+        return view('front.User')->with([
+            'title' => $title,
+            'header' => $header,
+        ]);
     }
- /**
+
+    /**
      * Search
      *
      * @return \Illuminate\Http\Response
      */
-    function search(Request $request){
-        if($request->ajax())
-        {
-         $output = '';
-         $query = $request->get('query');
-         if($query != '')
-         {
-               $data = User::where('id', 'like', '%' . $query . '%')
-                   ->OrWhere('name', 'like', '%' . $query . '%')
-                   ->OrWhere('statut_id', 'like', '%' . $query . '%')
-                   ->OrWhere('locations_id', 'like', '%' . $query . '%')
-                   ->OrWhere('updated_at', 'like', '%' . $query . '%')
-                   ->OrWhere('created_at', 'like', '%' . $query . '%')
-                   ->get();
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = User::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('last_login', 'like', '%' . $query . '%')
+                    ->OrWhere('email', 'like', '%' . $query . '%')
+                    ->OrWhere('locations_id', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
 
-           }
-           else {
-               $data = User::orderBy('created_at', 'DESC')
-               ->get();
-           }
-           $total_row = $data->count();
-           if ($total_row > 0) {
-               foreach ($data as $row) {
-                   $output .= '
+            } else {
+                $data = User::orderBy('created_at', 'DESC')->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
            <tr>
             <td valign="top"><a href="' . route('Telephone.edit', $row->id) . '">' . $row->name . '</a></td>
             <td valign="top">' . $row->last_login . '</td>
@@ -60,25 +60,24 @@ class UserController extends Controller
             <td valign="top">' . $row->phone . '</td>
             <td valign="top">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
             <td valign="top"></td>
-            <td valign="top"></td>
             <td valign="top">' . $row->updated_at . '</td>
            </tr>
            ';
-               }
-           } else {
-               $output = '
+                }
+            } else {
+                $output = '
           <tr>
            <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
           </tr>
           ';
-           }
-           $data = array(
-               'table_data' => $output,
-               'total_data' => $total_row,
-           );
-       }
-           return response()->json($data);
-       }
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
+        }
+        return response()->json($data);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -96,7 +95,7 @@ class UserController extends Controller
             'header' => $header,
             'Locations' => $Locations,
             'groups' => $groups,
-            'Profiles' => $Profiles
+            'Profiles' => $Profiles,
         ]);
     }
 
@@ -109,34 +108,34 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create([
-            'name' => $request -> name,
-            'fieldlist' => $request ->fieldlist,
-            'phone' => $request ->phone,
-            'phone2' => $request ->phone2,
-            'mobile' => $request ->mobile,
-            'locations_id' => $request ->locations_id,
-            'profiles_id' => $request ->profiles_id,
-            'language' => $request ->language,
-            'use_mode' => $request ->use_mode,
-            'list_limit' => $request ->list_limit,
-            'is_active' => $request ->is_active,
-            'auths_id' => $request ->auths_id,
-            'authtype' => $request ->authtype,
-            'last_login' => $request ->last_login,
-            'date_sync' => $request ->date_sync,
-            'is_deleted' => $request ->is_deleted,
-            'entities_id' => $request ->entities_id,
-            'usertitles_id' => $request ->usertitles_id,
-            'usercategories_id' => $request ->usercategories_id,
-            'csv_delimiter' => $request ->csv_delimiter,
-            'api_token' => $request ->api_token,
-            'api_token_date' => $request ->api_token_date,
-            'cookie_token' => $request ->cookie_token,
-            'cookie_token_date' => $request ->cookie_token_date,
-            'groups_id' => $request ->groups_id,
-            'users_id_supervisor' => $request ->users_id_supervisor,
-            'email' => $request -> email,
-            'email_verified_at' => $request -> email_verified_at,
+            'name' => $request->name,
+            'fieldlist' => $request->fieldlist,
+            'phone' => $request->phone,
+            'phone2' => $request->phone2,
+            'mobile' => $request->mobile,
+            'locations_id' => $request->locations_id,
+            'profiles_id' => $request->profiles_id,
+            'language' => $request->language,
+            'use_mode' => $request->use_mode,
+            'list_limit' => $request->list_limit,
+            'is_active' => $request->is_active,
+            'auths_id' => $request->auths_id,
+            'authtype' => $request->authtype,
+            'last_login' => $request->last_login,
+            'date_sync' => $request->date_sync,
+            'is_deleted' => $request->is_deleted,
+            'entities_id' => $request->entities_id,
+            'usertitles_id' => $request->usertitles_id,
+            'usercategories_id' => $request->usercategories_id,
+            'csv_delimiter' => $request->csv_delimiter,
+            'api_token' => $request->api_token,
+            'api_token_date' => $request->api_token_date,
+            'cookie_token' => $request->cookie_token,
+            'cookie_token_date' => $request->cookie_token_date,
+            'groups_id' => $request->groups_id,
+            'users_id_supervisor' => $request->users_id_supervisor,
+            'email' => $request->email,
+            'email_verified_at' => $request->email_verified_at,
             'password' => Hash::make($request->password),
 
         ]);
@@ -162,18 +161,18 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      $title = "GLPI-Utilisateurs - $id";
-      $header = "Utilisateurs";
-      $User = User::find($id);
-      $groups = glpi_groups::all();
-      $Locations = glpi_location::all();
-      return view('front.edit.UserEdit')->with([
-        'title' => $title,
-        'header' => $header,
-        'User' => $User,
-        'groups' => $groups,
-        'Locations' => $Locations
-      ]);
+        $title = "GLPI-Utilisateurs - $id";
+        $header = "Utilisateurs";
+        $User = User::find($id);
+        $groups = glpi_groups::all();
+        $Locations = glpi_location::all();
+        return view('front.edit.UserEdit')->with([
+            'title' => $title,
+            'header' => $header,
+            'User' => $User,
+            'groups' => $groups,
+            'Locations' => $Locations,
+        ]);
     }
 
     /**
@@ -187,34 +186,34 @@ class UserController extends Controller
     {
         $User = User::find($id);
         $User->update([
-            'name' => $request -> name,
-            'fieldlist' => $request ->fieldlist,
-            'phone' => $request ->phone,
-            'phone2' => $request ->phone2,
-            'mobile' => $request ->mobile,
-            'locations_id' => $request ->locations_id,
-            'profiles_id' => $request ->profiles_id,
-            'language' => $request ->language,
-            'use_mode' => $request ->use_mode,
-            'list_limit' => $request ->list_limit,
-            'is_active' => $request ->is_active,
-            'auths_id' => $request ->auths_id,
-            'authtype' => $request ->authtype,
-            'last_login' => $request ->last_login,
-            'date_sync' => $request ->date_sync,
-            'is_deleted' => $request ->is_deleted,
-            'entities_id' => $request ->entities_id,
-            'usertitles_id' => $request ->usertitles_id,
-            'usercategories_id' => $request ->usercategories_id,
-            'csv_delimiter' => $request ->csv_delimiter,
-            'api_token' => $request ->api_token,
-            'api_token_date' => $request ->api_token_date,
-            'cookie_token' => $request ->cookie_token,
-            'cookie_token_date' => $request ->cookie_token_date,
-            'groups_id' => $request ->groups_id,
-            'users_id_supervisor' => $request ->users_id_supervisor,
-            'email' => $request -> email,
-            'email_verified_at' => $request -> email_verified_at,
+            'name' => $request->name,
+            'fieldlist' => $request->fieldlist,
+            'phone' => $request->phone,
+            'phone2' => $request->phone2,
+            'mobile' => $request->mobile,
+            'locations_id' => $request->locations_id,
+            'profiles_id' => $request->profiles_id,
+            'language' => $request->language,
+            'use_mode' => $request->use_mode,
+            'list_limit' => $request->list_limit,
+            'is_active' => $request->is_active,
+            'auths_id' => $request->auths_id,
+            'authtype' => $request->authtype,
+            'last_login' => $request->last_login,
+            'date_sync' => $request->date_sync,
+            'is_deleted' => $request->is_deleted,
+            'entities_id' => $request->entities_id,
+            'usertitles_id' => $request->usertitles_id,
+            'usercategories_id' => $request->usercategories_id,
+            'csv_delimiter' => $request->csv_delimiter,
+            'api_token' => $request->api_token,
+            'api_token_date' => $request->api_token_date,
+            'cookie_token' => $request->cookie_token,
+            'cookie_token_date' => $request->cookie_token_date,
+            'groups_id' => $request->groups_id,
+            'users_id_supervisor' => $request->users_id_supervisor,
+            'email' => $request->email,
+            'email_verified_at' => $request->email_verified_at,
             'password' => Hash::make($request->password),
         ]);
         return redirect()->route('users.index')->with(['success' => 'Élément modifié']);
@@ -228,7 +227,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $User =  User::where('id', $id)->delete();
+        $User = User::where('id', $id)->delete();
         return redirect()->route('users.index')->with(['success' => 'Élément Supprimer']);
-   }
+    }
 }

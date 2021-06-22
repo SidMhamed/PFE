@@ -19,7 +19,7 @@
                                 <label for="name">Nom</label>
                             </td>
                             <td>
-                                <input type="text" id="name" name="name" required>
+                                <input type="text" id="name" name="name" required  class="form-control">
                             </td>
                             <td>
                                 <label for="Statut">Statut</label>
@@ -38,7 +38,9 @@
                             <td>
                                 <select name="locations_id" id="Lieu" class="px-2 py-1">
                                     <option hidden value="" selected disabled>-----</option>
-                                    <option value="1">iscae</option>
+                                    @foreach ($Locations as $Location)
+                                    <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
+                                    @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -58,18 +60,6 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="RespTech">Responsable technique</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="px-2 py-1" required>
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
@@ -81,17 +71,6 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal"
                                     data-target="#Fabricants"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="GpTech">Groupe technique</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="px-2 py-1">
-                                    <option value="" selected disabled>-----</option>
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
                             <td>
                                 <label for="model">Modél</label>
@@ -113,13 +92,13 @@
                             </td>
                             <td>
                                 <input type="text" name="UsagerNumero" id="UsaNum" required placeholder=""
-                                    aria-describedby="helpId">
+                                    aria-describedby="helpId"  class="form-control">
                             </td>
                             <td>
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" id="NumSerie" required>
+                                <input type="text" name="numeroDeSerie" id="NumSerie" required  class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -128,21 +107,27 @@
                             </td>
                             <td>
                                 <input type="text" name="Usager" id="Usager" required placeholder=""
-                                    aria-describedby="helpId">
+                                    aria-describedby="helpId"  class="form-control">
                             </td>
                             <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" required>
+                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" required  class="form-control">
                             </td>
                         </tr>
                         <tr>
+                            <td rowspan="3">
+                                <label for="comment">Comment</label>
+                            </td>
+                            <td rowspan="3">
+                                <textarea name="comment" id="comment" cols="35" rows="3" required></textarea>
+                            </td>
                             <td>
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="px-2 py-1" required>
+                                <select name="Utilisateur" id="user" class="px-1 py-1" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->name }}">{{ $User->name }}</option>
@@ -150,6 +135,16 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="marque">Marque</label>
+                            </td>
+                            <td>
+                                <input type="text" name="Marque" id="marque" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>
                                 <label for="TypeDeGestion">Type de Gestion</label>
                             </td>
@@ -158,34 +153,6 @@
                                     <option value="0">Gestion unitaire</option>
                                     <option value="1">Gestion globale</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="group">Group</label>
-                            </td>
-                            <td>
-                                <select name="groups_id" id="group" class="px-2 py-1">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td rowspan="2">
-                                <label for="comment">Comment</label>
-                            </td>
-                            <td rowspan="2">
-                                <textarea name="comment" id="comment" cols="35" rows="3" required></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="marque">Marque</label>
-                            </td>
-                            <td>
-                                <input type="text" name="Marque" id="marque">
                             </td>
                         </tr>
                         <tr>

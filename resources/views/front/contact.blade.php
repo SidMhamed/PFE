@@ -14,12 +14,7 @@
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
-                        {{-- <td class="left" width="100%">
-                                <select name="column_name" id="column_name" class="form-control selectpicker" multiple>
-                                    <option value="0">Customer ID</option>
-                                </select>
-                        </td> --}}
-                        <td class="center text-center" width="100%">
+                        <td class="float-left" width="100%">
                             <h5 class="text-center text-white">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">

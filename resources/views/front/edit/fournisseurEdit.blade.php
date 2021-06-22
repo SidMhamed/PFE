@@ -22,7 +22,7 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="name" type="text" value="{{ $Fournisseur->name ?? '' }}" id="name" class="form-control">
+                                    <input name="name" type="text" id="name" value="{{ $Fournisseur->name ?? '' }}" class="form-control">
                                 </td>
                                 <td>
                                     <label for="suppliertypes_id">
@@ -42,29 +42,22 @@
                             </tr>
                             <tr class="">
                                 <td>
-                                    <label for="phonenumber">
-                                        Téléphone
-                                    </label>
-                                </td>
-                                <td>
-                                    <input name="phonenumber" value="{{ $Fournisseur->phonenumber ?? '' }}" id="phonenumber" type="textfield" class="form-control">
-                                </td>
-                                <td rowspan="8">
-                                    <label for="comment">
-                                        Commentaires
-                                    </label>
-                                </td>
-                                <td rowspan="8" class="">
-                                    <textarea name="comment" id="comment" value="{{ $Fournisseur->comment ?? '' }}" cols="45" rows="10"></textarea>
-                                </td>
-                            </tr>
-                            <tr class="">
-                                <td>
                                     <label for="fax">
                                         Fax
                                     </label>
                                 </td>
-                                <td><input name="fax" value="{{ $Fournisseur->fax ?? '' }}" id="fax" type="text" class="form-control"></td>
+                                <td><input name="fax" id="fax" type="text" value="{{ $Fournisseur->fax ?? '' }}" class="form-control"></td>
+                                <td>
+                                    <label for="is_active">
+                                        Active
+                                    </label>
+                                </td>
+                                <td>
+                                    <select name="is_active" id="is_active" class="py-1 px-3">
+                                        <option value="1">oui</option>
+                                        <option value="0">non</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -73,17 +66,15 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="website" value="{{ $Fournisseur->website ?? '' }}" id="website" type="text" class="form-control">
+                                    <input name="website" id="website" value="{{ $Fournisseur->website ?? '' }}" type="text" class="form-control">
                                 </td>
-                            </tr>
-                            <tr>
                                 <td>
                                     <label for="email">
                                         Email
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="email" value="{{ $Fournisseur->email ?? '' }}" id="email" type="email" class="form-control">
+                                    <input name="email" id="email" type="email" value="{{ $Fournisseur->email ?? '' }}" class="form-control">
                                 </td>
                             </tr>
                             <tr class="">
@@ -93,17 +84,15 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="country" value="{{ $Fournisseur->country ?? '' }}"  id="country" type="text" class="form-control">
+                                    <input name="country" id="country" type="text" value="{{ $Fournisseur->country ?? '' }}" class="form-control">
                                 </td>
-                            </tr>
-                            <tr class="">
                                 <td class="">
-                                    <label for="adress">
+                                    <label for="address">
                                         Adresse
                                     </label>
                                 </td>
                                 <td class="">
-                                    <input name="adress" value="{{ $Fournisseur->adress ?? '' }}" class="form-control">
+                                    <input name="address" id="address" value="{{ $Fournisseur->address ?? '' }}" class="form-control">
                                 </td>
                             </tr>
                             <tr class="">
@@ -113,17 +102,33 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="postcode" value="{{ $Fournisseur->postcode ?? '' }}" id="postcode" type="text" class="form-control">
+                                    <input name="postcode" id="postcode" value="{{ $Fournisseur->postcode ?? '' }}" type="text" class="form-control">
                                 </td>
-                            </tr>
-                            <tr class="">
                                 <td>
                                     <label for="country">
                                         Ville
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="country" value="{{ $Fournisseur->country ?? '' }}" id="country" type="text" class="form-control">
+                                    <input name="country" id="country" value="{{ $Fournisseur->country ?? '' }}" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td>
+                                    <label for="phonenumber">
+                                        Téléphone
+                                    </label>
+                                </td>
+                                <td>
+                                    <input name="phonenumber" id="phonenumber" value="phonenumber" type="textfield" class="form-control">
+                                </td>
+                                <td rowspan="2">
+                                    <label for="comment">
+                                        Commentaires
+                                    </label>
+                                </td>
+                                <td rowspan="2" class="">
+                                    <textarea name="comment" id="comment" value="{{ $Fournisseur->comment ?? '' }}" cols="50" rows="5"></textarea>
                                 </td>
                             </tr>
                             <tr class="">
@@ -133,18 +138,7 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input name="state" id="state" type="text" value="{{ $Fournisseur->state ?? '' }}" class="form-control">
-                                </td>
-                                <td>
-                                    <label for="is_active">
-                                        Active
-                                    </label>
-                                </td>
-                                <td>
-                                    <select name="is_active" id="is_active" class="py-1 px-3">
-                                        <option value="">oui</option>
-                                        <option value="">nom</option>
-                                    </select>
+                                    <input name="state" id="state" value="{{ $Fournisseur->state ?? '' }}" type="text" class="form-control">
                                 </td>
                             </tr>
                             <tr>

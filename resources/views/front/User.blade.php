@@ -14,8 +14,8 @@
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
-                        <td class="center text-center" width="100%">
-                            <h5 align="center">Total : <span id="total_records"></span></h5>
+                        <td class="text-center" width="100%">
+                            <h5 class="text-white float-left">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">
                             <a href="{{ route('users.create') }}" class="btn btn-success px-2">
@@ -81,7 +81,6 @@
                     fetch_customer_data(query);
                 });
             });
-
         </script>
         {{-- <div class="d-flex justify-content-center my-4">
             {!! $Users->links('layouts.pagination') !!}

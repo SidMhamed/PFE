@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\glpi_profile;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -14,30 +14,61 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->search !== null){
-            $title = 'GLPI-Profils';
-            $header = 'Profil';
-            $search = $request->search;
-            $profils = glpi_profile::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
-            ->OrWhere('name','like','%'.$search.'%')->paginate(2);
-            return view('front.profiles')->with([
-                'title' => $title,
-                'header' => $header,
-                'profils' => $profils
-            ]);
-        }else{
-            $title = 'GLPI-Profils';
-            $header = 'Profil';
-            $search = $request->search;
-            $profils = glpi_profile::paginate(2);
-            return view('front.profiles')->with([
-                'title' => $title,
-                'header' => $header,
-                'profils' => $profils
-            ]);
-        }
+        $title = 'GLPI-Profils';
+        $header = 'Profil';
+        return view('front.profiles')->with([
+            'title' => $title,
+            'header' => $header,
+        ]);
     }
 
+    /**
+     * Search
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = glpi_profile::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('is_default', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
+
+            } else {
+                $data = glpi_profile::orderBy('created_at', 'DESC')->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('Telephone.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top">' . $row->id . '</td>
+            <td valign="top">' . $row->is_default . '</td>
+            <td valign="top">' . $row->updated_at . '</td>
+           </tr>
+           ';
+                }
+            } else {
+                $output = '
+          <tr>
+           <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
+        }
+        return response()->json($data);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +80,7 @@ class ProfileController extends Controller
         $header = 'Profil';
         return view('front.profileForm')->with([
             'title' => $title,
-            'header' => $header
+            'header' => $header,
         ]);
     }
 

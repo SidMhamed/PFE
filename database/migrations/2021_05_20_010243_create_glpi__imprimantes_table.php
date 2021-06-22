@@ -19,8 +19,6 @@ class CreateGlpiImprimantesTable extends Migration
             $table->string('name')->nullable();
             $table->string('contact')->nullable();
             $table->string('contact_num')->nullable();
-            $table->integer('users_id_tech')->default('0');
-            $table->integer('groups_id_tech')->default('0');
             $table->string('serial')->nullable();
             $table->string('otherserial')->nullable();
             $table->tinyInteger('have_serial')->default('0');

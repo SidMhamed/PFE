@@ -15,7 +15,7 @@
                 <tbody>
                     <tr class="">
                         <td class="center text-center text-white" width="100%">
-                            <h5 align="center">Total : <span id="total_records"></span></h5>
+                            <h5 class="float-left">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">
                             <a href="{{ route('FormMaterielReseau') }}" class="btn btn-success px-2">
@@ -27,7 +27,7 @@
             </table>
 
             <div class="center">
-                <table class="tab_cadrehov" border="0">
+                <table class="tab_cadrehov table text-center" border="0">
                     <thead>
                         <tr class="bg-white">
                             <th><a href="#">Nom</a></th>
@@ -42,7 +42,7 @@
                     </thead>
                     <tbody id="tbodyMaterielReseau">
                     </tbody>
-                   
+
                     <thead>
                         <tr class="bg-white">
                             <th><a href="#">Nom</a></th>
@@ -56,7 +56,7 @@
                         </tr>
                     </thead>
                 </table>
-            </div>    
+            </div>
         </form>
         <script>
             $(document).ready(function() {

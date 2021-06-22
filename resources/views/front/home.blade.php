@@ -72,7 +72,7 @@
                         <i class="fas fa-sim-card float-right" title="Cartes SIM" style="font-size:2em;"></i><br><br>
                         <h6 class="text-left" title="Cartes SIM">Cartes SIM</h6>
                     </a>
-                    <a href="#" class="col-md-3 py-0  px-0 mx-1 text-decoration-none alert Materiel_B home">
+                    <a href="{{ route('MaterielBureau.index') }}" class="col-md-3 py-0  px-0 mx-1 text-decoration-none alert Materiel_B home">
                         <span class="text-left float-left" title="{{ $MaterielBureaux }}" data-precision="0"
                             style="font-size:2.2em;">{{ $MaterielBureaux }}</span>
                         <i class="main-icon fas fa-th float-right" title="Matériel bureaux"

@@ -19,11 +19,8 @@ class CreateGlpiPeripheriquesTable extends Migration
             $table->integer('statut_id')->nullable()->default('0');
             $table->unsignedBigInteger('locations_id')->nullable()->default('0');
             $table->unsignedBigInteger('Peripheriquetypes_id')->nullable()->default('0');
-            $table->integer('users_id_tech')->nullable()->default('0');
             $table->unsignedBigInteger('fabricant_id')->nullable()->default('0');
-            $table->integer('groups_tech')->nullable()->default('0');
             $table->unsignedBigInteger('Peripheriquemodels_id')->nullable()->default('0');
-            $table->unsignedBigInteger('groups_id')->nullable()->default('0');
             $table->string('UsagerNumero')->nullable();
             $table->string('Usager')->nullable();
             $table->string('NumeroDeSerie')->nullable();
@@ -36,7 +33,6 @@ class CreateGlpiPeripheriquesTable extends Migration
 
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fabricant_id')->references('id')->on('glpi_fabricants')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('groups_id')->references('id')->on('glpi_groups')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('Peripheriquemodels_id')->references('id')->on('model_peripheriques')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('Peripheriquetypes_id')->references('id')->on('types_peripheriques')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');

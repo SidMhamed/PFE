@@ -17,11 +17,9 @@ class CreateGlpiMaterielReseauxesTable extends Migration
             $table->id();
             $table->string('nom')->nullable();
             $table->unsignedBigInteger('locations_id')->default('0');
-            $table->integer('users_id_tech')->default('0');
             $table->integer('UsagerNumero')->default('0');
             $table->string('Usager')->nullable();
             $table->string('Utilisateur')->nullable();
-            $table->unsignedBigInteger('groups_id')->default('0');
             $table->unsignedBigInteger('users_id')->default('0');
             $table->integer('autoupdatesystems_id')->default('0');
             $table->integer('states_id')->default('0');
@@ -35,7 +33,6 @@ class CreateGlpiMaterielReseauxesTable extends Migration
             $table->timestamps();
 
             $table->foreign('networks_id')->references('id')->on('glpi_reseauxes')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('groups_id')->references('id')->on('glpi_groups')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('MaterielReseauTypes_id')->references('id')->on('glpi__materiel__reseaux_types')->onUpdate('cascade')->onDelete('cascade');

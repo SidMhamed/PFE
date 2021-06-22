@@ -5,17 +5,8 @@
             <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
             <a class="text-white aa" href="{{ route('Document.index') }}">{{ $header }}</a>
         </h4>
-        <div>
-            <table class="tab_cadre_pager">
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="home">
+
         </div>
         <form action="#" method="post" name="massformComputer" id="massformComputer">
             <table class="tab_glpi" width="95%">
@@ -37,20 +28,9 @@
             </table>
 
             <div class="center">
-                <table class="tab_cadrehov" border="0">
+                <table class="tab_cadrehov table text-center" border="0">
                     <thead>
                         <tr class="bg-white">
-                            <th class="">
-                                <div class="form-group-checkbox">
-                                    <input id="checkall_19067763" type="checkbox" class="new_checkbox" name="checkbox"
-                                        onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
-                                    {return true;}" title="Tout cocher Comme">
-                                    <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                    </label>
-                                </div>
-                            </th>
                             <th><a href="#">Nom</a></th>
                             <th><a href="#">Fichier</a></th>
                             <th><a href="#">Lien web</a></th>
@@ -76,18 +56,9 @@
                         <td  valign="top">{{$Document->comment}}</td>
                      </tr>
                      @endforeach --}}
+                    </tbody>
+                    <header>
                         <tr class="bg-white">
-                            <th class="">
-                                <div class="form-group-checkbox">
-                                    <input id="check_879132758" type="checkbox" class="new_checkbox" name="checkbox"
-                                        onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
-                                       {return true;}" title="Tout cocher Comme">
-                                    <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                    </label>
-                                </div>
-                            </th>
                             <th><a href="#">Nom</a></th>
                             <th><a href="#">Fichier</a></th>
                             <th><a href="#">Lien web</a></th>
@@ -95,7 +66,7 @@
                             <th><a href="#">Type MIME</a></th>
                             <th><a href="#">Commentaires</a></th>
                         </tr>
-                    </tbody>
+                    </header>
                 </table>
             </div>
             <table class="tab_glpi" width="95%">

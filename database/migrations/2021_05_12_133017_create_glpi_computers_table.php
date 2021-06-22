@@ -21,7 +21,6 @@ class CreateGlpiComputersTable extends Migration
             $table->integer('UsagerNumero')->default('0');
             $table->string('Usager')->NULL();
             $table->string('Utilisateur')->nullable();
-            $table->unsignedBigInteger('groups_id')->default('0');
             $table->unsignedBigInteger('users_id')->default('0');
             $table->integer('autoupdatesystems_id')->default('0');
             $table->integer('states_id')->default('0');
@@ -36,7 +35,6 @@ class CreateGlpiComputersTable extends Migration
 
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fabricant_id')->references('id')->on('glpi_fabricants')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('groups_id')->references('id')->on('glpi_groups')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('computermodels_id')->references('id')->on('glpi_computermodels')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('computertypes_id')->references('id')->on('glpi_computertypes')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');

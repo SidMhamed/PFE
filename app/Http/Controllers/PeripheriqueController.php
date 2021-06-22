@@ -33,7 +33,7 @@ class PeripheriqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function search(Request $request)
     {
         if ($request->ajax()) {
@@ -97,6 +97,7 @@ class PeripheriqueController extends Controller
         $title = 'GLPI-Péripheriques --1';
         $header = 'Péripherique';
         $User = User::all();
+        $Locations = glpi_location::all();
         $Fabricants = glpi_fabricant::all();
         $groups = glpi_groups::all();
         $Models = ModelPeripherique::all();
@@ -109,6 +110,7 @@ class PeripheriqueController extends Controller
             'groups' => $groups,
             'Models' => $Models,
             'Types' => $Types,
+            'Locations' => $Locations
         ]);
     }
 

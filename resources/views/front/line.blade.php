@@ -22,7 +22,7 @@
                             </select>
                     </td> --}}
                         <td class="center text-center" width="100%">
-                            <h5 align="center">Total : <span id="total_records"></span></h5>
+                            <h5 class="float-left">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">
                             <a href="{{ route('Lines.create') }}" class="btn btn-success px-2">

@@ -27,32 +27,11 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="form-control">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    <option value="1">iscae</option>
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="RespTech">Responsable technique</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="py-1 px-2">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
+                                <select name="locations_id" id="Lieu" class="py-1 px-2">
+                                    <option hidden value="" selected disabled>----</option>
+                                    @foreach ($Locations as $Location)
+                                    <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
                                     @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
-                                <label for="GpTech">Groupe technique</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="py-1 px-2">
-                                    <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -82,18 +61,6 @@
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->name }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
-                                <label for="group">Group</label>
-                            </td>
-                            <td>
-                                <select name="groups_id" id="group" class="py-1 px-2">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -211,7 +178,7 @@
                                             <label for="Série">Série</label>
                                         </td>
                                         <td>
-                                            <select name="have_serial" id="Série" class="form-control">
+                                            <select name="have_serial" id="Série" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -220,7 +187,7 @@
                                             <label for="Ethernet">Ethernet</label>
                                         </td>
                                         <td>
-                                            <select name="have_usb" id="Ethernet" class="form-control">
+                                            <select name="have_usb" id="Ethernet" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -231,7 +198,7 @@
                                             <label for="Wifi">Wifi</label>
                                         </td>
                                         <td>
-                                            <select name="have_wifi" id="Wifi" class="form-control">
+                                            <select name="have_wifi" id="Wifi" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -240,7 +207,7 @@
                                             <label for="Parallèle">Parallèle</label>
                                         </td>
                                         <td>
-                                            <select name="have_parallel" id="Parallèle" class="form-control">
+                                            <select name="have_parallel" id="Parallèle" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>

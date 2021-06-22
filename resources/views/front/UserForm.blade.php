@@ -17,33 +17,18 @@
                         <tr>
                             <td><label for="name">Identifiant</label></td>
                             <td><input type="text" name="name" id="name" class="form-control"></td>
-                            <td rowspan="4"></td>
-                            <td rowspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="fieldlist">Nom de Famille</label></td>
-                            <td><input type="text" id="fieldlist" name="fieldlist" class="form-control"> </td>
-                        </tr>
+                    </tr>
                         <tr>
                             <td><label for="last_login">Prénom</label></td>
                             <td><input type="text" name="Plast_login" id="last_login" class="form-control"></td>
-                        </tr>
+                            <td><label for="fieldlist">Nom de Famille</label></td>
+                            <td><input type="text" id="fieldlist" name="fieldlist" class="form-control"> </td>
+                          </tr>
                         <tr>
                             <td><label for="password">Mot de Passe</label></td>
                             <td><input type="password" name="password" id="password" class="form-control"></td>
-                        </tr>
-                        <tr>
                             <td><label for="Cpassword">Confirmation de Mot de Passe</label></td>
                             <td><input type="password" name="password" id="Cpassword" class="form-control"></td>
-                            <td><label for="groups">groups</label></td>
-                            <td>
-                                <select name="groups_id" id="groups_id" class="py-1 px-3">
-                                    <option value="">-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
                         </tr>
                         <tr>
                             <td><label for="active">Actif</label></td>
@@ -64,7 +49,7 @@
                         </tr>
                         <tr>
                             <td><label for="phone">Téléphone</label></td>
-                            <td colspan="3"><input type="tel" name="phone" id="phone" class="form-control"></td>
+                            <td><input type="tel" name="phone" id="phone" class="form-control"></td>
                         </tr>
                         <tr>
                             <td><label for="mobile">Téléphone mobile</label></td>

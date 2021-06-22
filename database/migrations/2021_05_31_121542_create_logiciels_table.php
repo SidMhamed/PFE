@@ -19,9 +19,6 @@ class CreateLogicielsTable extends Migration
             $table->text('comment')->nullable();
             $table->unsignedBigInteger('locations_id')->nullable()->default('0');
             $table->unsignedBigInteger('users_id')->nullable()->default('0');
-            $table->unsignedBigInteger('groups_id')->nullable()->default('0');
-            $table->integer('users_id_tech')->nullable()->default('0');
-            $table->integer('groups_id_tech')->nullable()->default('0');
             $table->tinyInteger('is_update')->nullable()->default('0');
             $table->integer('logiciels_id')->nullable()->default('0');
             $table->unsignedBigInteger('fabricant_id')->nullable()->default('0');
@@ -37,7 +34,6 @@ class CreateLogicielsTable extends Migration
             $table->foreign('LogicielCategories_id')->references('id')->on('logiciel_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fabricant_id')->references('id')->on('glpi_fabricants')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('groups_id')->references('id')->on('glpi_groups')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');
 
             Schema::disableForeignKeyConstraints();

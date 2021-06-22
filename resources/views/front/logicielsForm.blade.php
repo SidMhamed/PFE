@@ -25,7 +25,7 @@
                                 <label for="fabricant_id">Éditeur</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="fabricant_id" class="form-control">
+                                <select name="fabricant_id" id="fabricant_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -40,7 +40,7 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="form-control">
+                                <select name="locations_id" id="Lieu" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
@@ -52,7 +52,7 @@
                                 <label for="Type">Catégorie</label>
                             </td>
                             <td>
-                                <select name="LogicielCategories_id" id="Type" class="form-control">
+                                <select name="LogicielCategories_id" id="Type" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($LogicielCategories as $LogicielCategorie)
                                         <option value="{{ $LogicielCategorie->id }}">{{ $LogicielCategorie->name }}
@@ -65,55 +65,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="RespTech">Technicien chargé du logiciel</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="form-control" required>
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
-                                <label for="ticket_tco">Associable à un ticket</label>
-                            </td>
-                            <td>
-                                <select name="ticket_tco" id="ticket_tco" class="form-control" required>
-                                    <option value="0">Oui</option>
-                                    <option value="1">Non</option>
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal"
-                                    data-target="#Fabricants"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="GpTech">Groupe chargé du logiciel</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="form-control">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Locations as $Location)
-                                        <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td rowspan="4">
-                                <label for="comment">Comment</label>
-                            </td>
-                            <td rowspan="4">
-                                <textarea name="comment" id="comment" cols="50" rows="6" class="form-control" required></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                                 <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="users_id" id="users_id" class="form-control" required>
+                                <select name="users_id" id="users_id" class="py-1 px-2" required>
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
@@ -121,19 +76,11 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="group">Group</label>
+                            <td rowspan="2">
+                                <label for="comment">Commentaires</label>
                             </td>
-                            <td>
-                                <select name="groups_id" id="group" class="form-control">
-                                    <option value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+                            <td rowspan="2">
+                                <textarea name="comment" id="comment" cols="50" rows="6" class="py-1 px-2" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -141,11 +88,11 @@
                                 <label for="MiseAjour">Mise à jour</label>
                             </td>
                             <td>
-                                <select name="is_update" id="MiseAjour" class="form-control">
+                                <select name="is_update" id="MiseAjour" class="py-1 px-2">
                                     <option value="0">Oui</option>
                                     <option value="1">Non</option>
                                 </select> de
-                                <select name="MiseAjour" id="MiseAjour" class="form-control">
+                                <select name="MiseAjour" id="MiseAjour" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($SourceMiseAjours as $SourceMiseAjour)
                                         <option value="{{ $SourceMiseAjour->id }}">{{ $SourceMiseAjour->Nom }}

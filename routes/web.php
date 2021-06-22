@@ -37,6 +37,9 @@ use App\Http\Controllers\SuppliertypesController;
 use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\CotactsController;
 use App\Http\Controllers\GlpiLineController;
+use App\Http\Controllers\MaterielBureauController;
+use App\Http\Controllers\GlpiLicenseController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -126,6 +129,8 @@ Route::resource('/Domaines', 'DomainesController');
 Route::resource('/DomainesType' ,'DomainesTypeController');
 Route::resource('/Contacts', 'CotactsController');
 Route::resource('/Lines', 'GlpiLineController');
+Route::resource('/MaterielBureau','MaterielBureauController');
+Route::resource('/License', 'GlpiLicenseController');
 /**
  * Search
  */
@@ -141,9 +146,11 @@ Route::get('/FournisseurSearch', [SuppliersController::class, 'search']);
 Route::get('/DomaineSearch', [DomainesController::class,'search']);
 Route::get('/ContactsSearch', [CotactsController::class,'search']);
 Route::get('/LinesSearch', [GlpiLineController::class,'search']);
+Route::get('/UsersSearch', [UserController::class, 'search']);
 Route::post('/searchUser', [UserController::class, 'index'])->name('SearchUser.index');
-Route::post('/Searchgroups', [GroupController::class, 'index'])->name('GroupSearch.index');
-Route::post('/Searchprofile', [ProfileController::class, 'index'])->name('SearchProfile.index');
+Route::get('/ProfilesSearch', [ProfileController::class, 'search']);
+Route::get('/MaterielBureauSearch', [MaterielBureauController::class, 'search']);
+Route::get('/LicensesSearch', [GlpiLicenseController::class, 'search']);
 
 
 Route::get('/Rapport', function () {

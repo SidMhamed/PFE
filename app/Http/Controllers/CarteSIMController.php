@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ComposatsCarteSIM;
 use App\Models\glpi_fabricant;
-use App\Models\glpi_groups;
+use App\Models\glpi_line;
 use App\Models\glpi_location;
 use App\Models\ItemsCarteSIM;
 use App\Models\User;
@@ -83,7 +83,7 @@ class CarteSIMController extends Controller
         $title = 'GLPI-Cartes SIM';
         $header = 'Catre SIM';
         $user = User::all();
-        $groups = glpi_groups::all();
+        $Lignes = glpi_line::all();
         $Locations = glpi_location::all();
         $Fabricants = glpi_fabricant::all();
         $Composants = ComposatsCarteSIM::all();
@@ -91,7 +91,7 @@ class CarteSIMController extends Controller
             'title' => $title,
             'header' => $header,
             'Users' => $user,
-            'Groups' => $groups,
+            'Lignes' => $Lignes,
             'Locations' => $Locations,
             'Fabricants' => $Fabricants,
             'Composants' => $Composants,
@@ -132,7 +132,7 @@ class CarteSIMController extends Controller
         $title = "GLPI-Cartes SIM - $id";
         $header = 'Catre SIM';
         $user = User::all();
-        $groups = glpi_groups::all();
+        $Lignes = glpi_line::all();
         $Fabricants = glpi_fabricant::all();
         $Composants = ComposatsCarteSIM::all();
         $Locations = glpi_location::all();
@@ -141,7 +141,7 @@ class CarteSIMController extends Controller
             'title' => $title,
             'header' => $header,
             'Users' => $user,
-            'Groups' => $groups,
+            'Lignes' => $Lignes,
             'Fabricants' => $Fabricants,
             'Composants' => $Composants,
             'locations' => $Locations,

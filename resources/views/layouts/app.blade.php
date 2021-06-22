@@ -109,6 +109,12 @@
                                                     Matériels réseau
                                                 </a>
                                             </li>
+                                            <li>
+                                                <a href="{{ route('MaterielBureau.index') }}" class="dropdown-item">
+                                                    <i class='fa-fw fas fa-th'></i>
+                                                    Matériels Bureau
+                                                </a>
+                                            </li>
                                         </ul>
                                         <ul class="list-unstyled col-md-6">
                                             <li>
@@ -152,7 +158,7 @@
                                     <div class="row" style="width:450px;">
                                         <ul class="list-unstyled col-md-4">
                                             <li>
-                                                <a href="#" class="dropdown-item">
+                                                <a href="{{ route('License.index') }}" class="dropdown-item">
                                                     <i class='fa-fw fas fa-key'></i>
                                                     Lice<u>n</u>ces
                                                 </a>
@@ -203,12 +209,12 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li>
                                     <ul class="list-unstyled">
-                                        <li>
+                                        {{-- <li>
                                             <a href="#" class="dropdown-item">
                                                 <i class='fa-fw far fa-sticky-note'></i>
                                                 Notes
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <a href="{{ url('/Rapport') }}" accesskey='e' class="dropdown-item">
                                                 <i class='fa-fw fas fa-file-medical-alt'></i>
@@ -239,12 +245,12 @@
                                                 Profils
                                             </a>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <a href="#" class="dropdown-item">
                                                 <i class='fa-fw fas fa-layer-group'></i>
                                                 E<u>n</u>tités
                                             </a>
-                                        </li>
+                                        </li> --}}
                             </ul>
                         </li>
                     </ul>

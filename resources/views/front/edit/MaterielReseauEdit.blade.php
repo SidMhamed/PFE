@@ -16,41 +16,18 @@
                                 <label for="model">Nom</label>
                             </td>
                             <td>
-                                <input type="text" name="nom" value="{{ $MaterielReseau->nom ?? '' }}" id="Nom" class="form-control"
-                                    required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="nom" id="Nom" value="{{ $MaterielReseau->nom ?? '' }}" class="form-control" required placeholder=""
+                                    aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="form-control">
+                                <select name="locations_id" id="Lieu" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
-                                        <option value="{{ $Location->id }}">{{ $Location->name }}</option>
+                                    <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
                                     @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="RespTech">Responsable technique</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="form-control" required>
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
-                                <label for="GpTech">Groupe technique</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="form-control">
-                                    <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -60,41 +37,15 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" value="{{ $MaterielReseau->UsagerNumero ?? '' }}" name="UsagerNumero"
-                                    id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="UsagerNumero" id="UsaNum" value="{{ $MaterielReseau->UsagerNumero ?? '' }}" class="form-control" required placeholder=""
+                                    aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" value="{{ $MaterielReseau->Usager ?? '' }}" id="Usager"
-                                    class="form-control" required placeholder="" aria-describedby="helpId">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="user">Utilisateur</label>
-                            </td>
-                            <td>
-                                <select name="Utilisateur" id="user" class="form-control" required>
-                                    <option value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
-                                <label for="group">Group</label>
-                            </td>
-                            <td>
-                                <select name="groups_id" id="group" class="form-control">
-                                    <option value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+                                <input type="text" name="Usager" id="Usager" value="{{ $MaterielReseau->Usager ?? '' }}" class="form-control" required placeholder=""
+                                    aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -106,8 +57,7 @@
                                 <label for="Mémoire">Mémoire (Mio)</label>
                             </td>
                             <td>
-                                <input type="text" name="Memoire" value="{{ $MaterielReseau->Memoire ?? '' }}" class="form-control"
-                                    id="Mémoire">
+                                <input type="text" name="Memoire" value="{{ $MaterielReseau->Memoire ?? '' }}" class="form-control" id="Mémoire">
                             </td>
                         </tr>
                         <tr>
@@ -115,7 +65,7 @@
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="form-control">
+                                <select name="states_id" id="Statut" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -125,7 +75,7 @@
 
                             </td>
                             <td>
-                                <select name="MaterielReseauTypes_id" id="Type" class="form-control" required>
+                                <select name="MaterielReseauTypes_id" id="Type" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -140,7 +90,7 @@
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="form-control" required>
+                                <select name="fabricant_id" id="Fab" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -153,7 +103,7 @@
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="MaterielReseauModels_id" id="model" class="form-control" required>
+                                <select name="MaterielReseauModels_id" id="model" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Modeles as $Modele)
                                         <option value="{{ $Modele->id }}">{{ $Modele->Nom }}</option>
@@ -168,16 +118,33 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" value="{{ $MaterielReseau->numeroDeSerie ?? '' }}"
-                                    id="NumSerie" class="form-control" required>
+                                <input type="text" name="numeroDeSerie" value="{{ $MaterielReseau->numeroDeSerie ?? '' }}" id="NumSerie" class="form-control" required>
                             </td>
                             <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire"
-                                    value="{{ $MaterielReseau->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="form-control"
-                                    required>
+                                <input type="text" name="NumeroDinventaire" value="{{ $MaterielReseau->NumeroDinventaire ?? '' }}"  id="NumDinventaire" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="user">Utilisateur</label>
+                            </td>
+                            <td>
+                                <select name="Utilisateur" id="user" class="py-1 px-2" required>
+                                    <option hidden value="" selected disabled>-----</option>
+                                    @foreach ($Users as $User)
+                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                    @endforeach
+                                </select>
+                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
+                            </td>
+                            <td rowspan="2">
+                                <label for="comment">Comment</label>
+                            </td>
+                            <td rowspan="2">
+                                <textarea name="comment" id="comment" value="{{ $MaterielReseau->comment ?? '' }}" cols="30" rows="3" class="form-control" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -185,7 +152,7 @@
                                 <label for="reseau">Réseau</label>
                             </td>
                             <td>
-                                <select name="networks_id" id="reseau" class="form-control" required>
+                                <select name="networks_id" id="reseau" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Reseaux as $Reseau)
                                         <option value="{{ $Reseau->id }}">{{ $Reseau->name }}</option>
@@ -193,13 +160,6 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal"
                                     data-target="#ModalReseaux" onclick="$('#Add_Reseau').dialog('open');"></i>
-                            </td>
-                            <td>
-                                <label for="comment">Commentaires</label>
-                            </td>
-                            <td>
-                                <textarea name="comment" id="comment" value="{{ $MaterielReseau->comment ?? '' }}"
-                                    cols="30" rows="8" class="form-control" required></textarea>
                             </td>
                         </tr>
                         </tr>

@@ -29,7 +29,7 @@ class MoniteurController extends Controller
 
      /**
      * Search
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     function search(Request $request){
@@ -50,7 +50,7 @@ class MoniteurController extends Controller
                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
                    ->OrWhere('created_at', 'like', '%' . $query . '%')
                    ->get();
-   
+
            }
            else {
                $data = glpi_Moniteur::orderBy('created_at', 'DESC')
@@ -75,7 +75,7 @@ class MoniteurController extends Controller
            } else {
                $output = '
           <tr>
-           <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+           <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
           </tr>
           ';
            }

@@ -37,14 +37,13 @@
                                 <label for="serial">Numéro de série</label>
                             </td>
                             <td>
-                                <input type="text" name="serial" value="{{ $CarteSIM->serial ?? '' }}" id="serial">
+                                <input type="text" name="serial" value="{{ $CarteSIM->serial ?? '' }}" id="serial" class="form-control">
                             </td>
                             <td>
                                 <label for="otherserial">Numéro d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="otherserial" value="{{ $CarteSIM->otherserial ?? '' }}"
-                                    id="otherserial">
+                                <input type="text" name="otherserial" value="{{ $CarteSIM->otherserial ?? ''}}" value="otherserial" id="otherserial" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -54,8 +53,8 @@
                             <td>
                                 <select name="locations_id" id="locations_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
-                                    @foreach ($locations as $location)
-                                        <option value="{{ $location->id }}">{{ $location->Nom }}</option>
+                                    @foreach ($Locations as $Location)
+                                        <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -78,15 +77,13 @@
                                 <label for="pin">Code PIN</label>
                             </td>
                             <td>
-                                <input type="text" name="pin" value="{{ $CarteSIM->pin ?? '' }}" id="pin" class="form-control"
-                                    placeholder="" aria-describedby="helpId">
+                                <input type="text" name="pin" value="{{ $CarteSIM->pin ?? '' }}" id="pin" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="pin2">Code PIN2</label>
                             </td>
                             <td>
-                                <input type="text" name="pin2" value="{{ $CarteSIM->pin2 ?? '' }}" id="pin2" class="form-control"
-                                    placeholder="" aria-describedby="helpId">
+                                <input type="text" name="pin2" value="{{ $CarteSIM->pin2 ?? '' }}" id="pin2" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -94,15 +91,13 @@
                                 <label for="puk">Code PUK</label>
                             </td>
                             <td>
-                                <input type="text" name="puk" value="{{ $CarteSIM->puk ?? '' }}" id="puk" class="form-control"
-                                    placeholder="" aria-describedby="helpId">
+                                <input type="text" name="puk" value="{{ $CarteSIM->puk ?? '' }}" id="puk" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="puk2">Code PUK2</label>
                             </td>
                             <td>
-                                <input type="text" name="puk2" value="{{ $CarteSIM->puk2 ?? '' }}" id="puk2" class="form-control"
-                                    placeholder="" aria-describedby="helpId">
+                                <input type="text" name="puk2" value="{{ $CarteSIM->puk2 ?? '' }}" id="puk2" class="form-control" placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
@@ -112,18 +107,18 @@
                             <td>
                                 <select name="lines_id" id="lines_id" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
-                                    {{-- @foreach ($Locations as $Location)
-                                            <option value="{{$Location->id}}">{{$Location->name}}</option>
-                                        @endforeach --}}
+                                    @foreach ($Lignes as $Ligne)
+                                            <option value="{{$Ligne->id}}">{{$Ligne->name}}</option>
+                                        @endforeach
                                 </select>
+                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
                             <td>
                                 <label for="msin">Mobile Subscriber Identification Number</label>
                                 <i class="fas fa-info pointer" title="Le MSIN est Constitué des 8 ou 10 derniers Chiffres de l'IMSI"></i>
                             </td>
                             <td>
-                                <input type="text" name="msin" value="{{ $CarteSIM->msin ?? '' }}" id="msin" class="form-control px-0" required>
-
+                                <input type="text" name="msin" id="msin" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -138,17 +133,6 @@
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
-                                <label for="Groupe">Groupe</label>
-                            </td>
-                            <td>
-                                <select name="Groups_id" id="Groupe" class="py-1 px-2">
-                                    <option value="" selected disabled>-----</option>
-                                    @foreach ($Groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
                             </td>
                         </tr>
                         <tr class="alert alert-dark">

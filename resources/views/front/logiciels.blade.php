@@ -15,7 +15,7 @@
                 <tbody>
                     <tr class="">
                         <td class="center text-center" width="100%">
-                            <h5 class="text-center text-white">Total : <span id="total_records"></span></h5>
+                            <h5 class="float-left text-white">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">
                             <a href="{{ route('Logiciel.create') }}" class="btn btn-success px-2">

@@ -28,7 +28,6 @@ class CreateItemsCarteSIMSTable extends Migration
             $table->unsignedBigInteger('locations_id')->nullable()->default('0');
             $table->integer('lines_id')->nullable()->default('0');
             $table->unsignedBigInteger('users_id')->nullable()->default('0');
-            $table->unsignedBigInteger('groups_id')->nullable()->default('0');
             $table->string('pin')->nullable();
             $table->string('pin2')->nullable();
             $table->string('puk')->nullable();
@@ -38,7 +37,6 @@ class CreateItemsCarteSIMSTable extends Migration
 
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('locations_id')->references('id')->on('glpi_locations')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('groups_id')->references('id')->on('glpi_groups')->onUpdate('cascade')->onDelete('cascade');
 
             Schema::disableForeignKeyConstraints();
         });

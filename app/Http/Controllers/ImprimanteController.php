@@ -96,6 +96,7 @@ public function search(Request $request){
         $Fabricants = glpi_fabricant::all();
         $Reseaux = glpi_reseaux::all();
         $groups =glpi_groups::all();
+        $Locations = glpi_location::all();
         $Types = ImprimanteTypes::all();
         $Modeles = ImprimanteModel::all();
         return view('front.ImprimanteForm')->with([
@@ -106,7 +107,8 @@ public function search(Request $request){
             'Fabricants' => $Fabricants,
             'Reseaux' => $Reseaux,
             'Types' => $Types,
-            'Modeles' => $Modeles
+            'Modeles' => $Modeles,
+            'Locations' => $Locations
         ]);
     }
 

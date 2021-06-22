@@ -45,7 +45,7 @@ class Materiel_ReseauController extends Controller
     }
 /**
  * Search
- * 
+ *
  * @return \Illuminate\Http\Response
  */
 function search(Request $request){
@@ -89,7 +89,7 @@ function search(Request $request){
        } else {
            $output = '
       <tr>
-       <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+       <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
       </tr>
       ';
        }
@@ -112,7 +112,7 @@ function search(Request $request){
         $Fabricants = glpi_fabricant::all();
         $Users = User::all();
         $Reseaux = glpi_reseaux::all();
-        $groups = glpi_groups::all();
+        $Locations = glpi_location::all();
         $Type = glpi_Materiel_ReseauxTypes::all();
         $Model = glpi_Materiel_ReseauxModele::all();
      return view('front.Materiel-reseauForm')->with([
@@ -121,7 +121,7 @@ function search(Request $request){
         'Fabricants' => $Fabricants,
         'Users' => $Users,
         'Reseaux'=> $Reseaux,
-        'groups' => $groups,
+        'Locations' => $Locations,
         'Types' => $Type,
         'Modeles' => $Model,
      ]);

@@ -29,7 +29,7 @@ class TeleController extends Controller
     }
     /**
      * Search
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     function search(Request $request){
@@ -49,7 +49,7 @@ class TeleController extends Controller
                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
                    ->OrWhere('created_at', 'like', '%' . $query . '%')
                    ->get();
-   
+
            }
            else {
                $data = glpi_Telephone::orderBy('created_at', 'DESC')
@@ -74,7 +74,7 @@ class TeleController extends Controller
            } else {
                $output = '
           <tr>
-           <td align="center" colspan="7" valign="top">Aucune donnée disponible</td>
+           <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
           </tr>
           ';
            }
@@ -96,17 +96,17 @@ class TeleController extends Controller
         $header = 'Téléphone';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Types =TelephoneTypes::all();
         $Models = TelephoneModeles::all();
+        $Locations = glpi_location::all();
         return view('front.TelephoneForm')->with([
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
             'Fabricants' => $Fabricants,
-            'groups' => $groups,
             'Types' => $Types,
-            'Models' => $Models
+            'Models' => $Models,
+            'Locations' => $Locations
         ]);
     }
 
