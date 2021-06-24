@@ -10,6 +10,8 @@ use App\Models\glpi_Telephone;
 use App\Models\TelephoneTypes;
 use App\Models\TelephoneModeles;
 use App\Models\glpi_location;
+use Illuminate\Support\Facades\App;
+
 class TeleController extends Controller
 {
 
@@ -85,6 +87,54 @@ class TeleController extends Controller
        }
            return response()->json($data);
        }
+
+   // Generate PDF
+   public function pdf()
+   {
+       $pdf = App::make('dompdf.wrapper');
+       $pdf->loadHTML($this->convert_Moniteur_to_html());
+       $pdf->stream();
+       // download PDF file with download method
+       return $pdf->download('pdf_file.pdf');
+   }
+// Convert data to html
+   public function convert_Moniteur_to_html()
+   {
+       $data = glpi_Telephone::all();
+       $output = '
+<h3 style="text-align:center;">Listes des Téléphones</h3>
+<table  style="margin: 0px auto 5px auto; background: #FFF; z-index: 1;text-align: center;border-collapse:collapse;font-size: 11px;max-width:100%;width:100%;border-spacing:0;">
+<tr>
+<th style="border:1px solid;padding:5px">ID</th>
+<th style="border:1px solid;padding:5px">Nom</th>
+<th style="border:1px solid;padding:5px">Statut</th>
+<th style="border:1px solid;padding:5px">Fabricant</th>
+<th style="border:1px solid;padding:5px">Type</th>
+<th style="border:1px solid;padding:5px">Modèle</th>
+<th style="border:1px solid;padding:5px">Lieu</th>
+<th style="border:1px solid;padding:5px">Dernière modification</th>
+<th style="border:1px solid;padding:5px">Usager</th>
+</tr>';
+       foreach ($data as $row) {
+           $output .= '
+<tr>
+<td style="border:1px solid;padding:5px">' . $row->id . '</td>
+<td style="border:1px solid;padding:5px">' . $row->name . '</td>
+<td style="border:1px solid;padding:5px">' . $row->statut_id . '</td>
+<td style="border:1px solid;padding:5px">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom . '</td>
+<td style="border:1px solid;padding:5px">' . TelephoneTypes::findOrFail($row->telephonetypes_id)->name . '</td>
+<td style="border:1px solid;padding:5px">' . TelephoneModeles::findOrFail($row->telephonemodels_id)->name . '</td>
+<td style="border:1px solid;padding:5px">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+<td style="border:1px solid;padding:5px">' . $row->updated_at . '</td>
+<td style="border:1px solid;padding:5px">' . $row->Usager . '</td>
+</tr>
+';
+       }
+       $output .= '</table>';
+       return $output;
+   }
+
+
     /**
      * Show the form for creating a new resource.
      *

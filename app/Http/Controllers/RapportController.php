@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\glpi_computers;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use App\config\app;
@@ -26,7 +26,7 @@ class PDFController extends Controller
 
     function pdf()
     {
-     $pdf = PDF->make('dompdf.wrapper');
+     $pdf = PDF::make('dompdf.wrapper');
      $pdf->loadHTML($this->convert_customer_data_to_html());
      return $pdf->stream();
     }
@@ -37,7 +37,7 @@ class PDFController extends Controller
 
         // share data to view
         view()->share('employee',$data);
-        $pdf = PDF->loadView('pdf_view', $data);
+        $pdf = PDF::loadView('pdf_view', $data);
 
         // download PDF file with download method
         return $pdf->download('pdf_file.pdf');

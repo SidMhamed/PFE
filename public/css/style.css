@@ -10,12 +10,13 @@ body {
 
 #header {
     height: 96px;
-    position:fixed;
-    right:0;
-    left:0;
-    top:0;
-    z-index:1000;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 1000;
 }
+
 #header_top {
     /* background-color: #1B2F62; */
     background-color: rgba(53, 164, 80, 1);
@@ -25,19 +26,21 @@ body {
 }
 
 #header #c_logo {
-    position:absolute;
+    position: absolute;
     z-index: 2000;
     width: 100px;
-    max-height:90px;
+    max-height: 90px;
     /* bottom: -12px;
     top: -19px; */
     float: left;
 }
-#header #c_logo a img{
-    margin:auto;
+
+#header #c_logo a img {
+    margin: auto;
     margin-top: 19%;
     max-height: 96px;
 }
+
 
 /* #boxlogin .login_input:before {
     font-family: 'Font Awesome\ 5 Free';
@@ -48,6 +51,7 @@ body {
     font-size: 24px;
     font-weight: 900;
 } */
+
 #header #c_logo a {
     display: block;
     width: 110px;
@@ -117,21 +121,24 @@ body {
     height: 30px;
     font-size: 1.3em;
 }
-  .home, .recherche{
-       padding:20px;
-       box-shadow: -3px -3px 7px #ffffff73,
-             2px 2px 5px rgba(94, 104, 121, 0.288);
 
-   }
+.home,
+.recherche {
+    padding: 20px;
+    box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+}
+
 button.unstyled {
     background: none;
     border: none;
     margin: none;
 }
+
 .pointer {
     opacity: 0.7;
     cursor: pointer;
 }
+
 input.submit {
     padding: 5px;
     cursor: pointer;
@@ -183,9 +190,7 @@ input {
 #c_menu ul li ul li a:hover {
     background-color: rgb(58, 132, 155);
     font-style: italic;
-
 }
-
 
 #c_menu ul li {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -258,17 +263,19 @@ input {
 .tab_cadre_fixehov td,
 .tab_cadrehov td {
     padding: 8px 5px;
-
 }
-td.subheader, th.subheader {
+
+td.subheader,
+th.subheader {
     background-color: #EEEEEE;
     text-align: center;
     font-weight: bold;
 }
-.tab_cadrehov tr:hover{
-    background-color: #dedede;
 
+.tab_cadrehov tr:hover {
+    background-color: #dedede;
 }
+
 .tab_cadre_fixe {
     margin: 0px auto 5px auto;
     background: #FFF;
@@ -279,21 +286,29 @@ td.subheader, th.subheader {
     width: 100%;
     border-spacing: 0;
 }
-.tab_cadre td, .tab_cadre_fixe td {
+
+.tab_cadre td,
+.tab_cadre_fixe td {
     padding: 5px;
 }
+
+
 /* .select1 {
     border: 1px solid #D3D3D3;
     font-size: 11px;
     border-radius: 3px;
     padding: 0 5px;
 } */
-textarea, select, input:not(.submit):not([type=submit]):not([type=reset]):not([type=checkbox]):not([type=radio]):not(.select2-search__field):not(.numInput) {
+
+textarea,
+select,
+input:not(.submit):not([type=submit]):not([type=reset]):not([type=checkbox]):not([type=radio]):not(.select2-search__field):not(.numInput) {
     border: 1px solid #D3D3D3;
     font-size: 11px;
     border-radius: 3px;
     padding: 0 5px;
 }
+
 .tab_cadrehov {
     text-align: left;
     font-size: 11px;
@@ -375,33 +390,40 @@ textarea, select, input:not(.submit):not([type=submit]):not([type=reset]):not([t
     background-color: #49d55f;
     border: 1px solid #01aa1d;
 }
-.Logiciel{
+
+.Logiciel {
     background-color: #b1f755;
     color: #487a06;
 }
-.Logiciel:hover{
+
+.Logiciel:hover {
     background-color: #6bb905;
-    border:1px solid #487a06;
+    border: 1px solid #487a06;
     font-style: italic;
 }
-.carte{
+
+.carte {
     background-color: #43a8c7;
     color: rgb(24, 85, 252);
 }
-.carte:hover{
+
+.carte:hover {
     background-color: #65978fcb;
     border: 1px solid rgb(2, 148, 153);
     font-style: italic;
 }
-.Materiel_B{
+
+.Materiel_B {
     background-color: #4062b9;
     color: rgb(184, 189, 186);
 }
-.Materiel_B:hover{
+
+.Materiel_B:hover {
     background-color: #406200;
     border: 1px solid cadetblue;
     font-style: italic;
 }
+
 .center {
     text-align: center;
 }
@@ -610,10 +632,12 @@ th .label-checkbox .box {
     -moz-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
-.aa:hover{
+
+.aa:hover {
     text-decoration-color: fff;
     text-decoration: underline;
 }
+
 label.checkbox {
     display: inline-block;
     margin-bottom: .5rem;
@@ -663,6 +687,7 @@ a:link {
 		font-size: 43px;
 	} */
 }
+
 #menu_all_button {
     width: 24px;
     height: 24px;
@@ -672,6 +697,7 @@ a:link {
     font-size: 1.6em;
     float: right;
 }
+
 .fileupload {
     text-align: center;
     border: 1px dashed #cccccc;
@@ -683,9 +709,11 @@ a:link {
     padding: 0.5em;
     margin-top: 5px;
 }
+
 .fileupload_info {
     margin-bottom: 10px;
 }
-div{
+
+div {
     display: block;
 }

@@ -1,4 +1,5 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +28,7 @@
             {{-- <div class="container"> --}}
             <div id="c_logo">
                 <a href="{{ route('home') }}" accesskey="1" title="Accueil">
-                    <img src="/images/1585060262_ISCAE.jpg" class="">
+                    <img src="/images/1585060262_ISCAE-2.jpg" class="">
                 </a>
             </div>
             <!-- Right Side Of Navbar -->
@@ -48,8 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a id="navbarDropdown" class="nav-link text-white" href="#" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link text-white" href="{{ route('users.edit',Auth::user()->id) }}">
                         {{ Auth::user()->name }}
                     </a>
                 </li>
@@ -65,7 +65,6 @@
                 </li>
             </ul>
         </header>
-
         <nav id="c_menu" class="nav navbar-expand-md shadow-none p-1">
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -233,19 +232,19 @@
                                 Administration
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li class="nav-item">
-                                            <a href="{{ route('users.index') }}" accesskey='u' class="dropdown-item">
-                                                <i class='fa-fw fas fa-user'></i>
-                                                <u>U</u>tilisateurs
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('profile.index') }}" class="dropdown-item">
-                                                <i class='fa-fw fas fa-user-check'></i>
-                                                Profils
-                                            </a>
-                                        </li>
-                                        {{-- <li>
+                                <li class="nav-item">
+                                    <a href="{{ route('users.index') }}" accesskey='u' class="dropdown-item">
+                                        <i class='fa-fw fas fa-user'></i>
+                                        <u>U</u>tilisateurs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('profile.index') }}" class="dropdown-item">
+                                        <i class='fa-fw fas fa-user-check'></i>
+                                        Profils
+                                    </a>
+                                </li>
+                                {{-- <li>
                                             <a href="#" class="dropdown-item">
                                                 <i class='fa-fw fas fa-layer-group'></i>
                                                 E<u>n</u>tités
@@ -263,5 +262,4 @@
     </main>
     @include('includes.messages')
 </body>
-
 </html>

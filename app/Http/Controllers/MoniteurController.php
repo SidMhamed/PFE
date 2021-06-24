@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\glpi_Moniteur;
-use App\Models\User;
-use App\Models\glpi_groups;
 use App\Models\glpi_fabricant;
-use App\Models\MoniteurTypes;
-use App\Models\MoniteurModeles;
+use App\Models\glpi_groups;
 use App\Models\glpi_location;
+use App\Models\glpi_Moniteur;
+use App\Models\MoniteurModeles;
+use App\Models\MoniteurTypes;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
 class MoniteurController extends Controller
 {
     /**
@@ -19,47 +22,45 @@ class MoniteurController extends Controller
      */
     public function index()
     {
-            $title = 'GLPI-Moniteurs';
-            $header = 'Moniteur';
-            return view('front.Moniteur')->with([
-                'title' => $title,
-                'header' => $header
-            ]);
+        $title = 'GLPI-Moniteurs';
+        $header = 'Moniteur';
+        return view('front.Moniteur')->with([
+            'title' => $title,
+            'header' => $header,
+        ]);
     }
 
-     /**
+    /**
      * Search
      *
      * @return \Illuminate\Http\Response
      */
-    function search(Request $request){
-        if($request->ajax())
-        {
-         $output = '';
-         $query = $request->get('query');
-         if($query != '')
-         {
-               $data = glpi_Moniteur::where('id', 'like', '%' . $query . '%')
-                   ->OrWhere('name', 'like', '%' . $query . '%')
-                   ->OrWhere('statut_id', 'like', '%' . $query . '%')
-                   ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
-                   ->OrWhere('locations_id', 'like', '%' . $query . '%')
-                   ->OrWhere('Moniteurtypes_id', 'like', '%' . $query . '%')
-                   ->OrWhere('Moniteurmodels_id', 'like', '%' . $query . '%')
-                   ->OrWhere('Usager', 'like', '%' . $query . '%')
-                   ->OrWhere('updated_at', 'like', '%' . $query . '%')
-                   ->OrWhere('created_at', 'like', '%' . $query . '%')
-                   ->get();
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = glpi_Moniteur::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('statut_id', 'like', '%' . $query . '%')
+                    ->OrWhere('fabricant_id', 'like', '%' . $query . '%')
+                    ->OrWhere('locations_id', 'like', '%' . $query . '%')
+                    ->OrWhere('Moniteurtypes_id', 'like', '%' . $query . '%')
+                    ->OrWhere('Moniteurmodels_id', 'like', '%' . $query . '%')
+                    ->OrWhere('Usager', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
 
-           }
-           else {
-               $data = glpi_Moniteur::orderBy('created_at', 'DESC')
-               ->get();
-           }
-           $total_row = $data->count();
-           if ($total_row > 0) {
-               foreach ($data as $row) {
-                   $output .= '
+            } else {
+                $data = glpi_Moniteur::orderBy('created_at', 'DESC')
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
            <tr>
             <td valign="top"><a href="' . route('Moniteur.edit', $row->id) . '">' . $row->name . '</a></td>
             <td valign="top">' . $row->statut_id . '</td>
@@ -71,21 +72,66 @@ class MoniteurController extends Controller
             <td valign="top">' . $row->Usager . '</td>
            </tr>
            ';
-               }
-           } else {
-               $output = '
+                }
+            } else {
+                $output = '
           <tr>
            <td align="center" colspan="8" valign="top">Aucune donnée disponible</td>
           </tr>
           ';
-           }
-           $data = array(
-               'table_data' => $output,
-               'total_data' => $total_row,
-           );
-       }
-           return response()->json($data);
-       }
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
+        }
+        return response()->json($data);
+    }
+
+// Generate PDF
+    public function pdf()
+    {
+        $pdf = PDF::loadHTML($this->convert_Moniteur_to_html());
+        $pdf->stream();
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+    }
+// Convert data to html
+    public function convert_Moniteur_to_html()
+    {
+        $data = glpi_Moniteur::all();
+        $output = '
+    <h3 style="text-align:center;">Listes des Moniteurs</h3>
+    <table  style="margin: 0px auto 5px auto; background: #FFF; z-index: 1;text-align: center;border-collapse:collapse;font-size: 11px;max-width:100%;width:100%;border-spacing:0;">
+    <tr>
+    <th style="border:1px solid;padding:5px">ID</th>
+    <th style="border:1px solid;padding:5px">Nom</th>
+    <th style="border:1px solid;padding:5px">Statut</th>
+    <th style="border:1px solid;padding:5px">Fabricant</th>
+    <th style="border:1px solid;padding:5px">Lieu</th>
+    <th style="border:1px solid;padding:5px">Type</th>
+    <th style="border:1px solid;padding:5px">Modèle</th>
+    <th style="border:1px solid;padding:5px">Dernière modification</th>
+    <th style="border:1px solid;padding:5px">Usager</th>
+</tr>';
+        foreach ($data as $row) {
+            $output .= '
+<tr>
+<td style="border:1px solid;padding:5px">' . $row->id . '</td>
+<td style="border:1px solid;padding:5px">' . $row->name . '</td>
+<td style="border:1px solid;padding:5px">' . $row->statut_id . '</td>
+<td style="border:1px solid;padding:5px">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom . '</td>
+<td style="border:1px solid;padding:5px">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
+<td style="border:1px solid;padding:5px">' . MoniteurTypes::findOrFail($row->Moniteurtypes_id)->name . '</td>
+<td style="border:1px solid;padding:5px">' . MoniteurModeles::findOrFail($row->Moniteurmodels_id)->Nom . '</td>
+<td style="border:1px solid;padding:5px">' . $row->updated_at . '</td>
+<td style="border:1px solid;padding:5px">' . $row->Usager . '</td>
+</tr>
+';
+        }
+        $output .= '</table>';
+        return $output;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -108,7 +154,7 @@ class MoniteurController extends Controller
             'Fabricants' => $Fabricants,
             'groups' => $groups,
             'Types' => $Types,
-            'Models' => $Models
+            'Models' => $Models,
         ]);
     }
 
@@ -161,7 +207,7 @@ class MoniteurController extends Controller
             'Types' => $Types,
             'Models' => $Models,
             'Locations' => $Locations,
-            'Moniteur' => $Moniteurs
+            'Moniteur' => $Moniteurs,
         ]);
     }
 
@@ -187,7 +233,7 @@ class MoniteurController extends Controller
      */
     public function destroy($id)
     {
-        $Moniteur =  glpi_Moniteur::where('id', $id)->delete();
+        $Moniteur = glpi_Moniteur::where('id', $id)->delete();
         return redirect()->route('Moniteur.index')->with(['success' => 'Élément Supprimer']);
 
     }

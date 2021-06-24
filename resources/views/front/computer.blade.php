@@ -14,11 +14,36 @@
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="text-white">
-                        <td class="center text-center" width="100%">
-                            <h5 class="float-left">Total : <span id="total_records"></span></h5>
+                        <td class="">
+                            <h5 class="float-left text-white">Total : <span id="total_records"></span></h5>
                         </td>
-                        <td class="left" width="100%">
-                            <a href="{{ route('Computer.form') }}" class="btn btn-success px-2">
+                        <td class="">
+                            <form action="" method="post">
+                                <div class="form-groups">
+                                    <label for="option">Affichage (nombre d'éléments)</label>
+                                    <select name="option" id="option" selected class="py-1 px-2 border-0">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        {{-- <td class="">
+                                <div class="form-groups">
+                                    <select name="column_name" id="column_name" class="py-1 px-2">
+                                        <option value="0">Nom</option>
+                                        <option value="1">Fabricant</option>
+                                        <option value="2">Numéro de série</option>
+                                        <option value="3">Type </option>
+                                        <option value="4">Modèle </option>
+                                        <option value="5">Lieu</option>
+                                        <option value="6">Dernière modification</option>
+                                    </select>
+                                </div>
+                        </td> --}}
+                        <td class="">
+                            <a href="{{ route('Computer.form') }}" class="btn btn-success px-2 float-right">
                                 <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>
                         </td>
@@ -79,6 +104,24 @@
                 $(document).on('keyup', '#search', function() {
                     var query = $(this).val();
                     fetch_customer_data(query);
+                });
+
+                $('#column_name').selectpicker();
+
+                $('#column_name').change(function() {
+
+                    var all_column = ["0", "1", "2", "3", "4", "5", "6"];
+
+                    var remove_column = $('#column_name').val();
+
+                    var remaining_column = all_column.filter(function(obj) {
+                        return remove_column.indexOf(obj) == -1;
+                    });
+
+                    dataTable.columns(remove_column).visible(false);
+
+                    dataTable.columns(remaining_column).visible(true);
+
                 });
             });
 

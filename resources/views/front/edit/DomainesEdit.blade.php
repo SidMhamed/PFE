@@ -11,7 +11,7 @@
                <h3 class="text-center">{{ $Domaines->name }}</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('Domaines.store') }}" method="POST">
+                <form action="{{ route('Domaines.update',$Domaines->id) }}" method="POST">
                     {{ method_field('PUT') }}
                     {{ csrf_field() }}
                     <table class="tab_cadre_fixe">

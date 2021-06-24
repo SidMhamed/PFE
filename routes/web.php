@@ -159,3 +159,17 @@ return view('front.Rapport')->with([
 'header' => 'Rapports'
 ]);
 });
+
+/**
+ *
+ * Generat pdf
+ */
+Route::get('/Computer_Export_to_pdf','ComputerController@pdf')->name('Computer.pdf');
+Route::get('/Moniteur_Export_to_pdf', 'MoniteurController@pdf')->name('Moniteur.pdf');
+Route::get('/Materiel_Reseau_Export_to_pdf', 'Materiel_ReseauController@pdf')->name('MaterielReseau.pdf');
+Route::get('/Materiel_Bureau_Export_to_pdf', 'MaterielBureauController@pdf')->name('MaterielBureau.pdf');
+Route::get('/Imprimante_Export_to_pdf', 'ImprimanteController@pdf')->name('Imprimante.pdf');
+Route::get('/Telephone_Export_to_pdf', 'TeleController@pdf')->name('Telephone.pdf');
+Route::get('/Carte_Export_to_pdf', 'CarteSIMController@pdf')->name('CarteSIM.pdf');
+Route::get('/Peripherique_Export_to_pdf', 'PeripheriqueController@pdf')->name('Peripherique.pdf');
+Route::get('/Logiciel_Export_to_pdf', 'LogicielController@pdf')->name('Logiciel.pdf');

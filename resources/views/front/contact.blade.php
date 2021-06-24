@@ -14,10 +14,10 @@
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="">
-                        <td class="float-left" width="100%">
-                            <h5 class="text-center text-white">Total : <span id="total_records"></span></h5>
+                        <td class="text-white" width="100%">
+                            <h5 class="floal-left">Total : <span id="total_records"></span></h5>
                         </td>
-                        <td class="left" width="100%">
+                        <td class="" width="100%">
                             <a href="{{ route('Contacts.create') }}" class="btn btn-success px-2">
                                 <i class="fa fa-plus-circle" title="Ajouter"></i>
                             </a>

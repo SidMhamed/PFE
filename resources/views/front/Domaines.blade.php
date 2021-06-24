@@ -14,15 +14,8 @@
             <table class="tab_glpi" width="95%">
                 <tbody>
                     <tr class="text-white">
-                        {{-- <td class="left" width="50%">
-                            <select name="column_name" id="column_name" class="selectpicker" multiple>
-                                <option value="0">Nom</option>
-                                  <option value="3">Type</option>
-                                  <option value="6">Dernière modification</option>
-                            </select>
-                    </td> --}}
-                        <td class="center text-center" width="100%">
-                            <h5 align="center">Total : <span id="total_records"></span></h5>
+                        <td class="" width="100%">
+                            <h5 class="text-white float-left">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">
                             <a href="{{ route('Domaines.create') }}" class="btn btn-success px-2">

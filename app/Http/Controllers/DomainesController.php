@@ -50,8 +50,8 @@ class DomainesController extends Controller
            <tr>
             <td valign="top"><a href="' . route('Domaines.edit', $row->id) . '">' . $row->name . '</a></td>
             <td valign="top">' . $row->tech . '</td>
+            <td valign="top">' . DomainesType::findOrFail($row->domaintypes_id)->name . '</td>
             <td valign="top">' . $row->date_expiration . '</td>
-            <td valign="top">' . DomainesType::findOrFail($row->domaintypes_id)->Nom . '</td>
             <td valign="top">' . $row->updated_at . '</td>
            </tr>
            ';
