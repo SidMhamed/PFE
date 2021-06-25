@@ -209,7 +209,6 @@ class Materiel_ReseauController extends Controller
         $Fabricants = glpi_fabricant::all();
         $Users = User::all();
         $Reseaux = glpi_reseaux::all();
-        $groups = glpi_groups::all();
         $Type = glpi_Materiel_ReseauxTypes::all();
         $Model = glpi_Materiel_ReseauxModele::all();
         $Locations = glpi_location::all();
@@ -220,7 +219,6 @@ class Materiel_ReseauController extends Controller
             'Fabricants' => $Fabricants,
             'Users' => $Users,
             'Reseaux' => $Reseaux,
-            'groups' => $groups,
             'Types' => $Type,
             'Modeles' => $Model,
             'Locations' => $Locations,

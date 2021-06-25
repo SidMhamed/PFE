@@ -26,9 +26,11 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="py-1 px-2">
+                                <select name="locations_id" id="Lieu" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
-                                    <option value="1">iscae</option>
+                                    @foreach ($Locations as $Location)
+                                    <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
+                                    @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -51,24 +53,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="py-1 px-2" required>
+                                <select name="users_id" id="users_id" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="UUID">UUID</label>
-                            </td>
-                            <td>
-                              <input type="text" name="users_id" id="UUID" class="form-control">
                             </td>
                             <td>
                                 <label for="SMJ">Source mise à jour</label>
@@ -165,7 +159,7 @@
                                     data-target="#ModalReseaux" onclick="$('#Add_Reseau').dialog('open');"></i>
                             </td>
                             <td>
-                                <label for="comment">Comment</label>
+                                <label for="comment">Commentaires</label>
                             </td>
                             <td>
                                 <textarea name="comment" id="comment" cols="40" rows="3" class="py-1 px-2"

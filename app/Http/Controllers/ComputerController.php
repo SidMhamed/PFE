@@ -6,7 +6,6 @@ use App\Models\glpi_computermodels;
 use App\Models\glpi_computers;
 use App\Models\glpi_computertypes;
 use App\Models\glpi_fabricant;
-use App\Models\glpi_groups;
 use App\Models\glpi_location;
 use App\Models\glpi_reseaux;
 use App\Models\glpi_SourceMiseAjour;
@@ -138,23 +137,23 @@ class ComputerController extends Controller
     {
         $title = 'GLPI-Ordinateurs --1';
         $header = 'Ordinateurs';
+        $Locations = glpi_location::all();
         $types = glpi_computertypes::all();
         $Fabricants = glpi_fabricant::all();
         $Models = glpi_computermodels::all();
         $Reseaux = glpi_reseaux::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
         $user = User::all();
-        $groups = glpi_groups::all();
         return view('front.ComputerForm')->with([
             'title' => $title,
             'header' => $header,
+            'Locations' => $Locations,
             'Types' => $types,
             'Fabricants' => $Fabricants,
             'Models' => $Models,
             'Reseaux' => $Reseaux,
             'SourceMiseAjours' => $SourceMiseAjours,
             'Users' => $user,
-            'groups' => $groups,
         ]);
     }
 
@@ -191,25 +190,25 @@ class ComputerController extends Controller
     {
         $title = "GLPI-Ordinateurs --$id";
         $header = 'Ordinateur';
+        $Locations = glpi_location::all();
         $types = glpi_computertypes::all();
         $Fabricants = glpi_fabricant::all();
         $Models = glpi_computermodels::all();
         $Reseaux = glpi_reseaux::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
         $user = User::all();
-        $groups = glpi_groups::all();
         $Location = glpi_location::all();
         $Computer = glpi_computers::find($id);
         return view('front.edit.ComputerEdit')->with([
             'title' => $title,
             'header' => $header,
+            'Locations' => $Locations,
             'Types' => $types,
             'Fabricants' => $Fabricants,
             'Models' => $Models,
             'Reseaux' => $Reseaux,
             'SourceMiseAjours' => $SourceMiseAjours,
             'Users' => $user,
-            'groups' => $groups,
             'Locations' => $Location,
             'Computer' => $Computer,
         ]);

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0" role="alert">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Moniteur.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Moniteur.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card border-0">
             <div class="card-header alert-heading border-success border-5 text-center">
                 <h3> {{ $Moniteur->name }} </h3>
@@ -96,7 +100,7 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" value="{{ $Moniteur->numeroDeSerie ?? '' }}"
+                                <input type="text" name="NumeroDeSerie" value="{{ $Moniteur->NumeroDeSerie ?? '' }}"
                                     id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
@@ -121,10 +125,10 @@
                                 <label for="user">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="form-control" required>
+                                <select name="users_id" id="user" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -140,11 +144,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td rowspan="2">
+                            <td rowspan="3">
                                 <label for="comment">Comment</label>
                             </td>
-                            <td rowspan="2">
-                                <textarea name="comment" value="{{ $Moniteur->comment }}" id="comment" cols="40" rows="5"
+                            <td rowspan="3">
+                                <textarea name="comment" value="{{ $Moniteur->comment }}" id="comment" cols="40" rows="8"
                                     class="form-control" required></textarea>
                             </td>
                         </tr>
@@ -239,7 +243,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                                <button type="submit" class="btn btn-success px-2"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
                             </td>
                         </tr>
@@ -248,12 +252,12 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <form method="POST" action="{{ route('Moniteur.destroy', $Moniteur->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
                                     <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
+                                        class="btn btn-danger px-3" title="Supprimer">
                                         <i class="fa fa-trash mx-1"></i>Supprimer</button>
                                 </form>
                             </td>

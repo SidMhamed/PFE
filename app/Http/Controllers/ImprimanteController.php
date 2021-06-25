@@ -140,7 +140,6 @@ public function search(Request $request){
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
         $Reseaux = glpi_reseaux::all();
-        $groups =glpi_groups::all();
         $Locations = glpi_location::all();
         $Types = ImprimanteTypes::all();
         $Modeles = ImprimanteModel::all();
@@ -148,7 +147,6 @@ public function search(Request $request){
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
-            'groups' => $groups,
             'Fabricants' => $Fabricants,
             'Reseaux' => $Reseaux,
             'Types' => $Types,
@@ -193,7 +191,6 @@ public function search(Request $request){
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
         $Reseaux = glpi_reseaux::all();
-        $groups = glpi_groups::all();
         $Locations = glpi_location::all();
         $Types = ImprimanteTypes::all();
         $Modeles = ImprimanteModel::all();
@@ -202,7 +199,6 @@ public function search(Request $request){
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
-            'groups' => $groups,
             'Locations' => $Locations,
             'Fabricants' => $Fabricants,
             'Reseaux' => $Reseaux,

@@ -19,7 +19,6 @@ class CreateGlpiMaterielReseauxesTable extends Migration
             $table->unsignedBigInteger('locations_id')->default('0');
             $table->integer('UsagerNumero')->default('0');
             $table->string('Usager')->nullable();
-            $table->string('Utilisateur')->nullable();
             $table->unsignedBigInteger('users_id')->default('0');
             $table->integer('autoupdatesystems_id')->default('0');
             $table->integer('states_id')->default('0');

@@ -17,10 +17,8 @@ class CreateGlpiComputersTable extends Migration
             $table->id();
             $table->string('nom')->nullable();
             $table->unsignedBigInteger('locations_id')->default('0');
-            $table->integer('users_id_tech')->default('0');
             $table->integer('UsagerNumero')->default('0');
             $table->string('Usager')->NULL();
-            $table->string('Utilisateur')->nullable();
             $table->unsignedBigInteger('users_id')->default('0');
             $table->integer('autoupdatesystems_id')->default('0');
             $table->integer('states_id')->default('0');

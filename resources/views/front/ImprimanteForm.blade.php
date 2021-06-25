@@ -41,26 +41,26 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" name="UsagerNumero" id="UsaNum" class="form-control" required placeholder=""
-                                    aria-describedby="helpId">
+                                <input type="text" name="UsagerNumero"
+                                    id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" id="Usager" class="form-control" required placeholder=""
-                                    aria-describedby="helpId">
+                                <input type="text" name="Usager" id="Usager" class="form-control"
+                                    required placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="py-1 px-2">
+                                <select name="users_id" id="users_id" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -230,7 +230,7 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td>
-                                <textarea name="comment" id="comment" cols="30" rows="8" class="form-control"></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
                             </td>
                         </tr>
                         <tr>

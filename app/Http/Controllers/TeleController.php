@@ -195,7 +195,6 @@ class TeleController extends Controller
         $header = 'Téléphone';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Types =TelephoneTypes::all();
         $Models = TelephoneModeles::all();
         $Locations = glpi_location::all();
@@ -205,7 +204,6 @@ class TeleController extends Controller
             'header' => $header,
             'Users' => $Users,
             'Fabricants' => $Fabricants,
-            'groups' => $groups,
             'Types' => $Types,
             'Models' => $Models,
             'Locations' => $Locations,

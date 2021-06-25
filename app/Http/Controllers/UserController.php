@@ -78,6 +78,7 @@ class UserController extends Controller
         }
         return response()->json($data);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -88,13 +89,11 @@ class UserController extends Controller
         $title = 'GLPI-Utilisateurs - 1';
         $header = 'Utilisateurs';
         $Locations = glpi_location::all();
-        $groups = glpi_groups::all();
         $Profiles = glpi_profile::all();
         return view('front.UserForm')->with([
             'title' => $title,
             'header' => $header,
             'Locations' => $Locations,
-            'groups' => $groups,
             'Profiles' => $Profiles,
         ]);
     }
@@ -124,16 +123,6 @@ class UserController extends Controller
             'last_login' => $request->last_login,
             'date_sync' => $request->date_sync,
             'is_deleted' => $request->is_deleted,
-            'entities_id' => $request->entities_id,
-            'usertitles_id' => $request->usertitles_id,
-            'usercategories_id' => $request->usercategories_id,
-            'csv_delimiter' => $request->csv_delimiter,
-            'api_token' => $request->api_token,
-            'api_token_date' => $request->api_token_date,
-            'cookie_token' => $request->cookie_token,
-            'cookie_token_date' => $request->cookie_token_date,
-            'groups_id' => $request->groups_id,
-            'users_id_supervisor' => $request->users_id_supervisor,
             'email' => $request->email,
             'email_verified_at' => $request->email_verified_at,
             'password' => Hash::make($request->password),
@@ -164,13 +153,11 @@ class UserController extends Controller
         $title = "GLPI-Utilisateurs - $id";
         $header = "Utilisateurs";
         $User = User::find($id);
-        $groups = glpi_groups::all();
         $Locations = glpi_location::all();
         return view('front.edit.UserEdit')->with([
             'title' => $title,
             'header' => $header,
             'User' => $User,
-            'groups' => $groups,
             'Locations' => $Locations,
         ]);
     }
@@ -202,16 +189,6 @@ class UserController extends Controller
             'last_login' => $request->last_login,
             'date_sync' => $request->date_sync,
             'is_deleted' => $request->is_deleted,
-            'entities_id' => $request->entities_id,
-            'usertitles_id' => $request->usertitles_id,
-            'usercategories_id' => $request->usercategories_id,
-            'csv_delimiter' => $request->csv_delimiter,
-            'api_token' => $request->api_token,
-            'api_token_date' => $request->api_token_date,
-            'cookie_token' => $request->cookie_token,
-            'cookie_token_date' => $request->cookie_token_date,
-            'groups_id' => $request->groups_id,
-            'users_id_supervisor' => $request->users_id_supervisor,
             'email' => $request->email,
             'email_verified_at' => $request->email_verified_at,
             'password' => Hash::make($request->password),

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\glpi_fabricant;
-use App\Models\glpi_groups;
 use App\Models\glpi_location;
 use App\Models\glpi_Moniteur;
 use App\Models\MoniteurModeles;
@@ -143,16 +142,16 @@ class MoniteurController extends Controller
         $title = 'GLPI-Moniteurs --1';
         $header = 'Moniteur';
         $Users = User::all();
+        $Locations = glpi_location::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Types = MoniteurTypes::all();
         $Models = MoniteurModeles::all();
         return view('front.MoniteurForm')->with([
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
+            'Locations' => $Locations,
             'Fabricants' => $Fabricants,
-            'groups' => $groups,
             'Types' => $Types,
             'Models' => $Models,
         ]);
@@ -192,8 +191,8 @@ class MoniteurController extends Controller
         $title = "GLPI-Moniteurs --$id";
         $header = 'Moniteur';
         $Users = User::all();
+        $Locations = glpi_location::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Types = MoniteurTypes::all();
         $Models = MoniteurModeles::all();
         $Locations = glpi_location::all();
@@ -202,8 +201,8 @@ class MoniteurController extends Controller
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
+            'Locations' => $Locations,
             'Fabricants' => $Fabricants,
-            'groups' => $groups,
             'Types' => $Types,
             'Models' => $Models,
             'Locations' => $Locations,

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Computer.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Computer.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div id="card" class="card border-0">
             <div class="card-header alert-heading  border-success border-5 text-center">
                 <h3>{{ $Computer->nom }}</h3>
@@ -51,24 +55,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="py-1 px-3" required>
+                                <select name="users_id" id="users_id" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
                                         <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="UUID">UUID</label>
-                            </td>
-                            <td>
-                               <input type="text" id="users_id" name="users_id" class="form-control">
                             </td>
                             <td>
                                 <label for="SMJ">Source mise à jour</label>
@@ -183,30 +179,28 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="2" class="">
-                                <button type="submit" class="btn btn-success float-left"> <i class='fas fa-save mx-1'></i>
+                            <td colspan="4" class="text-center">
+                                <button type="submit" class="btn btn-success px-2"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
-                            </td>
-                            <td colspan="2" class="text-center">
-                                <table class="tab_cadre_fixe">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <form method="POST" action="{{ route('Computer.destroy', $Computer->id) }}">
-                                                    <input name="_method" type="hidden" value="DELETE">
-                                                    @csrf
-                                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                                        class="btn btn-danger float-right" title="Supprimer">
-                                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </td>
                         </tr>
                     </table>
                 </form>
+                <table class="tab_cadre_fixe">
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <form method="POST" action="{{ route('Computer.destroy', $Computer->id) }}">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
+                                        class="btn btn-danger px-3" title="Supprimer">
+                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

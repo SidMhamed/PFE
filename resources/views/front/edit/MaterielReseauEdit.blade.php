@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('MaterielReseau.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('MaterielReseau.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card">
             <div class="card-header alert-heading border-success border-5 text-center">
                 <h3>{{ $MaterielReseau->nom }}</h3>
@@ -173,7 +177,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                                <button type="submit" class="btn btn-success px-2"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
                             </td>
                         </tr>
@@ -182,12 +186,12 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <form method="POST" action="{{ route('MaterielReseau.destroy', $MaterielReseau->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
                                     <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
+                                        class="btn btn-danger px-3" title="Supprimer">
                                         <i class="fa fa-trash mx-1"></i>Supprimer</button>
                                 </form>
                             </td>

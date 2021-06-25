@@ -126,13 +126,13 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="py-1 px-2">
+                                <select name="users_id" id="users_id" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -164,7 +164,7 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td rowspan="3">
-                                <textarea name="comment" id="comment" cols="30" rows="8" class="form-control" required></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="4" class="form-control" required></textarea>
                             </td>
                         </tr>
                         <tr>

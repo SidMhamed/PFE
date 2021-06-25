@@ -18,11 +18,8 @@ class glpi_computers extends Model
     protected $fillable = [
         'nom',
         'locations_id',
-        'users_id_tech',
         'UsagerNumero',
         'Usager',
-        'Utilisateur',
-        'groups_id',
         'users_id',
         'autoupdatesystems_id',
         'states_id',

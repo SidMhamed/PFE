@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\glpi_suppliers;
 use App\Models\glpi_suppliertypes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class SuppliersController extends Controller
 {
@@ -22,36 +23,34 @@ class SuppliersController extends Controller
             'header' => $header,
         ]);
     }
- /**
+    /**
      * Search
      *
      * @return \Illuminate\Http\Response
      */
-    function search(Request $request){
-        if($request->ajax())
-        {
-         $output = '';
-         $query = $request->get('query');
-         if($query != '')
-         {
-               $data = glpi_suppliers::where('id', 'like', '%' . $query . '%')
-                   ->OrWhere('name', 'like', '%' . $query . '%')
-                   ->OrWhere('address', 'like', '%' . $query . '%')
-                   ->OrWhere('email', 'like', '%' . $query . '%')
-                   ->OrWhere('phonenumber', 'like', '%' . $query . '%')
-                   ->OrWhere('updated_at', 'like', '%' . $query . '%')
-                   ->OrWhere('created_at', 'like', '%' . $query . '%')
-                   ->get();
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = glpi_suppliers::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('address', 'like', '%' . $query . '%')
+                    ->OrWhere('email', 'like', '%' . $query . '%')
+                    ->OrWhere('phonenumber', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
 
-           }
-           else {
-               $data = glpi_suppliers::orderBy('created_at', 'DESC')
-               ->get();
-           }
-           $total_row = $data->count();
-           if ($total_row > 0) {
-               foreach ($data as $row) {
-                   $output .= '
+            } else {
+                $data = glpi_suppliers::orderBy('created_at', 'DESC')
+                    ->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
            <tr>
             <td valign="top"><a href="' . route('Fournisseur.edit', $row->id) . '">' . $row->name . '</a></td>
             <td valign="top">' . $row->address . '</td>
@@ -61,21 +60,63 @@ class SuppliersController extends Controller
             <td valign="top">' . $row->updated_at . '</td>
            </tr>
            ';
-               }
-           } else {
-               $output = '
+                }
+            } else {
+                $output = '
           <tr>
            <td align="center" colspan="6" valign="top">Aucune donnée disponible</td>
           </tr>
           ';
-           }
-           $data = array(
-               'table_data' => $output,
-               'total_data' => $total_row,
-           );
-       }
-           return response()->json($data);
-       }
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
+        }
+        return response()->json($data);
+    }
+
+    // Generate PDF
+    public function pdf()
+    {
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->convert_Moniteur_to_html());
+        $pdf->stream();
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+    }
+// Convert data to html
+    public function convert_Moniteur_to_html()
+    {
+        $data = glpi_suppliers::all();
+        $output = '
+<h3 style="text-align:center;">Listes des Fournisseurs</h3>
+<table  style="margin: 0px auto 5px auto; background: #FFF; z-index: 1;text-align: center;border-collapse:collapse;font-size: 11px;max-width:100%;width:100%;border-spacing:0;">
+<tr>
+<th style="border:1px solid;padding:5px">ID</th>
+<th style="border:1px solid;padding:5px">Nom</th>
+<th style="border:1px solid;padding:5px">Address</th>
+<th style="border:1px solid;padding:5px">Email</th>
+<th style="border:1px solid;padding:5px">Téléphone</th>
+<th style="border:1px solid;padding:5px">Type</th>
+<th style="border:1px solid;padding:5px">Dernière modification</th>
+</tr>';
+        foreach ($data as $row) {
+            $output .= '
+<tr>
+<td style="border:1px solid;padding:5px">' . $row->id . '</td>
+<td style="border:1px solid;padding:5px">' . $row->name . '</a></td>
+<td style="border:1px solid;padding:5px">' . $row->address . '</td>
+<td style="border:1px solid;padding:5px">' . $row->email . '</td>
+<td style="border:1px solid;padding:5px">' . $row->phonenumber . '</td>
+<td style="border:1px solid;padding:5px">' . glpi_suppliertypes::findOrFail($row->suppliertypes_id)->name . '</td>
+<td style="border:1px solid;padding:5px">' . $row->updated_at . '</td>
+</tr>
+';
+        }
+        $output .= '</table>';
+        return $output;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -134,7 +175,7 @@ class SuppliersController extends Controller
             'title' => $title,
             'header' => $header,
             'types' => $types,
-            'Fournisseur' => $Fournisseur
+            'Fournisseur' => $Fournisseur,
 
         ]);
     }
@@ -161,7 +202,7 @@ class SuppliersController extends Controller
      */
     public function destroy($id)
     {
-        $Moniteur =  glpi_suppliers::where('id', $id)->delete();
+        $Moniteur = glpi_suppliers::where('id', $id)->delete();
         return redirect()->route('Fournisseur.index')->with(['success' => 'Élément Supprimer']);
 
     }

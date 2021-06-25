@@ -38,7 +38,9 @@
                             <td>
                                 <select name="locations_id" id="Lieu" class="py-1 px-3">
                                     <option hidden value="" selected disabled>-----</option>
-                                    <option value="1">iscae</option>
+                                    @foreach ($Locations as $Location)
+                                    <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
+                                    @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
@@ -96,7 +98,7 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" id="NumSerie" class="form-control" required>
+                                <input type="text" name="NumeroDeSerie" id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -117,13 +119,13 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="py-1 px-3">
+                                <select name="users_id" id="users_id" class="py-1 px-3">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>

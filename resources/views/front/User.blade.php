@@ -82,8 +82,5 @@
                 });
             });
         </script>
-        {{-- <div class="d-flex justify-content-center my-4">
-            {!! $Users->links('layouts.pagination') !!}
-        </div> --}}
     </main>
 @endsection

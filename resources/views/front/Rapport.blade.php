@@ -17,6 +17,11 @@
              </thead>
              <tbody>
                 <tr>
+                    <td colspan="3">
+                       <h6>Parc</h6>
+                    </td>
+                </tr>
+                <tr>
                     <td>Ordinateurs</td>
                     <td>{{ App\Models\glpi_computers::count() }}</td>
                     <td><a href="{{ route('Computer.pdf') }}"><i class="far fa-save"></i></a></td>
@@ -60,6 +65,41 @@
                     <td>Logiciels</td>
                     <td>{{ App\Models\Logiciel::count() }}</td>
                     <td><a href="{{ route('Logiciel.pdf') }}"><i class="far fa-save"></i></a></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                       <h6>Gestion</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lice<u>n</u>ces</td>
+                    <td>{{ App\Models\glpi_License::count() }}</td>
+                    <td><a href="{{ route('License.pdf') }}"><i class="far fa-save"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Fournisseurs</td>
+                    <td>{{ App\Models\glpi_suppliers::count() }}</td>
+                    <td><a href="{{ route('Fournisseur.pdf') }}"><i class="far fa-save"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Contacts</td>
+                    <td>{{ App\Models\glpi_contacts::count() }}</td>
+                    <td><a href="{{ route('Contacts.pdf') }}"><i class="far fa-save"></i></a></td>
+                </tr>
+                <tr>
+                    <td><u>D</u>ocuments</td>
+                    <td>{{ App\Models\Document::count() }}</td>
+                    <td><a href="#"><i class="far fa-save"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Lignes</td>
+                    <td>{{ App\Models\glpi_line::count() }}</td>
+                    <td><a href="{{ route('Lignes.pdf') }}"><i class="far fa-save"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Domai<u>n</u>es</td>
+                    <td>{{ App\Models\Domaines::count() }}</td>
+                    <td><a href="{{ route('Domaines.pdf') }}"><i class="far fa-save"></i></a></td>
                 </tr>
              </tbody>
          </table>

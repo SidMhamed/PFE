@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0" role="alert">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Telephone.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Telephone.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card border-0">
             <div class="card-header alert-heading  border-success border-5 text-center">
                 <h3>{{ $Telephone->name }}</h3>
@@ -16,14 +20,13 @@
                                 <label for="name">Nom</label>
                             </td>
                             <td>
-                                <input type="text" id="name" class="form-control" name="name" value="{{ $Telephone->name ?? '' }}"
-                                    required>
+                                <input type="text" id="name" value="{{ $Telephone->name ?? '' }}" class="form-control" name="name" required>
                             </td>
                             <td>
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="form-control">
+                                <select name="states_id" id="Statut" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -34,7 +37,7 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="form-control">
+                                <select name="locations_id" id="Lieu" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
@@ -46,7 +49,7 @@
                                 <label for="Type">Type</label>
                             </td>
                             <td>
-                                <select name="telephonetypes_id" id="Type" class="form-control">
+                                <select name="telephonetypes_id" id="Type" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -58,23 +61,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="RespTech">Responsable technique</label>
-                            </td>
-                            <td>
-                                <select name="users_id_tech" id="RespTech" class="form-control" required>
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($Users as $User)
-                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="form-control" required>
-                                    <option hidden value="" selected disabled>-----</option>
+                                <select name="fabricant_id" id="Fab" class="py-1 px-2">
+                                    <option value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
                                     @endforeach
@@ -85,19 +76,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="GpTech">Groupe technique</label>
-                            </td>
-                            <td>
-                                <select name="gruops_tech" id="GpTech" class="form-control">
-                                    <option value="" selected disabled>-----</option>
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td>
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="telephonemodels_id" id="model" class="form-control">
+                                <select name="telephonemodels_id" id="model" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Models as $Model)
                                         <option value="{{ $Model->id }}">{{ $Model->name }}</option>
@@ -106,21 +88,26 @@
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter" data-toggle="modal"
                                     data-target="#ModaleTelephone"></i>
                             </td>
+                            <td>
+                                <label for="marque">Marque</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="{{ $Telephone->Marque ?? '' }}" name="Marque" id="marque">
+                            </td>
                         </tr>
                         <tr>
                             <td>
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" name="UsagerNumero" value="{{ $Telephone->UsagerNumero ?? '' }}"
-                                    id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="UsagerNumero" value="{{ $Telephone->UsagerNumero ?? '' }}" id="UsaNum" class="form-control" required placeholder=""
+                                    aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" value="{{ $Telephone->numeroDeSerie ?? '' }}"
-                                    id="NumSerie" class="form-control" required>
+                                <input type="text" name="numeroDeSerie" value="{{ $Telephone->numeroDeSerie ?? '' }}" id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -128,27 +115,25 @@
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" value="{{ $Telephone->Usager ?? '' }}" id="Usager"
-                                    class="form-control" required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="Usager" value="{{ $Telephone->Usager ?? '' }}" id="Usager" class="form-control" required placeholder=""
+                                    aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="NumDinventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire"
-                                    value="{{ $Telephone->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="form-control"
-                                    required>
+                                <input type="text" name="NumeroDinventaire" value="{{ $Telephone->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="form-control" required>
+                                <select name="users_id" id="users_id" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -157,7 +142,7 @@
                                 <label for="TypeDeGestion">Type de Gestion</label>
                             </td>
                             <td>
-                                <select name="TypeDeGestion" id="TypeDeGestion" class="form-control">
+                                <select name="TypeDeGestion" id="TypeDeGestion" class="py-1 px-2">
                                     <option value="0">Gestion unitaire</option>
                                     <option value="1">Gestion globale</option>
                                 </select>
@@ -165,39 +150,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="group">Group</label>
-                            </td>
-                            <td>
-                                <select name="groups_id" id="group" class="form-control">
-                                    <option hidden value="" selected disabled>-----</option>
-                                    @foreach ($groups as $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                    @endforeach
-                                </select>
-                                <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
-                            </td>
-                            <td rowspan="5">
-                                <label for="comment">Comment</label>
-                            </td>
-                            <td rowspan="5">
-                                <textarea name="comment" value="{{ $Telephone->comment ?? '' }}" id="comment" cols="30"
-                                    rows="8" class="form-control" required></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="marque">Marque</label>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" name="Marque" id="marque">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                                 <label for="Alimentation">Alimentation</label>
                             </td>
                             <td>
-                                <select name="Alimentation" id="Alimentation" class="form-control">
+                                <select name="Alimentation" id="Alimentation" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     {{-- @foreach ($groups as $group)
                                             <option value="{{$group->id}}">{{$group->name}}</option>
@@ -205,13 +161,19 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
+                            <td rowspan="3">
+                                <label for="comment">Comment</label>
+                            </td>
+                            <td rowspan="3">
+                                <textarea name="comment" id="comment" value="{{ $Telephone->comment ?? '' }}" cols="30" rows="4" class="form-control" required></textarea>
+                            </td>
                         </tr>
                         <tr>
                             <td>
                                 <label for="NombreLignes">Nombre de lignes</label>
                             </td>
                             <td>
-                                <input type="text" class="form-control" name="NombreLignes" id="NombreLignes">
+                                <input type="text" class="form-control" name="Nombrelignes" value="{{ $Telephone->Nombrelignes ?? '' }}" id="NombreLignes">
                             </td>
                         </tr>
                         <tr>
@@ -223,7 +185,7 @@
                                     <tr>
                                         <td>Casque</td>
                                         <td>
-                                            <select name="Casque" id="Casque" class="form-control">
+                                            <select name="Casque" id="Casque" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -232,7 +194,7 @@
                                     <tr>
                                         <td>Haut parleur</td>
                                         <td>
-                                            <select name="Hautparleur" id="Hautparleur" class="form-control">
+                                            <select name="Hautparleur" id="Hautparleur" class="py-1 px-2">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -251,7 +213,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                                <button type="submit" class="btn btn-success px-2"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
                             </td>
                         </tr>
@@ -260,12 +222,12 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <form method="POST" action="{{ route('Telephone.destroy', $Telephone->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
                                     <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
+                                        class="btn btn-danger px-3" title="Supprimer">
                                         <i class="fa fa-trash mx-1"></i>Supprimer</button>
                                 </form>
                             </td>

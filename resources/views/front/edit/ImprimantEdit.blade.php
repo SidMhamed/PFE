@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Imprimante.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Imprimante.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card">
             <div class="card-header alert-heading border-success border-5 text-center">
                 <h3> {{ $Imprimante->name }} </h3>
@@ -37,26 +41,26 @@
                                 <label for="UsaNum">Usager numéro</label>
                             </td>
                             <td>
-                                <input type="text" name="UsagerNumero" value="{{ $Imprimante->UsagerNumero ?? '' }}"
+                                <input type="text" name="UsagerNumero" value="{{ $Computer->UsagerNumero ?? '' }}"
                                     id="UsaNum" class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
                                 <label for="Usager">Usager</label>
                             </td>
                             <td>
-                                <input type="text" name="Usager" value="{{ $Imprimante->Usager ?? '' }}" id="Usager"
-                                    class="form-control" required placeholder="" aria-describedby="helpId">
+                                <input type="text" name="Usager" value="{{ $Computer->Usager ?? '' }}" id="Usager" class="form-control"
+                                    required placeholder="" aria-describedby="helpId">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="py-1 px-3" required>
+                                <select name="users_id" id="users_id" class="py-1 px-3" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -220,7 +224,7 @@
                                             <label for="USB">USB</label>
                                         </td>
                                         <td colspan="3">
-                                            <select name="have_ethernet" id="USB" class="py-1 px-3">
+                                            <select name="have_ethernet" id="USB" class="form-control">
                                                 <option value="0">Non</option>
                                                 <option value="1">Oui</option>
                                             </select>
@@ -232,8 +236,7 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td>
-                                <textarea name="comment" value="{{ $Imprimante->comment ?? '' }}" id="comment" cols="45"
-                                    rows="6" class="form-control"></textarea>
+                                <textarea name="comment" value="{{ $Imprimante->comment ?? '' }}" id="comment" cols="45" rows="5" class="form-control"></textarea>
                             </td>
                         </tr>
                         <tr class="alert alert-dark">
@@ -246,7 +249,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success float-left"> <i class='fas fa-save mx-1'></i>
+                                <button type="submit" class="btn btn-success px-2"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
                             </td>
                         </tr>
@@ -255,13 +258,13 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td class="text-center"
+                            <td class="text-center">
                                 <form method="POST" action="{{ route('Imprimante.destroy', $Imprimante->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
                                     <button type="submit"
                                         onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger" title="Supprimer">
+                                        class="btn btn-danger px-3" title="Supprimer">
                                         <i class="fa fa-trash mx-1"></i>Supprimer</button>
                                 </form>
                             </td>

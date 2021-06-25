@@ -24,7 +24,7 @@ class CreateGlpiTelephonesTable extends Migration
             $table->string('UsagerNumero')->nullable();
             $table->string('Usager')->nullable();
             $table->string('NumeroDeSerie')->nullable();
-            $table->string('Utilisateur')->nullable();
+            $table->string('NumeroDinventaire')->nullable();
             $table->unsignedBigInteger('users_id')->default('0');
             $table->integer('TypeDeGestion')->default('0');
             $table->string('Marque')->nullable();
