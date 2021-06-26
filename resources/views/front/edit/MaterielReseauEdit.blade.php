@@ -148,7 +148,9 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td rowspan="2">
-                                <textarea name="comment" id="comment" value="{{ $MaterielReseau->comment ?? '' }}" cols="30" rows="3" class="form-control" required></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="3" class="form-control" required>
+                                    {{ $MaterielReseau->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr>

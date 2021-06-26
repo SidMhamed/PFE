@@ -17,11 +17,6 @@ class CreateLogicielCategoriesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('comment')->nullable();
-            // $table->integer('logicielsCategories_id')->nullable()->default('0');
-            // $table->text('Completename')->nullable();
-            // $table->integer('level')->nullable()->default('0');
-            // $table->longText('ancestorsk_cache')->nullable();
-            // $table->longText('sons_cache')->nullable();
             $table->timestamps();
         });
     }

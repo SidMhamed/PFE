@@ -1,10 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0" role="alert">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white  home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('CarteSIM.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('CarteSIM.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card border-0">
             <div class="card-header alert-heading  border-success border-5 text-center">
-                <h3> {{ App\Models\ComposatsCarteSIM::findOrFail($CarteSIM->devicesimcards_id)->name }} </h3>
+                <h3> {{ App\Models\ComposatsCarteSIM::findOrFail($CarteSIM->devicesimcards_id )->name }} </h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('CarteSIM.update', $CarteSIM->id) }}" method="POST">

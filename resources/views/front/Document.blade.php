@@ -1,22 +1,21 @@
 @extends('layouts.app')
 @section('content')
     <main id="page">
-        <h4 class="alert-heading alert text-white">
+        <h4 class="alert-heading alert text-white home">
             <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
             <a class="text-white aa" href="{{ route('Document.index') }}">{{ $header }}</a>
         </h4>
         <div class="home">
-
+            <div class="form-group col-md-12">
+                <input type="text" id="search" class="form-control" placeholder="Rechercher des données">
+            </div>
         </div>
-        <form action="#" method="post" name="massformComputer" id="massformComputer">
+        <form action="#" method="post" name="massformComputer" id="massformComputer" class="home my-3">
             <table class="tab_glpi" width="95%">
                 <tbody>
-                    <tr class="">
-                        <td width="30px">
-                            <img src="/images/arrow-left-top.png" alt="" srcset="">
-                        </td>
-                        <td class="left" width="100%">
-                            <a class="vsubmit" onclick="" title="Actions" href="">Actions</a>
+                    <tr class="text-white">
+                        <td class="" width="100%">
+                            <h5 class="text-white float-left">Total : <span id="total_records"></span></h5>
                         </td>
                         <td class="left" width="100%">
                             <a href="{{ route('Document.create') }}" class="btn btn-success px-2">
@@ -26,7 +25,6 @@
                     </tr>
                 </tbody>
             </table>
-
             <div class="center">
                 <table class="tab_cadrehov table text-center" border="0">
                     <thead>
@@ -39,23 +37,8 @@
                             <th><a href="#">Commentaires</a></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {{-- @foreach ($Documents as $Document)
-                     <tr>
-                        <td width="10px" valign="top">
-                            <span class="form-group-checkbox">
-                                <input id="check_1515325751"  value="1" type="checkbox" class="new_checkbox" data-glpicore-ma-tags="common" name="checkbox" onclick="if ( checkAsCheckboxes('checkbox', 'massformComputer'))
-                                {return true;}" title="Tout cocher Comme">
-                                <label for="checkbox" title="Tout cocher comme" class="label-checkbox">
-                                   <span class="check"></span>
-                                   <span class="box"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td  valign="top"><a href="{{route('Document.edit',$Document->id)}}">{{ $Document->name }}</a></td>
-                        <td  valign="top">{{$Document->comment}}</td>
-                     </tr>
-                     @endforeach --}}
+                    <tbody id="tbodyDocument">
+
                     </tbody>
                     <header>
                         <tr class="bg-white">
@@ -69,20 +52,33 @@
                     </header>
                 </table>
             </div>
-            <table class="tab_glpi" width="95%">
-                <tbody>
-                    <tr class="">
-                        <td width="30px">
-                            <img src="/images/arrow-left.png" alt="" srcset="">
-                        </td>
-                        <td class="left" width="100%">
-                            <a class="vsubmit" onclick="massiveaction_windowe59f855a9415b6a820471339573d9573.dialog("
-                                open");" title="Actions" href="">Actions</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </table>
         </form>
+        <script>
+            $(document).ready(function() {
+
+                fetch_customer_data();
+
+                function fetch_customer_data(query = '') {
+                    $.ajax({
+                        url: "{{ url('/DocumentSearch') }}",
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#tbodyDocument').html(data.table_data);
+                            $('#total_records').text(data.total_data);
+                        }
+                    })
+                }
+
+                $(document).on('keyup', '#search', function() {
+                    var query = $(this).val();
+                    fetch_customer_data(query);
+                });
+            });
+
+        </script>
     </main>
 @endsection

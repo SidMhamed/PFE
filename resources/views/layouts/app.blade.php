@@ -258,8 +258,8 @@
         </nav>
     </div>
     <main class="py-5 my-5">
+        @include('includes.messages')
         @yield('content')
     </main>
-    @include('includes.messages')
 </body>
 </html>

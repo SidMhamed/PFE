@@ -53,10 +53,10 @@ class MaterielBureauController extends Controller
                 foreach ($data as $row) {
                     $output .= '
            <tr>
-            <td valign="top"><a href="' . route('Telephone.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top"><a href="' . route('MaterielBureau.edit', $row->id) . '">' . $row->name . '</a></td>
             <td valign="top">' . $row->color . '</td>
             <td valign="top">' . $row->matricule . '</td>
-            <td valign="top">' . glpi_fabricant::findOrFail($row->fabricant_id)->name  . '</td>
+            <td valign="top">' . glpi_fabricant::findOrFail($row->fabricant_id)->Nom  . '</td>
             <td valign="top">' . glpi_location::findOrFail($row->location_id)->Nom . '</td>
             <td valign="top">' . $row->updated_at . '</td>
            </tr>

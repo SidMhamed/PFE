@@ -128,7 +128,9 @@
                                     </label>
                                 </td>
                                 <td rowspan="2" class="">
-                                    <textarea name="comment" id="comment" value="{{ $Fournisseur->comment ?? '' }}" cols="50" rows="5"></textarea>
+                                    <textarea name="comment" id="comment" cols="50" rows="5">
+                                        {{ $Fournisseur->comment ?? '' }}
+                                    </textarea>
                                 </td>
                             </tr>
                             <tr class="">

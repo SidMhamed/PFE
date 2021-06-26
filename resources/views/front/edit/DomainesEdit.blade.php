@@ -73,7 +73,9 @@
                                 <label for="comment">Commentaires</label>
                             </td>
                             <td>
-                                <textarea name="comment" id="comment" value="{{ $Domaines->comment ?? '' }}" cols="30" rows="4"></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="4">
+                                    {{ $Domaines->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr>

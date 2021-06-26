@@ -166,8 +166,9 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td>
-                                <textarea name="comment" value="{{ $Computer->comment ?? '' }}" id="comment" cols="40"
-                                    rows="3" class="form-control" required></textarea>
+                                <textarea name="comment" id="comment" cols="40" rows="3" class="form-control" required>
+                                    {{ $Computer->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr class="alert alert-dark">

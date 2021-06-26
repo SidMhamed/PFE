@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0" role="alert">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Peripherique.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Peripherique.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card border-0">
             <div class="card-header alert-heading  border-success border-5 text-center">
                 <h3>{{ $Peripherique->name }}</h3>
@@ -23,7 +27,7 @@
                                 <label for="Statut">Statut</label>
                             </td>
                             <td>
-                                <select name="states_id" id="Statut" class="form-control">
+                                <select name="states_id" id="Statut" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -34,7 +38,7 @@
                                 <label for="Lieu">Lieu</label>
                             </td>
                             <td>
-                                <select name="locations_id" id="Lieu" class="form-control">
+                                <select name="locations_id" id="Lieu" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Locations as $Location)
                                         <option value="{{ $Location->id }}">{{ $Location->Nom }}</option>
@@ -46,7 +50,7 @@
                                 <label for="Type">Type</label>
                             </td>
                             <td>
-                                <select name="Peripheriquetypes_id" id="Type" class="form-control">
+                                <select name="Peripheriquetypes_id" id="Type" class="py-1 px-2">
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Types as $Type)
                                         <option value="{{ $Type->id }}">{{ $Type->name }}</option>
@@ -62,7 +66,7 @@
                                 <label for="Fab">Fabricant</label>
                             </td>
                             <td>
-                                <select name="fabricant_id" id="Fab" class="form-control" required>
+                                <select name="fabricant_id" id="Fab" class="py-1 px-2" required>
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Fabricants as $Fabricant)
                                         <option value="{{ $Fabricant->id }}">{{ $Fabricant->Nom }}</option>
@@ -75,7 +79,7 @@
                                 <label for="model">Modél</label>
                             </td>
                             <td>
-                                <select name="Peripheriquemodels_id" id="model" class="form-control">
+                                <select name="Peripheriquemodels_id" id="model" class="py-1 px-2">
                                     <option value="" selected disabled>-----</option>
                                     @foreach ($Models as $Model)
                                         <option value="{{ $Model->id }}">{{ $Model->name }}</option>
@@ -97,7 +101,7 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" value="{{ $Peripherique->numeroDeSerie ?? '' }}"
+                                <input type="text" name="NumeroDeSerie" value="{{ $Peripherique->NumeroDeSerie ?? '' }}"
                                     id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
@@ -110,11 +114,11 @@
                                     class="form-control" required placeholder="" aria-describedby="helpId">
                             </td>
                             <td>
-                                <label for="NumDinventaire">Numéro de d'inventaire</label>
+                                <label for="NumeroDenventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire"
-                                    value="{{ $Peripherique->NumeroDinventaire ?? '' }}" id="NumDinventaire" class="form-control"
+                                <input type="text" name="NumeroDenventaire"
+                                    value="{{ $Peripherique->NumeroDenventaire ?? '' }}" id="NumeroDenventaire" class="form-control"
                                     required>
                             </td>
                         </tr>
@@ -123,17 +127,17 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td rowspan="3">
-                                <textarea name="comment" value="{{ $Peripherique->comment ?? '' }}" v id="comment"
+                                <textarea name="comment" value="{{ $Peripherique->comment}}" id="comment"
                                     cols="35" rows="3" class="form-control" required></textarea>
                             </td>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="form-control" required>
+                                <select name="users_id" id="users_id" class="py-1 px-2" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
@@ -143,7 +147,7 @@
                                     <label for="TypeDeGestion">Type de Gestion</label>
                                 </td>
                                 <td>
-                                    <select name="TypeDeGestion" id="TypeDeGestion" class="form-control">
+                                    <select name="TypeDeGestion" id="TypeDeGestion" class="py-1 px-2">
                                         <option value="0">Gestion unitaire</option>
                                         <option value="1">Gestion globale</option>
                                     </select>
@@ -169,7 +173,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
+                                <button type="submit" class="btn btn-success px-2"> <i class='fas fa-save mx-1'></i>
                                     Sauvegarder</button>
                             </td>
                         </tr>
@@ -178,12 +182,12 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <form method="POST" action="{{ route('Peripherique.destroy', $Peripherique->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
                                     <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
+                                        class="btn btn-danger px-3" title="Supprimer">
                                         <i class="fa fa-trash mx-1"></i>Supprimer</button>
                                 </form>
                             </td>

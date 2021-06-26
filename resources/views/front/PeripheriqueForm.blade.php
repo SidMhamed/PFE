@@ -11,7 +11,7 @@
                 Nouvel élément - Périphérique
             </div>
             <div class="card-body">
-                <form action="{{ route('AjouterPeripherique') }}" method="POST">
+                <form action="{{ route('Peripherique.store') }}" method="POST">
                     @csrf
                     <table class="tab_cadre_fixe">
                         <tr>
@@ -98,7 +98,7 @@
                                 <label for="NumSerie">Numéro de Série</label>
                             </td>
                             <td>
-                                <input type="text" name="numeroDeSerie" id="NumSerie" required  class="form-control">
+                                <input type="text" name="NumeroDeSerie" id="NumSerie" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -110,27 +110,27 @@
                                     aria-describedby="helpId"  class="form-control">
                             </td>
                             <td>
-                                <label for="NumDinventaire">Numéro de d'inventaire</label>
+                                <label for="NumeroDenventaire">Numéro de d'inventaire</label>
                             </td>
                             <td>
-                                <input type="text" name="NumeroDinventaire" id="NumDinventaire" required  class="form-control">
+                                <input type="text" name="NumeroDenventaire" id="NumDinventaire" required  class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td rowspan="3">
-                                <label for="comment">Comment</label>
+                                <label for="comment">Commentaires</label>
                             </td>
                             <td rowspan="3">
-                                <textarea name="comment" id="comment" cols="35" rows="3" required></textarea>
+                                <textarea name="comment" id="comment" cols="35" rows="3" class="form-control" required></textarea>
                             </td>
                             <td>
-                                <label for="user">Utilisateur</label>
+                                <label for="users_id">Utilisateur</label>
                             </td>
                             <td>
-                                <select name="Utilisateur" id="user" class="px-1 py-1" required>
+                                <select name="users_id" id="users_id" class="px-1 py-1" required>
                                     <option hidden value="" selected disabled>-----</option>
                                     @foreach ($Users as $User)
-                                        <option value="{{ $User->name }}">{{ $User->name }}</option>
+                                        <option value="{{ $User->id }}">{{ $User->name }}</option>
                                     @endforeach
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>

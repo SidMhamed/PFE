@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\glpi_fabricant;
-use App\Models\glpi_groups;
 use App\Models\glpi_location;
 use App\Models\glpi_Peripherique;
 use App\Models\ModelPeripherique;
@@ -145,7 +144,6 @@ class PeripheriqueController extends Controller
         $User = User::all();
         $Locations = glpi_location::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Models = ModelPeripherique::all();
         $Types = TypesPeripherique::all();
         return view('front.PeripheriqueForm')->with([
@@ -153,7 +151,6 @@ class PeripheriqueController extends Controller
             'header' => $header,
             'Users' => $User,
             'Fabricants' => $Fabricants,
-            'groups' => $groups,
             'Models' => $Models,
             'Types' => $Types,
             'Locations' => $Locations,
@@ -195,7 +192,6 @@ class PeripheriqueController extends Controller
         $header = 'Péripherique';
         $User = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Models = ModelPeripherique::all();
         $Types = TypesPeripherique::all();
         $Locations = glpi_location::all();
@@ -205,7 +201,6 @@ class PeripheriqueController extends Controller
             'header' => $header,
             'Users' => $User,
             'Fabricants' => $Fabricants,
-            'groups' => $groups,
             'Models' => $Models,
             'Types' => $Types,
             'Locations' => $Locations,

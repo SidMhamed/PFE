@@ -11,10 +11,5 @@ class LogicielCategories extends Model
     protected $fillable = [
         'name',
         'comment',
-        'logicielsCategories_id',
-        'Completename',
-        'level',
-        'ancestorsk_cache',
-        'sons_cache',
     ];
 }

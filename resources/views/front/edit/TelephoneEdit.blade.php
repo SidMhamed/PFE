@@ -165,7 +165,9 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td rowspan="3">
-                                <textarea name="comment" id="comment" value="{{ $Telephone->comment ?? '' }}" cols="30" rows="4" class="form-control" required></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="4" class="form-control" required>
+                                    {{ $Telephone->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr>

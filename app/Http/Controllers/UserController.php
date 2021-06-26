@@ -54,7 +54,7 @@ class UserController extends Controller
                 foreach ($data as $row) {
                     $output .= '
            <tr>
-            <td valign="top"><a href="' . route('Telephone.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top"><a href="' . route('users.edit', $row->id) . '">' . $row->name . '</a></td>
             <td valign="top">' . $row->last_login . '</td>
             <td valign="top">' . $row->email . '</td>
             <td valign="top">' . $row->phone . '</td>
@@ -154,10 +154,12 @@ class UserController extends Controller
         $header = "Utilisateurs";
         $User = User::find($id);
         $Locations = glpi_location::all();
+        $Profiles = glpi_profile::all();
         return view('front.edit.UserEdit')->with([
             'title' => $title,
             'header' => $header,
             'User' => $User,
+            'Profiles' => $Profiles,
             'Locations' => $Locations,
         ]);
     }

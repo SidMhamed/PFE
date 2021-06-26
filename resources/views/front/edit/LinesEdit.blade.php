@@ -110,8 +110,9 @@
                                 </label>
                             </td>
                             <td rowspan="2">
-                                <textarea name="comment" value="{{ $Lignes->comment ?? '' }}" id="" cols="45"
-                                    rows="10"></textarea>
+                                <textarea name="comment"  id="" cols="45" rows="10">
+                                    {{ $Lignes->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
 

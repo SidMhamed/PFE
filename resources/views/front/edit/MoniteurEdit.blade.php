@@ -148,8 +148,9 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td rowspan="3">
-                                <textarea name="comment" value="{{ $Moniteur->comment }}" id="comment" cols="40" rows="8"
-                                    class="form-control" required></textarea>
+                                <textarea name="comment" id="comment" cols="40" rows="8" class="form-control" required>
+                                    {{ $Moniteur->comment }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr>

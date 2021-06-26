@@ -24,7 +24,7 @@ class CreateGlpiPeripheriquesTable extends Migration
             $table->string('UsagerNumero')->nullable();
             $table->string('Usager')->nullable();
             $table->string('NumeroDeSerie')->nullable();
-            $table->string('Utilisateur')->nullable();
+            $table->string('NumeroDenventaire')->nullable();
             $table->unsignedBigInteger('users_id')->nullable()->default('0');
             $table->integer('TypeDeGestion')->nullable()->default('0');
             $table->string('Marque')->nullable();

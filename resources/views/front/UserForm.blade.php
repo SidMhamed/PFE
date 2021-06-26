@@ -17,6 +17,12 @@
                         <tr>
                             <td><label for="name">Identifiant</label></td>
                             <td><input type="text" name="name" id="name" class="form-control"></td>
+                            <td>
+                                {!! Form::label('photo', 'Images') !!}
+                            </td>
+                            <td>
+                                {!! Form::file('photo', ['required' => 'required']) !!}
+                            </td>
                     </tr>
                         <tr>
                             <td><label for="last_login">Prénom</label></td>
@@ -65,7 +71,7 @@
                             <td><label for="phone2">Téléphone 2</label></td>
                             <td><input type="tel" name="phone2" id="phone2" class="form-control"></td>
                             <td rowspan="3"><label for="comment">Commentaires</label></td>
-                            <td rowspan="3">{!! Form::textarea('comment', '', ['rows' => '4', 'col' => '40']) !!}</td>
+                            <td rowspan="3">{!! Form::textarea('comment', '', ['rows' => '4', 'col' => '40','class' => 'form-control']) !!}</td>
                         </tr>
                         <tr>
                             <td><label for="matricule">Matricule</label></td>

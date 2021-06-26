@@ -12,20 +12,8 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->search !== null){
-            $title = 'GLPI-Documents';
-            $header = 'Documents';
-            $search = $request->search;
-            $Documents = Document::orderBy('created_at', 'DESC')->where('id','like','%'.$search.'%')
-                                  ->OrWhere('id','like','%'.$search.'%')->paginate(2);
-            return view('front.Document')->with([
-                'title' => $title,
-                'header' => $header,
-                'Documents' => $Documents
-            ]);
-        }else{
             $title = 'GLPI-Documents';
             $header = 'Documents';
             $Documents = Document::paginate(2);
@@ -34,8 +22,58 @@ class DocumentController extends Controller
                 'header' => $header,
                 'Documents' => $Documents
             ]);
-        }
+    }
 
+
+    function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = Document::where('id', 'like', '%' . $query . '%')
+                    ->OrWhere('name', 'like', '%' . $query . '%')
+                    ->OrWhere('tech', 'like', '%' . $query . '%')
+                    ->OrWhere('date_creation', 'like', '%' . $query . '%')
+                    ->OrWhere('date_expiration', 'like', '%' . $query . '%')
+                    ->OrWhere('others', 'like', '%' . $query . '%')
+                    ->OrWhere('domaintypes_id', '%' . $query . '%')
+                    ->OrWhere('comment', 'like', '%' . $query . '%')
+                    ->OrWhere('updated_at', 'like', '%' . $query . '%')
+                    ->OrWhere('created_at', 'like', '%' . $query . '%')
+                    ->get();
+
+            } else {
+                $data = Document::orderBy('created_at', 'DESC')->get();
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+           <tr>
+            <td valign="top"><a href="' . route('Domaines.edit', $row->id) . '">' . $row->name . '</a></td>
+            <td valign="top">' . $row->filename . '</td>
+            <td valign="top">' . $row->link . '</td>
+            <td valign="top">' . $row->link . '</td>
+            <td valign="top">' . DocumentCategories::findOrFail($row->documentcategories_id)->name . '</td>
+            <td valign="top">' . $row->date_expiration . '</td>
+            <td valign="top">' . $row->updated_at . '</td>
+           </tr>
+           ';
+                }
+            } else {
+                $output = '
+          <tr>
+           <td align="center" colspan="5" valign="top">Aucune donnée disponible</td>
+          </tr>
+          ';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row,
+            );
+        }
+        return response()->json($data);
     }
 
     /**

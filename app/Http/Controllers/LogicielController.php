@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\glpi_fabricant;
-use App\Models\glpi_groups;
 use App\Models\glpi_location;
 use App\Models\glpi_SourceMiseAjour;
 use App\Models\Logiciel;
@@ -139,7 +138,6 @@ class LogicielController extends Controller
         $header = 'Logiciel';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $Locations = glpi_location::all();
         $LogicielCategories = LogicielCategories::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
@@ -147,7 +145,6 @@ class LogicielController extends Controller
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
-            'groups' => $groups,
             'Fabricants' => $Fabricants,
             'Locations' => $Locations,
             'LogicielCategories' => $LogicielCategories,
@@ -190,7 +187,6 @@ class LogicielController extends Controller
         $header = 'Logiciel';
         $Users = User::all();
         $Fabricants = glpi_fabricant::all();
-        $groups = glpi_groups::all();
         $locations = glpi_location::all();
         $LogicielCategories = LogicielCategories::all();
         $SourceMiseAjours = glpi_SourceMiseAjour::all();
@@ -199,7 +195,6 @@ class LogicielController extends Controller
             'title' => $title,
             'header' => $header,
             'Users' => $Users,
-            'groups' => $groups,
             'Fabricants' => $Fabricants,
             'Locations' => $locations,
             'LogicielCategories' => $LogicielCategories,

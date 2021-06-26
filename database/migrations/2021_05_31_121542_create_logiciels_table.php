@@ -20,15 +20,9 @@ class CreateLogicielsTable extends Migration
             $table->unsignedBigInteger('locations_id')->nullable()->default('0');
             $table->unsignedBigInteger('users_id')->nullable()->default('0');
             $table->tinyInteger('is_update')->nullable()->default('0');
-            $table->integer('logiciels_id')->nullable()->default('0');
             $table->unsignedBigInteger('fabricant_id')->nullable()->default('0');
-            $table->tinyInteger('is_deleted')->nullable()->default('0');
-            $table->tinyInteger('is_template')->nullable()->default('0');
             $table->integer('template_name')->nullable()->default('0');
-            $table->decimal('ticket_tco')->nullable()->default('0.000');
-            $table->tinyInteger('is_helpdesk_visible')->default('1');
             $table->unsignedBigInteger('LogicielCategories_id')->default('0');
-            $table->tinyInteger('is_valid')->default('1');
             $table->timestamps();
 
             $table->foreign('LogicielCategories_id')->references('id')->on('logiciel_categories')->onUpdate('cascade')->onDelete('cascade');

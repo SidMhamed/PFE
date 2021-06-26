@@ -236,7 +236,9 @@
                                 <label for="comment">Comment</label>
                             </td>
                             <td>
-                                <textarea name="comment" value="{{ $Imprimante->comment ?? '' }}" id="comment" cols="45" rows="5" class="form-control"></textarea>
+                                <textarea name="comment" id="comment" cols="45" rows="5" class="form-control">
+                                    {{ $Imprimante->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr class="alert alert-dark">

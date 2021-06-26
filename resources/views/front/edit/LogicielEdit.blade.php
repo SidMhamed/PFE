@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container align-content-center border-0" role="alert">
-        <h4 class="alert-heading alert text-white">{{ $header }}</h4>
+        <h4 class="alert-heading alert text-white home my-2">
+            <a class="text-white aa" href="{{ route('home') }}">Accueil</a> >
+            <a class="text-white aa" href="{{ route('Logiciel.index') }}">{{ $header }}</a> >
+            <a class="text-white aa" href="{{ route('Logiciel.create') }}"><i class="fa fa-plus-circle"></i></a>
+        </h4>
         <div class="card border-0">
             <div class="card-header alert-heading border-success border-5 text-center">
                 <h3> {{ $Logiciel->name }} </h3>
@@ -77,7 +81,9 @@
                                 <label for="comment">Commentaires</label>
                             </td>
                             <td rowspan="2">
-                                <textarea name="comment" id="comment" cols="50" value="{{ $Logiciel->comment ?? '' }}" rows="6" class="py-1 px-2" required></textarea>
+                                <textarea name="comment" id="comment" cols="50" rows="6" class="py-1 px-2" required>
+                                    {{ $Logiciel->comment ?? '' }}
+                                </textarea>
                             </td>
                         </tr>
                         <tr>
@@ -98,12 +104,21 @@
                                 </select>
                                 <i class="fa fa-plus-circle mx-1" title="Ajouter"></i>
                             </td>
-                            <td>
+                        </tr>
+                        <tr class="alert alert-dark">
+                            <th colspan="2">
+                                Créé le {{ $Logiciel->created_at }}
+                            </th>
+                            <th colspan="2">
+                                Dernière mise à jour le {{ $Logiciel->updated_at }}
+                            </th>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <button type="submit" class="btn btn-success"> <i class='fas fa-save mx-1'></i>
-                                    Sauvegarder</button>
+                                <button type="submit" class="btn btn-success px-2">
+                                    <i class='fas fa-save mx-1'></i>
+                                    Sauvegarder
+                                </button>
                             </td>
                         </tr>
                     </table>
@@ -111,13 +126,13 @@
                 <table class="tab_cadre_fixe">
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <form method="POST" action="{{ route('Logiciel.destroy', $Logiciel->id) }}">
                                     <input name="_method" type="hidden" value="DELETE">
                                     @csrf
-                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')"
-                                        class="btn btn-danger float-right" title="Supprimer">
-                                        <i class="fa fa-trash mx-1"></i>Supprimer</button>
+                                    <button type="submit" onclick="return confirm('Veuillez confirmer la suppression ?')" class="btn btn-danger px-3" title="Supprimer">
+                                        <i class="fa fa-trash mx-1"></i>Supprimer
+                                    </button>
                                 </form>
                             </td>
                         </tr>
