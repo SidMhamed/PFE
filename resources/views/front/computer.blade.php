@@ -52,7 +52,7 @@
             </table>
 
             <div class="center">
-                <table class="tab_cadrehov table text-center">
+                <table class="tab_cadrehov table text-center display" id="example">
                     <thead>
                         <tr class="">
                             <th><a href="#">Nom</a></th>
@@ -126,7 +126,17 @@
             });
 
         </script>
+        {{-- <script>
+            $(document).ready(function() {
+                $('#example').DataTable({
+                    "lengthMenu": [
+                        [1, 2, 3, -1],
+                        [1, 2, 3, "All"]
+                    ]
+                });
+            });
 
+        </script> --}}
         {{-- <div class="d-flex justify-content-center my-3">
             {!! $computers->links('layouts.pagination') !!}
         </div> --}}

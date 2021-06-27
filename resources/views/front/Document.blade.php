@@ -31,9 +31,7 @@
                         <tr class="bg-white">
                             <th><a href="#">Nom</a></th>
                             <th><a href="#">Fichier</a></th>
-                            <th><a href="#">Lien web</a></th>
-                            <th><a href="#">Rubrique</a></th>
-                            <th><a href="#">Type MIME</a></th>
+                            <th><a href="#">Type </a></th>
                             <th><a href="#">Commentaires</a></th>
                         </tr>
                     </thead>
@@ -44,9 +42,7 @@
                         <tr class="bg-white">
                             <th><a href="#">Nom</a></th>
                             <th><a href="#">Fichier</a></th>
-                            <th><a href="#">Lien web</a></th>
-                            <th><a href="#">Rubrique</a></th>
-                            <th><a href="#">Type MIME</a></th>
+                            <th><a href="#">Type</a></th>
                             <th><a href="#">Commentaires</a></th>
                         </tr>
                     </header>

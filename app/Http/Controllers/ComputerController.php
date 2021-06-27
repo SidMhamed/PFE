@@ -37,8 +37,10 @@ class ComputerController extends Controller
      */
     public function action(Request $request)
     {
+
         if ($request->ajax()) {
             $output = '';
+            $limit = $request->input('length');
             $query = $request->get('query');
             if ($query != '') {
                 $data = glpi_computers::where('id', 'like', '%' . $query . '%')
@@ -53,6 +55,7 @@ class ComputerController extends Controller
 
             } else {
                 $data = glpi_computers::orderBy('created_at', 'DESC')
+                    ->limit($limit)
                     ->get();
             }
             $total_row = $data->count();
@@ -94,7 +97,8 @@ class ComputerController extends Controller
         return $pdf->download('pdf_file.pdf');
     }
 
-    public function convert_computer_to_html(){
+    public function convert_computer_to_html()
+    {
         $data = glpi_computers::all();
         $output = '
         <h3 style="text-align:center;">Listes des Ordinateurs</h3>
@@ -121,7 +125,7 @@ class ComputerController extends Controller
  <td style="border:1px solid;padding:5px">' . glpi_computermodels::findOrFail($row->computermodels_id)->Nom . '</td>
  <td style="border:1px solid;padding:5px">' . glpi_location::findOrFail($row->locations_id)->Nom . '</td>
  <td style="border:1px solid;padding:5px">' . $row->updated_at . '</td>
- <td style="border:1px solid;padding:5px">' . $row->created_at. '</td>
+ <td style="border:1px solid;padding:5px">' . $row->created_at . '</td>
 </tr>
 ';
         }

@@ -12,11 +12,15 @@
     <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/alerts.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
     <script src="{{ asset('jquery-3.1.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/alerts.js') }}"></script>
     <script src="{{ asset('bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script src="{{ asset('popper.min.js') }}"></script>
     <!-- Fonts -->
     <link type="text/css" href="{{ asset('fontawesome-free-5.15.3-web/css/all.css') }}" rel="stylesheet">
@@ -32,7 +36,6 @@
                 </a>
             </div>
             <!-- Right Side Of Navbar -->
-
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" class="nav-link text-white">
@@ -49,8 +52,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white text-center" href="#">
+                        Français
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navbarDropdown" class="nav-link text-white" href="#">
+                            <b>
+                                العربية
+                            </b>
+                        </a>
+                    </li>
+                <li class="nav-item">
                     <a id="navbarDropdown" class="nav-link text-white" href="{{ route('users.edit',Auth::user()->id) }}">
-                        {{ Auth::user()->name }}
+                        <i class='fa-fw fas fa-user'></i>{{ Auth::user()->name }}
                     </a>
                 </li>
                 <li class="nav-item">

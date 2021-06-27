@@ -9,17 +9,10 @@ class Document extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'filename',
-        'filepath',
-        'documentcategories_id',
-        'mime',
-        'Comment',
-        'is_deleted',
-        'link',
-        'users_id',
-        'sha1sum',
-        'is_blacklisted',
-        'tag',
-    ];
+    'name',
+    'filename',
+    'documenttypes_id',
+    'Comment',
+    'users_id',
+   ];
 }

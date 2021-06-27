@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Models\DocumentCategories;
+use App\Models\Documenttypes;
+
 class DocumentController extends Controller
 {
     /**
@@ -33,12 +35,8 @@ class DocumentController extends Controller
             if ($query != '') {
                 $data = Document::where('id', 'like', '%' . $query . '%')
                     ->OrWhere('name', 'like', '%' . $query . '%')
-                    ->OrWhere('tech', 'like', '%' . $query . '%')
-                    ->OrWhere('date_creation', 'like', '%' . $query . '%')
-                    ->OrWhere('date_expiration', 'like', '%' . $query . '%')
-                    ->OrWhere('others', 'like', '%' . $query . '%')
-                    ->OrWhere('domaintypes_id', '%' . $query . '%')
-                    ->OrWhere('comment', 'like', '%' . $query . '%')
+                    ->OrWhere('filename', 'like', '%' . $query . '%')
+                    ->OrWhere('Comment', 'like', '%' . $query . '%')
                     ->OrWhere('updated_at', 'like', '%' . $query . '%')
                     ->OrWhere('created_at', 'like', '%' . $query . '%')
                     ->get();
@@ -52,12 +50,9 @@ class DocumentController extends Controller
                     $output .= '
            <tr>
             <td valign="top"><a href="' . route('Domaines.edit', $row->id) . '">' . $row->name . '</a></td>
-            <td valign="top">' . $row->filename . '</td>
-            <td valign="top">' . $row->link . '</td>
-            <td valign="top">' . $row->link . '</td>
-            <td valign="top">' . DocumentCategories::findOrFail($row->documentcategories_id)->name . '</td>
-            <td valign="top">' . $row->date_expiration . '</td>
-            <td valign="top">' . $row->updated_at . '</td>
+            <td valign="top"> <img style="margin-left:3px; margin-right:6px;vertical-align: middle;" src="/public/icones/'.Documenttypes::findOrFail($row->documenttypes_id)->icon .'"><a href="/public/filename/'.$row->filename.'">'. $row->filename . '</a></td>
+            <td valign="top">' . Documenttypes::findOrFail($row->documenttypes_id)->name . '</td>
+            <td valign="top">' . $row->Comment . '</td>
            </tr>
            ';
                 }
@@ -85,11 +80,11 @@ class DocumentController extends Controller
     {
         $title = 'GLPI-Documents';
         $header = 'Documents';
-        $documentCategories = DocumentCategories::all();
+        $documenttypes = Documenttypes::all();
         return view('front.DocumentForm')->with([
          'title' => $title,
          'header' => $header,
-         'documentCategories' => $documentCategories
+         'documenttypes' => $documenttypes
         ]);
     }
 
@@ -101,7 +96,19 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        Document::create($request->all());
+        $name = '';
+        if($request->hasFile('filename')){
+            $file = $request->file('filename');
+            $name = $file->getClientOriginalName();
+            $file->move(public_path('filename'), $name);
+        }
+        Document::create([
+            'name' => $request -> name,
+            'filename' => $name,
+            'documenttypes_id' => $request -> documenttypes_id,
+            'Comment' => $request -> Comment,
+            'users_id' => $request -> users_id,
+        ]);
         return redirect()->route('Document.index')->with(['success' => 'Élément ajouté']);
     }
 

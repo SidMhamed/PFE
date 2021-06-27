@@ -142,10 +142,10 @@ Route::get('/DomaineSearch', [DomainesController::class,'search']);
 Route::get('/ContactsSearch', [CotactsController::class,'search']);
 Route::get('/LinesSearch', [GlpiLineController::class,'search']);
 Route::get('/UsersSearch', [UserController::class, 'search']);
-// Route::post('/searchUser', [UserController::class, 'index'])->name('SearchUser.index');
 Route::get('/ProfilesSearch', [ProfileController::class, 'search']);
 Route::get('/MaterielBureauSearch', [MaterielBureauController::class, 'search']);
 Route::get('/LicensesSearch', [GlpiLicenseController::class, 'search']);
+Route::get('/DocumentSearch', [DocumentController::class, 'search']);
 
 
 Route::get('/Rapport', function () {
@@ -173,3 +173,12 @@ Route::get('/Fournisseur_Export_to_pdf', 'SuppliersController@pdf')->name('Fourn
 Route::get('/Contacts_Export_to_pdf', 'CotactsController@pdf')->name('Contacts.pdf');
 Route::get('Lignes_Export_to_pdf', 'GlpiLineController@pdf')->name('Lignes.pdf');
 Route::get('/Domaines_Export_to_pdf', 'DomainesController@pdf')->name('Domaines.pdf');
+
+
+
+/**
+ * 
+ * 
+ */
+
+Route::post('allComputers', 'ComputerController@allComputers')->name('allComputers');
